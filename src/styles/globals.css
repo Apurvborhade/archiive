@@ -12,3 +12,67 @@
 body {
   color: var(--foreground-text-hex);
 }
+
+
+/* Header */
+.menu-btn::before {
+  content: url(../../public/assets/menu-bars.svg);
+  display: inline-block;
+  margin: auto 10px;
+}
+/* Header */
+
+/* Landing */
+.landing-container {
+  min-height: 100vh;
+  background: var(--foreground-hex);
+}
+
+.brand-info h2 {
+  min-width: 10px;
+}
+
+.text-transform {
+  animation: textSlide 4s ease infinite;
+}
+@media only screen and (max-width: 600px) {
+  .text-transform {
+    animation: textSlide 4s ease infinite;
+  }
+  @keyframes textSlide {
+    0% {
+      transform: translateY(-4px);
+    }
+    33% {
+      transform: translateY(-32px);
+    }
+    67% {
+      transform: translateY(-60px);
+    }
+    100% {
+      transform: translateY(-88px);
+    }
+  }
+}
+@media only screen and (min-width: 600px) {
+  .text-transform {
+    animation: textSlide 4s ease infinite;
+  }
+  @keyframes textSlide {
+    0% {
+      transform: translateY(0px);
+    }
+    
+    33% {
+      transform: translateY(-36px);
+    }
+    67% {
+      transform: translateY(-72px);
+    }
+    100% {
+      transform: translateY(-108px);
+    }
+  }
+}
+
+/* Landing */
