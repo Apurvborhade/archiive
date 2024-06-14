@@ -16,8 +16,8 @@ const Header = () => {
           />
         </div>
         <div className="header-cta flex items-center">
-          <button className='menu-btn flex mx-10'><p>Menu</p></button>
-          <button className='contact-cta border border-black rounded-md py-2 px-5 hover:bg-black hover:text-white transition-colors'>
+          <button className='menu-btn flex mx-10 outline-none'><p>Menu</p></button>
+          <button className='contact-cta border border-black outline-none rounded-md py-2 px-5 hover:bg-black hover:text-white transition-colors'>
             <p>Book A Call</p>
           </button>
         </div>
