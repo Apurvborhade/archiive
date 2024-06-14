@@ -7,7 +7,7 @@ const HelveticaReg = localFont({ src: "../fonts/helvetica/Helvetica.ttf" });
 const FreeSans = localFont({ src: "../fonts/FreeSansBold.ttf" });
 const About = () => {
   return (
-  <div className='about-container flex flex-col mx-10'>
+  <div className='about-container flex flex-col mx-10 lg:mt-44'>
       <div className="section-tag ml-auto ">
         <p className={Helvetica.className}>(about)</p>
       </div>
