@@ -1,11 +1,28 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import localFont from "@next/font/local"
 
 const neueMontreal = localFont({src:"../fonts/Neue Montreal Regular 400.otf"})
 const Header = () => {
+  const [navbarColor, setNavbarColor] = useState('#FFD951');
+
+  const handleScroll = () => {
+    if (window.scrollY > 950) {
+      setNavbarColor('#FFFDEB'); // Change to your desired color
+    } else {
+      setNavbarColor('#FFD951');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className={`header-container fixed w-full ${neueMontreal.className}`}>
+    <div style={{ backgroundColor: navbarColor }} className={`header-container fixed w-full ${neueMontreal.className}`}>
       <div className='header w-full flex justify-between items-center p-4 lg:px-10 lg:py-4'>
         <div className="brand-logo">
           <Image 
