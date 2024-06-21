@@ -7,19 +7,21 @@ import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 const FreeSans = localFont({ src: "../fonts/FreeSansBold.ttf" });
-const neueHass = localFont({ src: [
-  {
-    path:'../fonts/neue hass/NeueHaasDisplayRoman.ttf',
-    weight:'400',
-    style:'roman'
-  },
-  {
-    path:'../fonts/neue hass/NeueHaasDisplayMediu.ttf',
-    weight:'500',
-    style:'medium'
-  },
+const neueHass = localFont({
+  src: [
+    {
+      path: '../fonts/neue hass/NeueHaasDisplayRoman.ttf',
+      weight: '400',
+      style: 'roman'
+    },
+    {
+      path: '../fonts/neue hass/NeueHaasDisplayMediu.ttf',
+      weight: '500',
+      style: 'medium'
+    },
 
-] });
+  ]
+});
 const Helvetica = localFont({ src: "../fonts/helvetica/Helvetica-Bold.ttf" });
 
 const Footer = () => {
@@ -34,17 +36,19 @@ const Footer = () => {
           <div className="social-nav--links">
             <p className={`${neueHass.className} opacity-60`}>Socials</p>
             <div className="links">
-              <ul className='flex items-center'>
-                <li>
-                  <span>
-                    <Image
-                      src="/assets/WhatsApp.svg"
-                      width={30}
-                      height={30}
-                      alt="Instagram"
-                    />
-                  </span>
-                </li>
+              <ul className='flex items-center cursor-pointer'>
+                <Link href={'https://wa.me/+917666848035'}>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/WhatsApp.svg"
+                        width={30}
+                        height={30}
+                        alt="Instagram"
+                      />
+                    </span>
+                  </li>
+                </Link>
                 <li>
                   <span>
                     <Image
@@ -100,22 +104,25 @@ const Footer = () => {
         <Link href="mailto:test@gmail.com">
           <h2 className='lg:text-5xl text-3xl underline'>info@archiive.com</h2>
         </Link>
+
       </div>
       <div className="footer-branding flex flex-col justify-end">
         <div className="link-container--big lg:hidden block">
           <div className="social-nav--links">
             <p className={`${neueHass.className} opacity-60`}>Socials</p>
+
             <div className="links">
               <ul className='flex items-center'>
-                <li>
+                <li className='cursor-pointer'>
                   <span>
                     <Image
                       src="/assets/WhatsApp.svg"
                       width={30}
                       height={30}
-                      alt="Instagram"
+                      alt="Whatsapp"
                     />
                   </span>
+
                 </li>
                 <li>
                   <span>
