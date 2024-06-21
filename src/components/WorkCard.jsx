@@ -1,3 +1,4 @@
+import { HelveticaReg } from '@/utils/font'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -16,7 +17,7 @@ const WorkCard = ({ work }) => {
                     }}
                 />
             </div>
-            <p className=''>{title}</p>
+            <p className={HelveticaReg.className}>{title}</p>
         </Link>
     )
 }

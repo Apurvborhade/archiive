@@ -1,28 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
-import localFont from '@next/font/local'
 
-import { Inter } from '@next/font/google'
 import Link from 'next/link'
+import { FreeSans, Helvetica_Bold, inter, neueHass } from '@/utils/font'
 
-const inter = Inter({ subsets: ['latin'] })
-const FreeSans = localFont({ src: "../fonts/FreeSansBold.ttf" });
-const neueHass = localFont({
-  src: [
-    {
-      path: '../fonts/neue hass/NeueHaasDisplayRoman.ttf',
-      weight: '400',
-      style: 'roman'
-    },
-    {
-      path: '../fonts/neue hass/NeueHaasDisplayMediu.ttf',
-      weight: '500',
-      style: 'medium'
-    },
 
-  ]
-});
-const Helvetica = localFont({ src: "../fonts/helvetica/Helvetica-Bold.ttf" });
+
 
 const Footer = () => {
   return (
@@ -37,8 +20,8 @@ const Footer = () => {
             <p className={`${neueHass.className} opacity-60`}>Socials</p>
             <div className="links">
               <ul className='flex items-center cursor-pointer'>
-                <Link href={'https://wa.me/+917666848035'}>
-                  <li>
+                <li>
+                  <Link href={'https://wa.me/+917666848035'}>
                     <span>
                       <Image
                         src="/assets/WhatsApp.svg"
@@ -47,8 +30,8 @@ const Footer = () => {
                         alt="Instagram"
                       />
                     </span>
-                  </li>
-                </Link>
+                  </Link>
+                </li>
                 <li>
                   <span>
                     <Image
@@ -85,7 +68,7 @@ const Footer = () => {
           <div className="page-nav--links my-4">
             <p className={` ${neueHass.className} opacity-60`}>Menu</p>
             <div className="links">
-              <ul className={`flex items-center ${Helvetica.className}`}>
+              <ul className={`flex items-center ${Helvetica_Bold.className}`}>
                 <li>Home</li>
                 <li>Contact</li>
                 <li>About</li>
@@ -160,7 +143,7 @@ const Footer = () => {
           <div className="page-nav--links my-4">
             <p className={` ${neueHass.className} opacity-60`}>Menu</p>
             <div className="links">
-              <ul className={`flex items-center ${Helvetica.className}`}>
+              <ul className={`flex items-center ${Helvetica_Bold.className}`}>
                 <li>Home</li>
                 <li>Contact</li>
                 <li>About</li>

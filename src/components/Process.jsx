@@ -1,25 +1,10 @@
-import localFont from '@next/font/local';
-import { Monda } from 'next/font/google'
-import gsap, { Power1 } from 'gsap'
-import { useGSAP } from '@gsap/react'
-gsap.registerPlugin(useGSAP);
-const monda = Monda({ subsets: ['latin'], weight: "400" })
 import React, { useEffect, useRef } from 'react'
-const neueHass = localFont({
-    src: [
-        {
-            path: '../fonts/neue hass/NeueHaasDisplayRoman.ttf',
-            weight: '400',
-            style: 'roman'
-        },
-        {
-            path: '../fonts/neue hass/NeueHaasDisplayMediu.ttf',
-            weight: '500',
-            style: 'medium'
-        },
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { monda, neueHass } from '@/utils/font';
+gsap.registerPlugin(useGSAP);
 
-    ]
-});
+
 const Process = () => {
     const processCard = useRef(null);
     const processContainer = useRef(null);
@@ -46,11 +31,7 @@ const Process = () => {
         }
     }, [])
 
-    useGSAP(() => {
 
-
-
-    })
     return (
         <div>
 

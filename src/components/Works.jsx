@@ -1,29 +1,17 @@
 import Image from 'next/image'
-import React, { useEffect, useRef } from 'react'
-import localFont from '@next/font/local'
+import React, { useRef } from 'react'
+
 import Link from 'next/link'
 import gsap from 'gsap';
-import { createClient } from 'contentful'
+
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import WorkCard from './WorkCard';
+import { HelveticaReg, Helvetica_Bold } from '@/utils/font';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 
-const Helvetica = localFont({
-  src: [
-    {
-      path: '../fonts/helvetica/Helvetica.ttf',
-      weight: '400',
-      style: 'regular'
-    },
-    {
-      path: '../fonts/helvetica/Helvetica-Bold.ttf',
-      weight: '800',
-      style: 'bold'
-    },
-  ]
-})
+
 
 
 
@@ -64,10 +52,10 @@ const Works = ({ works }) => {
     <div id='work'>
       <div className="work-head flex">
         <div className='ml-auto m-5'>
-          <p className={`inline-block font-bold ${Helvetica.className}`}>(works)</p>
+          <p className={`inline-block font-bold ${Helvetica_Bold.className}`}>(works)</p>
         </div>
       </div>
-      <div className={`works-container p-10 ${Helvetica.className}`} ref={triggerRef}>
+      <div className={`works-container p-10 ${Helvetica_Bold.className}`} ref={triggerRef}>
 
 
         {works.map(work => (
@@ -79,7 +67,7 @@ const Works = ({ works }) => {
       <div className="works-btn flex">
         <div className='ml-auto mr-auto'>
           <Link href={"/"}>
-            <button className={`${Helvetica.className} underline-right outline-none  text-3xl flex items-center view-works-btn`}>
+            <button className={`${HelveticaReg.className} underline-right outline-none  text-3xl flex items-center view-works-btn`}>
               <p className=' transition-transform duration-500'> View All Works</p>
               <Image className='ml-3 transition-all duration-700 opacity-0 -translate-x-5' src={"/assets/right arrow.svg"} width={25} height={15} alt='right-arrow'></Image>
             </button>

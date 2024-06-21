@@ -1,25 +1,12 @@
 import Header from '@/components/Header'
 import ImageViewModel from '@/components/ImageViewModel';
-import localFont from '@next/font/local';
+import { neueHass } from '@/utils/font';
+
 import { createClient } from 'contentful'
 import Image from 'next/image';
-import { ReactLenis } from 'lenis/react'
-import React, { useEffect, useState } from 'react'
-const neueHass = localFont({
-    src: [
-        {
-            path: '../../fonts/neue hass/NeueHaasDisplayRoman.ttf',
-            weight: '400',
-            style: 'roman'
-        },
-        {
-            path: '../../fonts/neue hass/NeueHaasDisplayMediu.ttf',
-            weight: '500',
-            style: 'medium'
-        },
 
-    ]
-});
+import React, { useState } from 'react'
+
 const client = createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_KEY,
