@@ -44,22 +44,22 @@ const Process = () => {
                     <div className="process-card flex flex-col place-content-between  border border-black rounded-lg p-10">
                         <p className={`card-id ${monda.className}`}>(01)</p>
                         <h2 className={`lg:text-5xl text-3xl ${neueHass.className} font-medium`}>Consultation and Discovery</h2>
-                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At "archiive," our process starts with an in-depth consultation. We focus on understanding our clients' needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
+                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At &quot;archiive,&quot; our process starts with an in-depth consultation. We focus on understanding our client&apos;s needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
                     </div>
                     <div className="process-card flex flex-col place-content-between  border border-black rounded-lg p-10">
                         <p className={`card-id ${monda.className}`}>(01)</p>
                         <h2 className={`lg:text-5xl text-3xl ${neueHass.className} font-medium`}>Consultation and Discovery</h2>
-                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At "archiive," our process starts with an in-depth consultation. We focus on understanding our clients' needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
+                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At &quot;archiive,&quot; our process starts with an in-depth consultation. We focus on understanding our clients&apos; needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
                     </div>
                     <div className="process-card flex flex-col place-content-between  border border-black rounded-lg p-10">
                         <p className={`card-id ${monda.className}`}>(01)</p>
                         <h2 className={`lg:text-5xl text-3xl ${neueHass.className} font-medium`}>Consultation and Discovery</h2>
-                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At "archiive," our process starts with an in-depth consultation. We focus on understanding our clients' needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
+                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At &quot;archiive,&quot; our process starts with an in-depth consultation. We focus on understanding our clients&apos; needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
                     </div>
                     <div className="process-card flex flex-col place-content-between  border border-black rounded-lg p-10">
                         <p className={`card-id ${monda.className}`}>(01)</p>
                         <h2 className={`lg:text-5xl text-3xl ${neueHass.className} font-medium`}>Consultation and Discovery</h2>
-                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At "archiive," our process starts with an in-depth consultation. We focus on understanding our clients' needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
+                        <p className={`${neueHass.className} lg:text-2xl text-lg`}>At &quot;archiive,&quot; our process starts with an in-depth consultation. We focus on understanding our clients&apos; needs, preferences, and vision for their architectural photography projects. Through meaningful conversations, we ensure alignment between their goals and our expertise.</p>
                     </div>
                 </div>
             </div>

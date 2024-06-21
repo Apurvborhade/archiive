@@ -22,8 +22,8 @@ export async function getStaticProps() {
   return {
     props: {
       works: res.items,
-      revalidate: 10,
-    }
+    },
+    revalidate: 10,
   }
 }
 export default function Home({ works }) {
@@ -33,7 +33,7 @@ export default function Home({ works }) {
     <>
       <ReactLenis root options={{ duration: 2 }}>
         {/* <Loader /> */}
-        <Header isHome={isHome}/>
+        <Header navColor={"#FFD951"}/>
         <Landing />
         <Works works={works} />
         <About />

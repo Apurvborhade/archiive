@@ -13,7 +13,7 @@ const About = () => {
         <h2 className={`lg:indent-96  ${Helvetica_Bold.className} mx-30 `}>Born from Passion, Driven by Precision—Archiive: Elevating Architectural — Photography</h2>
       </div>
       <div className="about-info ml-auto lg:w-5/12 text-2xl lg:mt-32">
-        <p>Archiive was born from a passion for architecture and photography. Our journey began when our founder, [Founder's Name], realized the need for high-quality, artistic architectural photography that truly captures the essence of buildings and structures.</p>
+        <p>Archiive was born from a passion for architecture and photography. Our journey began when our founder, [Founder&apos;s Name], realized the need for high-quality, artistic architectural photography that truly captures the essence of buildings and structures.</p>
       </div>
       <div className="team-section mt-10 lg:mt-32 lg:mx-10">
         <h2 className={`${FreeSans.className} text-2xl lg:text-5xl`}>Meet Our Visionaries: The Founders</h2>

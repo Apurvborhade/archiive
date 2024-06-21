@@ -6,19 +6,19 @@ import { HelveticaReg, Helvetica_Now } from '@/utils/font';
 
 
 
-const Header = ({ isHome }) => {
-  const [navbarColor, setNavbarColor] = useState('#FFD951');
+const Header = ({ navColor }) => {
+  const [navbarColor, setNavbarColor] = useState(navColor);
 
-  useEffect(() => {
-    if (isHome === false) {
-      setNavbarColor('#FFFDEB'); // Change to your desired color
-    }
-  })
+  // useEffect(() => {
+  //   if (isHome === false) {
+  //     setNavbarColor('#FFFDEB'); // Change to your desired color
+  //   }
+  // },[])
   const handleScroll = () => {
     if (window.scrollY > 950) {
       setNavbarColor('#FFFDEB'); // Change to your desired color
     } else {
-      setNavbarColor('#FFD951');
+      setNavbarColor(navColor);
     }
   };
 

@@ -36,7 +36,7 @@ const CustomCursor = () => {
         };
         addEventListeners();
         return () => removeEventListeners();
-    }, [])
+    })
 
     return (
         <div>
