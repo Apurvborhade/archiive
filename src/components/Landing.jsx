@@ -3,7 +3,21 @@ import localFont from '@next/font/local'
 
 const Helvetica = localFont({ src: "../fonts/helvetica/Helvetica-Bold.ttf" });
 const FreeSans = localFont({ src: "../fonts/FreeSansBold.ttf" });
+const neueHass = localFont({
+    src: [
+        {
+            path: '../fonts/neue hass/NeueHaasDisplayRoman.ttf',
+            weight: '400',
+            style: 'roman'
+        },
+        {
+            path: '../fonts/neue hass/NeueHaasDisplayMediu.ttf',
+            weight: '500',
+            style: 'medium'
+        },
 
+    ]
+});
 const Landing = () => {
   return (
 
@@ -13,7 +27,7 @@ const Landing = () => {
       </div>
       <div className={`branding ${FreeSans.className}`}>
         <div className="tagline-anim">
-          <h1 className=' text-8xl lg:text-9xl'>archiive</h1>
+          <h1 className={`text-8xl lg:text-9xl ${neueHass.className} font-medium`}>archiive</h1>
           <div className="text-anim flex items-center text-lg lg:text-3xl">
             <h2 className=''>We are here to archiive</h2>
             <div className="dash w-24 bg-black border border-black mx-5"></div>

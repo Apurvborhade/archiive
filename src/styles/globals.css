@@ -16,9 +16,12 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 * {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
 body {
   color: var(--foreground-text-hex);
 }
@@ -29,113 +32,27 @@ body {
   opacity: 1;
   color: var(--foreground-hex);
 }
+
 .loader-logo {
   fill: #FFD951;
 
 }
+
 .logo-anim {
   z-index: 102;
 }
+
 .overlay {
   position: fixed;
-  top: 0;left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   z-index: 101;
-}
-
-.block {
-  position: fixed;
-  width: 0%;
-  height: 100vh;
   background: #000;
 }
 
-.block-1 {
-  left: 0;
-}
 
-.block-2 {
-  left: 4.5%;
-}
-
-.block-3 {
-  left: 9%;
-}
-
-.block-4 {
-  left: 13.5%;
-}
-
-.block-5 {
-  left: 18%;
-}
-
-.block-6 {
-  left: 22.5%;
-}
-
-.block-7 {
-  left: 27%;
-}
-
-.block-8 {
-  left: 31.5%;
-}
-
-.block-9 {
-  left: 36%;
-}
-
-.block-10 {
-  left: 40.5%;
-}
-
-.block-11 {
-  left: 45%;
-}
-
-.block-12 {
-  left: 49.5%;
-}
-
-.block-13 {
-  left: 54%;
-}
-
-.block-14 {
-  left: 58.5%;
-}
-
-.block-15 {
-  left: 63%;
-}
-
-.block-16 {
-  left: 67.5%;
-}
-
-.block-17 {
-  left: 72%;
-}
-
-.block-18 {
-  left: 76.5%;
-}
-
-.block-19 {
-  left: 81%;
-}
-
-.block-20 {
-  left:85.5%;
-}
-.block-21 {
-  left: 90%;
-}
-.block-22 {
-  left: 95%;
-}
 
 @media (max-width: 900px) {
   .about p {
@@ -249,7 +166,7 @@ body {
 }
 
 .work-item:nth-child(4) {
-  grid-column: 1/5 ;
+  grid-column: 1/5;
   grid-row: 9 /12;
 }
 
@@ -257,10 +174,12 @@ body {
   grid-column: 14/21;
   grid-row: 10/15;
 }
+
 .work-item:nth-child(6) {
   grid-column: 6/12;
   grid-row: 13/18;
 }
+
 @media only screen and (max-width: 600px) {
   .works-container {
     display: flex;
@@ -274,17 +193,20 @@ body {
     width: 100%;
     height: 400px;
   }
-  
+
 }
+
 .underline-right {
   color: #000000;
   text-decoration: none;
   display: flex;
   position: relative;
 }
+
 .underline-right::after {
   content: '';
   position: absolute;
+  pointer-events: none;
   left: 0;
   display: inline-block;
   height: 1em;
@@ -292,10 +214,10 @@ body {
   border-bottom: 1px solid;
   margin-top: 10px;
   opacity: 0;
-	-webkit-transition: opacity 0.35s, width 0.35s;
-	transition: opacity 0.35s, width 0.35s;
-	width: 0px;
-	
+  -webkit-transition: opacity 0.35s, width 0.35s;
+  transition: opacity 0.35s, width 0.35s;
+  width: 0px;
+
 }
 
 .underline-right:hover:after {
@@ -303,14 +225,16 @@ body {
   width: 100%;
 }
 
-.view-works-btn:hover > img {
+.view-works-btn:hover>img {
   transform: translateX(0px);
   opacity: 1;
 }
-.view-works-btn:hover > p {
+
+.view-works-btn:hover>p {
   transform: translateX(-6px);
   opacity: 1;
 }
+
 /* Works */
 
 /* About */
@@ -336,10 +260,19 @@ body {
 .process-card--container {
   min-height: 70vh;
 }
+
 .process-card {
   min-height: 25rem;
   min-width: 45rem;
   margin: 50px 20px;
+}
+@media only screen and (max-width: 600px) {
+  .process-card {
+    min-height: 25rem;
+    min-width: 25rem;
+    margin: 50px 20px;
+  }
+
 }
 /* Process */
 /* Footer */
@@ -371,7 +304,8 @@ footer li {
 
 /* Footer */
 
-/* Cursor *//* src/CustomCursor.css */
+/* Cursor */
+/* src/CustomCursor.css */
 .custom-cursor {
   z-index: 1;
   width: 20px;
@@ -384,4 +318,78 @@ footer li {
   transition: transform 0.1s ease;
   z-index: 1000;
 }
+
 /* Cursor */
+
+
+/* <------------- Work Details -------------> */
+.work-det--thumbnail {
+  min-height: 70vh;
+}
+
+.image-model {
+  z-index: 9999;
+}
+
+/* components/CustomCursor.module.css */
+.cursor {
+  position: fixed;
+  background-color: var(--background-hex);
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  z-index: 1;
+  transition: 0.17s linear transform,
+    1.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+  user-select: none;
+  pointer-events: none;
+  z-index: 100001;
+  top: -75px;
+  left: -75px;
+  visibility: hidden;
+
+  opacity: 0;
+ 
+}
+
+.mouse-hover {
+  visibility: visible;
+  opacity: 1;
+}
+.cursor.active {
+  opacity: 0.5;
+  transform: scale(0);
+}
+
+.cursor.hovered {
+  opacity: 0.08;
+}
+
+.cursor-follower {
+  position: fixed;
+  background-color: #000;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  z-index: 1111111;
+  transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+    0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(5px, 5px);
+
+  &.active {
+    opacity: 0.7;
+    transform: scale(3);
+  }
+
+  &.hovered {
+    opacity: 0.08;
+  }
+}
+
+.media-container {
+  height: 40rem;
+}
+/* <------------- Work Details -------------> */
