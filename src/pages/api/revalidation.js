@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         // Check that body is not empty
         const payload  = req.body;
         
-        if (!body) {
+        if (!payload) {
             res.status(400).send("Bad request, no body")
             return;
         }
