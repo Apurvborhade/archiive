@@ -21,4 +21,5 @@ export const neueHass = localFont({
 export const Helvetica_Bold = localFont({ src: "../fonts/helvetica/Helvetica-Bold.ttf" });
 export const HelveticaReg = localFont({ src: "../fonts/helvetica/Helvetica.ttf" });
 export const Helvetica_Now = localFont({ src: "../fonts/HelveticaNowDisplay-Regular.ttf" });
+export const NeueMontreal = localFont({ src: "../fonts/Neue Montreal Regular 400.otf" });
 export const monda = Monda({ subsets: ['latin'], weight: "400" })

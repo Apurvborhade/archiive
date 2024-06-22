@@ -46,7 +46,7 @@ const Loader = () => {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
         }, "-=0.4")
 
-        tl.to(".logo-anim", { y: -220, opacity: 0, ease: "power1.inOut", delay: 0.8, })
+        tl.to(".logo-anim", { y: -220, opacity: 0, ease: "power1.inOut", delay: 0.8,duration:1 })
         tl.to(
             '.overlay',
             {

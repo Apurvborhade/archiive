@@ -2,21 +2,24 @@ import Image from 'next/image'
 import React, { useState, useEffect } from 'react';
 
 import Link from 'next/link';
-import { HelveticaReg, Helvetica_Now } from '@/utils/font';
+import { FreeSans, HelveticaReg, Helvetica_Bold, Helvetica_Now, NeueMontreal, neueHass } from '@/utils/font';
 
 
 
 const Header = ({ navColor }) => {
   const [navbarColor, setNavbarColor] = useState(navColor);
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  // useEffect(() => {
-  //   if (isHome === false) {
-  //     setNavbarColor('#FFFDEB'); // Change to your desired color
-  //   }
-  // },[])
+  const openMenu = () => {
+    setMenuOpen(true)
+  }
+  const closeMenu = () => {
+    setMenuOpen(false)
+  }
+
   const handleScroll = () => {
     if (window.scrollY > 950) {
-      setNavbarColor('#FFFDEB'); // Change to your desired color
+      setNavbarColor('#FFFDEB');
     } else {
       setNavbarColor(navColor);
     }
@@ -63,9 +66,102 @@ const Header = ({ navColor }) => {
           <button className='contact-cta border border-black outline-none rounded-md py-2 px-5 hover:bg-black lg:block hidden hover:text-white transition-colors'>
             <p>Book A Call</p>
           </button>
-          <button className={`menu-btn flex ml-10 mr-4 outline-none ${Helvetica_Now.className} lg:hidden block uppercase`}><p>Menu</p></button>
+          <button className={`menu-btn flex ml-10 mr-4 outline-none ${Helvetica_Now.className} lg:hidden block uppercase`} onClick={openMenu}><p>Menu</p></button>
         </div>
       </div>
+
+      <div className={`menu-overlay cursor-pointer ${menuOpen ? 'block opacity-100' : ' hidden opacity-0'}`} onClick={closeMenu}></div>
+      <div className={`mobile-menu flex flex-col ${menuOpen ? 'mobile-menu--open' : ''}`}>
+        <div>
+          <div className="mobile-menu--header flex justify-end ">
+            <button className="close-btn m-5 p-1 border rounded-full cursor-pointer" onClick={closeMenu}>
+              <Image
+                src={"/assets/Close_round.svg"}
+                width={25}
+                height={25}
+              />
+            </button>
+          </div>
+          <div className="mobile-menu--links text-white m-10 flex flex-col justify-between">
+            <ul className={`uppercase ${neueHass.className} font-medium text-6xl h-2/6 flex flex-col justify-between ` } onClick={closeMenu}>
+              <li>
+                <Link href={'/'}>Home</Link>
+              </li>
+              <li>
+                <Link href={'/'}>About</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Works</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Contact</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="social-nav--links flex mx-10 mt-auto mb-10 items-center">
+
+          <div className="links w-full ">
+            <ul className='flex items-center w-3/5 bz justify-around' >
+              <li className='cursor-pointer'>
+                <Link href={'https:/wa.me/+917666848035'}>
+                  <span>
+                    <Image
+                      src="/assets/WhatsApp.svg"
+                      width={30}
+                      height={30}
+                      alt="Whatsapp"
+                      className='invert'
+                    />
+                  </span>
+
+                </Link>
+              </li>
+              <li>
+                <Link href={'/'}>
+                  <span>
+                    <Image
+                      src="/assets/Instagram.svg"
+                      width={30}
+                      height={30}
+                      alt="Instagram"
+                      className='invert'
+                    />
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href={'/'}>
+                  <span>
+                    <Image
+                      src="/assets/Behance.svg"
+                      width={30}
+                      height={30}
+                      alt="Behance"
+                      className='invert'
+                    />
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href={'/'}>
+                  <span>
+                    <Image
+                      src="/assets/Dribbble.svg"
+                      width={30}
+                      height={30}
+                      alt="Dribble"
+                      className='invert'
+                    />
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   )
 }
