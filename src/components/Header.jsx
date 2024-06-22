@@ -83,23 +83,23 @@ const Header = ({ navColor }) => {
             </button>
           </div>
           <div className="mobile-menu--links text-white m-10 flex flex-col justify-between">
-            <ul className={`uppercase ${neueHass.className} font-medium text-6xl h-2/6 flex flex-col justify-between ` } onClick={closeMenu}>
+            <ul className={`uppercase ${neueHass.className} font-medium text-5xl h-2/6 flex flex-col justify-between ` } onClick={closeMenu}>
               <li>
                 <Link href={'/'}>Home</Link>
               </li>
               <li>
-                <Link href={'/'}>About</Link>
+                <Link href={'#about'}>About</Link>
               </li>
               <li>
-                <Link href={'/'}>Works</Link>
+                <Link href={'#work'}>Works</Link>
               </li>
               <li>
-                <Link href={'/'}>Contact</Link>
+                <Link href={'#contact'}>Contact</Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="social-nav--links flex mx-10 mt-auto mb-10 items-center">
+        <div className="social-nav--links flex mx-10 mt-auto mb-16 items-center">
 
           <div className="links w-full ">
             <ul className='flex items-center w-3/5 bz justify-around' >

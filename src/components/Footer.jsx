@@ -9,7 +9,7 @@ import { FreeSans, Helvetica_Bold, inter, neueHass } from '@/utils/font'
 
 const Footer = () => {
   return (
-    <footer className='p-10 flex flex-col justify-between'>
+    <footer className='p-10 flex flex-col justify-between' id='contact'>
       <div className="footer-head flex justify-between">
         <div className={`footer-headline ${FreeSans.className}`}>
           <p>(Get in Touch)</p>
