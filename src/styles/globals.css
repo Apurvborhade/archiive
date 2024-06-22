@@ -67,6 +67,9 @@ body {
 
 
 @media only screen and (max-width: 1200px) {
+  .cursor {
+    display: none;
+  }
   .founder-section {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
@@ -234,6 +237,7 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+  
   .works-container {
     display: flex;
     flex-direction: column;
