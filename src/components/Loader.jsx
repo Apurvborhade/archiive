@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import gsap, { Power1 } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image';
@@ -20,11 +20,23 @@ const neueHass = localFont({
     ]
 });
 const Loader = () => {
-    const [logoSize, setLogoSize] = useState(80)
+    const getInitialLogoSize = () => (typeof window !== 'undefined' && window.innerWidth < 600 ? 50 : 80);
+
+    const [logoSize, setLogoSize] = useState(getInitialLogoSize);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setLogoSize(window.innerWidth < 600 ? 50 : 80);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     useGSAP(() => {
-        if(window.innerWidth < 600) {
-            setLogoSize(70)
-        }
 
         const tl = gsap.timeline({});
 
@@ -32,7 +44,7 @@ const Loader = () => {
         tl.from('.loader-logo', {
             x: 200,
             duration: 1,
-            
+
         })
 
 
@@ -41,11 +53,11 @@ const Loader = () => {
             clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)"
         }, {
             duration: 1,
-            
+
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
         }, "-=0.4")
 
-        tl.to(".logo-anim", { y: -220, opacity: 0,ease:"power1.inOut",delay:0.8, })
+        tl.to(".logo-anim", { y: -220, opacity: 0, ease: "power1.inOut", delay: 0.8, })
         tl.to(
             '.overlay',
             {
@@ -66,9 +78,9 @@ const Loader = () => {
                         width={logoSize}
                         alt='logo'
                         height={logoSize}
-                        className="loader-logo mt-5"
+                        className="loader-logo lg:mt-5"
                     />
-                    <h1 className={`text-white ml-10 lg:text-9xl text-8xl loader-brand--text ${neueHass.className} font-medium`}>archiive</h1>
+                    <h1 className={`text-white ml-5 lg:ml-10 lg:text-9xl text-6xl loader-brand--text ${neueHass.className} font-medium`}>archiive</h1>
                 </div>
             </div>
             <div className="overlay pointer-events-none"></div>
