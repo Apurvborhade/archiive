@@ -140,11 +140,14 @@ body {
   animation: textSlide 4s ease infinite;
 }
 
+
 @media only screen and (max-width: 600px) {
   .text-transform {
     animation: textSlide 4s ease infinite;
   }
-
+  .text-anim > h2 {
+    width: 40%;
+  }
   @keyframes textSlide {
     0% {
       transform: translateY(-4px);

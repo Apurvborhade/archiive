@@ -12,7 +12,7 @@ const Landing = () => {
         <div className="tagline-anim">
           <h1 className={`text-8xl lg:text-9xl ${neueHass.className} font-medium`}>archiive</h1>
           <div className="text-anim flex items-center text-lg lg:text-3xl">
-            <h2 className='inline w-3/6 leading-5  font-medium'>We are here to archiive</h2>
+            <h2 className='inline leading-5  font-medium'>We are here to archiive</h2>
             <div className="dash lg:w-24 w-10 bg-black border border-black mx-5"></div>
             <div className='text-slide h-6 lg:h-10 w-auto lg:w-auto overflow-hidden'>
               <div className='text-transform font-medium'>
