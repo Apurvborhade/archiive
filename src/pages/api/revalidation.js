@@ -14,22 +14,19 @@ export default async function handler(req, res) {
 
     try {
         // Check that body is not empty
-        const payload  = req.body;
-        
-        if (!payload) {
+        const body = req.body;
+
+        if (!body) {
             res.status(400).send("Bad request, no body")
             return;
         }
 
-        console.log(payload)
         // get the slug to revalidate the body
-        const slugToRevalidate = payload.slugToRevalidate;
-        console.log('Slug to Revalidate:', slugToRevalidate);
-        // if (slugToRevalidate) {
-        //     console.log("revalidating")
-        //     await res.revalidate(`/works/${slugToRevalidate}`);
-        //     return res.json({ revalidated: true })
-        // }
+        const slugToRevalidate = body.slugToRevalidate;
+        if (slugToRevalidate) {
+            await res.revalidate(`/works/${slugToRevalidate}`);
+            return res.json({ revalidated: true })
+        }
     } catch (err) {
         // If there was an error, Next.js will continue
         // to show the last successfully generated page
