@@ -1,5 +1,5 @@
-import localFont from '@next/font/local'
-import { Inter, Monda } from '@next/font/google'
+import localFont from 'next/font/local'
+import { Inter, Monda } from 'next/font/google'
 
 export const inter = Inter({ subsets: ['latin'] })
 export const FreeSans = localFont({ src: "../fonts/FreeSansBold.ttf" });

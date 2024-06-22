@@ -33,34 +33,40 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <span>
-                    <Image
-                      src="/assets/Instagram.svg"
-                      width={30}
-                      height={30}
-                      alt="Instagram"
-                    />
-                  </span>
+                  <Link href={'/'}>
+                    <span>
+                      <Image
+                        src="/assets/Instagram.svg"
+                        width={30}
+                        height={30}
+                        alt="Instagram"
+                      />
+                    </span>
+                  </Link>
                 </li>
                 <li>
-                  <span>
-                    <Image
-                      src="/assets/Behance.svg"
-                      width={30}
-                      height={30}
-                      alt="Instagram"
-                    />
-                  </span>
+                  <Link href={'/'}>
+                    <span>
+                      <Image
+                        src="/assets/Behance.svg"
+                        width={30}
+                        height={30}
+                        alt="Instagram"
+                      />
+                    </span>
+                  </Link>
                 </li>
                 <li>
-                  <span>
-                    <Image
-                      src="/assets/Dribbble.svg"
-                      width={30}
-                      height={30}
-                      alt="Instagram"
-                    />
-                  </span>
+                  <Link href={'/'}>
+                    <span>
+                      <Image
+                        src="/assets/Dribbble.svg"
+                        width={30}
+                        height={30}
+                        alt="Instagram"
+                      />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -69,10 +75,27 @@ const Footer = () => {
             <p className={` ${neueHass.className} opacity-60`}>Menu</p>
             <div className="links">
               <ul className={`flex items-center ${Helvetica_Bold.className}`}>
-                <li>Home</li>
-                <li>Contact</li>
-                <li>About</li>
-                <li>Works</li>
+                <li>
+                  <Link href={'/'}>
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'https://wa.me/+917666848035'}>
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'#about'}>
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'#works'}>
+                    Works
+                  </Link>
+                </li>
+
               </ul>
             </div>
           </div>
@@ -97,45 +120,53 @@ const Footer = () => {
             <div className="links">
               <ul className='flex items-center'>
                 <li className='cursor-pointer'>
-                  <span>
-                    <Image
-                      src="/assets/WhatsApp.svg"
-                      width={30}
-                      height={30}
-                      alt="Whatsapp"
-                    />
-                  </span>
+                  <Link href={'/https://wa.me/+917666848035'}>
+                    <span>
+                      <Image
+                        src="/assets/WhatsApp.svg"
+                        width={30}
+                        height={30}
+                        alt="Whatsapp"
+                      />
+                    </span>
 
+                  </Link>
                 </li>
                 <li>
-                  <span>
-                    <Image
-                      src="/assets/Instagram.svg"
-                      width={30}
-                      height={30}
-                      alt="Instagram"
-                    />
-                  </span>
+                  <Link href={'/'}>
+                    <span>
+                      <Image
+                        src="/assets/Instagram.svg"
+                        width={30}
+                        height={30}
+                        alt="Instagram"
+                      />
+                    </span>
+                  </Link>
                 </li>
                 <li>
-                  <span>
-                    <Image
-                      src="/assets/Behance.svg"
-                      width={30}
-                      height={30}
-                      alt="Instagram"
-                    />
-                  </span>
+                  <Link href={'/'}>
+                    <span>
+                      <Image
+                        src="/assets/Behance.svg"
+                        width={30}
+                        height={30}
+                        alt="Behance"
+                      />
+                    </span>
+                  </Link>
                 </li>
                 <li>
-                  <span>
-                    <Image
-                      src="/assets/Dribbble.svg"
-                      width={30}
-                      height={30}
-                      alt="Instagram"
-                    />
-                  </span>
+                  <Link href={'/'}>
+                    <span>
+                      <Image
+                        src="/assets/Dribbble.svg"
+                        width={30}
+                        height={30}
+                        alt="Dribble"
+                      />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -144,10 +175,26 @@ const Footer = () => {
             <p className={` ${neueHass.className} opacity-60`}>Menu</p>
             <div className="links">
               <ul className={`flex items-center ${Helvetica_Bold.className}`}>
-                <li>Home</li>
-                <li>Contact</li>
-                <li>About</li>
-                <li>Works</li>
+                <li>
+                  <Link href={'/'}>
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'https://wa.me/+917666848035'}>
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'#about'}>
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'#work'}>
+                    Works
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

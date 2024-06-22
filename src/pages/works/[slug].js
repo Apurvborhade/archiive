@@ -42,7 +42,6 @@ export async function getStaticProps({ params }) {
 
     return {
         props: { work: items[0] || null },
-        revalidate: 10, // ISR: Re-generate the page at most once every 10 seconds
     };
 }
 
@@ -120,7 +119,7 @@ const WorkDetails = ({ work }) => {
                         {media.map(image => (
                             <div className='media-container relative w-full' key={image.sys.id}>
                                 <div
-                                    className='work-det--thumbnail-overlay absolute w-full h-full bg-black z-10 opacity-0 hover:opacity-45 transition-opacity duration-700 cursor-pointer'
+                                    className='work-det--thumbnail-overlay absolute w-full h-full hover-target bg-black z-10 opacity-0 hover:opacity-45 transition-opacity duration-700 cursor-pointer'
                                     onClick={() => openModal(`https:${image.fields.file.url}`, image.fields.title)}
                                 ></div>
                                 <Image
