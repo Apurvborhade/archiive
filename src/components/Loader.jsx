@@ -60,7 +60,7 @@ const Loader = () => {
     })
     return (
         <>
-            <div className="logo-anim absolute  w-screen h-screen flex justify-center items-center pointer-events-none">
+            <div className="logo-anim fixed  w-screen h-screen flex justify-center items-center pointer-events-none">
                 <div className="lg:translate-x-3 fixed flex w-full h-full items-center justify-center">
                     <Image
                         src={'/assets/archiiveLoader.svg'}
