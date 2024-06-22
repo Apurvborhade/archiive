@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="footer-head flex justify-between">
         <div className={`footer-headline ${FreeSans.className}`}>
           <p>(Get in Touch)</p>
-          <h2 className='lg:text-5xl text-3xl lg:w-6/12 w-full leading-tight mt-5'>Are you interested in working together and elevate your brand to the next level?</h2>
+          <h2 className='lg:text-5xl text-3xl lg:w-6/12 w-full leading-tight my-5'>Are you interested in working together and elevate your brand to the next level?</h2>
         </div>
         <div className="link-container--big lg:block hidden">
           <div className="social-nav--links">
@@ -105,7 +105,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className={`footer-mail lg:mt-60 text-2xl ${FreeSans.className}`}>
+      <div className={`footer-mail lg:mt-60 text-2xl lg:mb-0 mb-10 ${FreeSans.className}`}>
         <p className='opacity-45'>Send Mail</p>
         <Link href="mailto:test@gmail.com">
           <h2 className='lg:text-5xl text-3xl underline'>info@archiive.com</h2>
@@ -203,7 +203,7 @@ const Footer = () => {
             <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
           </div>
         </div>
-        <h1 className={` ${neueHass.className} font-medium ml-auto mt-10`}>archiive</h1>
+        <h1 className={` ${neueHass.className} font-medium ml-auto mt-10 `}>archiive</h1>
       </div>
     </footer>
   )

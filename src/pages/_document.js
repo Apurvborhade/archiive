@@ -7,6 +7,7 @@ export default function Document() {
         <meta name="description" content="A brief description of the page content." />
         <meta name="keywords" content="keyword1, keyword2, keyword3" />
         <meta property="og:title" content="Title Here" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:description" content="Description Here" />
         <meta property="og:image" content="image_url_here" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

@@ -18,7 +18,7 @@ export async function getStaticProps() {
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_KEY,
   })
 
-  const res = await client.getEntries({ content_type: 'work' })
+  const res = await client.getEntries({ content_type: 'work', limit: 6 })
   return {
     props: {
       works: res.items,
@@ -31,13 +31,12 @@ export default function Home({ works }) {
   return (
     <>
       <ReactLenis root options={{ duration: 2 }}>
-        {/* <Loader /> */}
+        <Loader />
         <Header navColor={"#FFD951"} />
         <Landing />
         <Works works={works} />
         <About />
         <Process />
-
       </ReactLenis>
     </>
   );

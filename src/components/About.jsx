@@ -5,7 +5,7 @@ import { FreeSans, HelveticaReg, Helvetica_Bold, neueHass } from '@/utils/font';
 
 const About = () => {
   return (
-  <div className='about-container flex flex-col mx-10 my-32 lg:mt-44' id='about'>
+  <div className='about-container flex flex-col mx-5 my-32 lg:mt-44' id='about'>
       <div className="section-tag ml-auto ">
         <p className={Helvetica_Bold.className}>(about)</p>
       </div>
@@ -17,7 +17,7 @@ const About = () => {
       </div>
       <div className="team-section mt-10 lg:mt-32 lg:mx-10">
         <h2 className={`${FreeSans.className} text-2xl lg:text-5xl`}>Meet Our Visionaries: The Founders</h2>
-        <div className="section-container grid lg:grid-cols-3 lg:grid-rows-1 md:grid-cols-2 grid-rows-3 lg:gap-16 gap-5 mt-10">
+        <div className="section-container founder-section grid lg:grid-cols-3 lg:grid-rows-1  grid-rows-3 lg:gap-16 gap-5 mt-10">
           <div className={`founder-card relative text-white overflow-hidden ${neueHass.className}`}>
             <Image 
             src="https://images.unsplash.com/photo-1590086782792-42dd2350140d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

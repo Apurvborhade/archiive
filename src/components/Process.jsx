@@ -11,25 +11,31 @@ const Process = () => {
     let horizontalScroll = 0;
 
     useEffect(() => {
-        if (processCard.current && window.innerWidth > 1300) {
-            const processCards = Array.from(processCard.current.childNodes)
-            processCards.slice(0, processCards.length - 2).forEach((card) => {
-                horizontalScroll += card.offsetWidth;
-            })
-            gsap.to(".process-card--container", {
-                x: -(horizontalScroll),
-                scrollTrigger: {
-                    trigger: document.querySelector(".process-container"),
-                    start: "-=100 top",
-                    end: "+=2500",
-                    pin: true,
-                    markers: false,
-                    scrub: true
-                },
-                ease: "power1.inOut",
-            })
-        }
-    }, [])
+        if (!processCard.current || window.innerWidth < 1024) return;
+
+        const processCards = Array.from(processCard.current.childNodes);
+        const horizontalScroll = processCards.reduce((acc, card, index) => {
+            if (window.innerWidth >= 1200 && index >= processCards.length - 2) {
+                return acc; // Skip the last two cards if the condition meets
+            }
+            return acc + card.offsetWidth;
+        }, 0);
+
+        const processContainer = document.querySelector(".process-container");
+
+        gsap.to(".process-card--container", {
+            x: -horizontalScroll,
+            scrollTrigger: {
+                trigger: processContainer,
+                start: "-=100 top",
+                end: "+=2500",
+                pin: true,
+                markers: false,
+                scrub: true,
+            },
+            ease: "power1.inOut",
+        });
+    }, []);
 
 
     return (

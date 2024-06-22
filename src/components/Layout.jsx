@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
         <>
 
             
-            <div className=''>
+            <div className='w-full'>
                 {children}
             </div>
             <Footer />

@@ -4,7 +4,7 @@ import React from 'react'
 const Landing = () => {
   return (
 
-    <div className="landing-container h-full flex flex-col place-content-between p-4 lg:p-10">
+    <div className="landing-container h-full flex flex-col w-full place-content-between p-4 lg:p-10">
       <div className="brand-info flex justify-end">
         <h2 className={`${Helvetica_Bold.className} lg:w-3/6 text-4xl lg:text-5xl lg:mt-32 mt-44`}>We are a creative studio crafting unique visual content to empower people and brands.</h2>
       </div>

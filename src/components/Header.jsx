@@ -30,7 +30,7 @@ const Header = ({ navColor }) => {
   }, []);
 
   return (
-    <div style={{ backgroundColor: navbarColor }} className={`header-container fixed top-0 w-full ${Helvetica_Now.className}`}>
+    <div style={{ backgroundColor: navbarColor }} className={`header-container fixed top-0 w-screen ${Helvetica_Now.className}`}>
       <div className='header w-full flex justify-between items-center p-4 lg:px-10 lg:py-4'>
         <Link className="brand-logo" href={"/"}>
           <Image
@@ -60,7 +60,7 @@ const Header = ({ navColor }) => {
           </ul>
         </div>
         <div className="header-cta flex items-center">
-          <button className='contact-cta border border-black outline-none rounded-md py-2 px-5 hover:bg-black hover:text-white transition-colors'>
+          <button className='contact-cta border border-black outline-none rounded-md py-2 px-5 hover:bg-black lg:block hidden hover:text-white transition-colors'>
             <p>Book A Call</p>
           </button>
           <button className={`menu-btn flex ml-10 mr-4 outline-none ${Helvetica_Now.className} lg:hidden block uppercase`}><p>Menu</p></button>
