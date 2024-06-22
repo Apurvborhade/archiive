@@ -21,12 +21,25 @@
   scrollbar-width: none;
   /* Firefox */
 }
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
 
-body {
+body { 
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
   color: var(--foreground-text-hex);
 }
 
 /* Loader */
+.loader-logo {
+  width: 80px;
+}
+
 .loader-brand--text {
   line-height: 80%;
   opacity: 1;
@@ -59,6 +72,9 @@ body {
   }
 }
 @media only screen and (max-width: 600px) {
+  .loader-logo {
+    width: 50px;
+  }
   .founder-section {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }

@@ -20,22 +20,11 @@ const neueHass = localFont({
     ]
 });
 const Loader = () => {
-    const getInitialLogoSize = () => (typeof window !== 'undefined' && window.innerWidth < 600 ? 50 : 80);
+    
 
-    const [logoSize, setLogoSize] = useState(getInitialLogoSize);
+    const [logoSize, setLogoSize] = useState(80);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setLogoSize(window.innerWidth < 600 ? 50 : 80);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        // Cleanup the event listener on component unmount
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+   
     useGSAP(() => {
 
         const tl = gsap.timeline({});
@@ -72,7 +61,7 @@ const Loader = () => {
     return (
         <>
             <div className="logo-anim absolute  w-screen h-screen flex justify-center items-center pointer-events-none">
-                <div className="translate-x-3 fixed flex w-full h-full items-center justify-center">
+                <div className="lg:translate-x-3 fixed flex w-full h-full items-center justify-center">
                     <Image
                         src={'/assets/archiiveLoader.svg'}
                         width={logoSize}
