@@ -13,7 +13,8 @@ const Footer = () => {
       <div className="footer-head flex justify-between">
         <div className={`footer-headline ${FreeSans.className}`}>
           <p>(Get in Touch)</p>
-          <h2 className='lg:text-5xl text-3xl lg:w-6/12 w-full leading-tight my-5'>Are you interested in working together and elevate your brand to the next level?</h2>
+          <h2 className='lg:text-4xl text-3xl lg:w-6/12 w-full leading-tight my-5'>Bring your vision to life with us. Lets turn your creations into timeless visual narratives.
+          </h2>
         </div>
         <div className="link-container--big lg:block hidden">
           <div className="social-nav--links">
