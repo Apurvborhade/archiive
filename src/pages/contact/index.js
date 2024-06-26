@@ -5,6 +5,7 @@ import { sendContactForm } from '../../../lib/api'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { inter, neutralFace } from '@/utils/font';
 const initValues = { name: "", email: "", project: "", description: "" }
 
 const initState = { values: initValues, isLoading: false, isSuccess: false }

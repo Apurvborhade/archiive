@@ -21,7 +21,7 @@ export const neueHass = localFont({
 export const neutralFace = localFont({
     src: [
         {
-            path: '../fonts/neutralFace.otf',
+            path: '../fonts/NeutralFace.otf',
             weight: '200',
             style: 'roman'
         },
