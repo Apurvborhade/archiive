@@ -1,9 +1,13 @@
 import Image from 'next/image'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Link from 'next/link';
-import { FreeSans, HelveticaReg, Helvetica_Bold, Helvetica_Now, NeueMontreal, neueHass } from '@/utils/font';
-
+import { Helvetica_Now, neueHass } from '@/utils/font';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(useGSAP)
 
 
 const Header = ({ navColor }) => {
@@ -17,20 +21,24 @@ const Header = ({ navColor }) => {
     setMenuOpen(false)
   }
 
-  const handleScroll = () => {
-    if (window.scrollY > 950) {
-      setNavbarColor('#FFFDEB');
-    } else {
-      setNavbarColor(navColor);
-    }
-  };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+
+
+  useGSAP(() => {
+    gsap.to(".header-container", {
+      duration: 0.01,
+      scrollTrigger: {
+        trigger: ".work-head",
+        start: "-=100 top",
+        end: '-=100 +=100',
+        markers: false,
+        toggleActions: "play none none reverse"
+      },
+      backgroundColor: "#FFFDEB",
+      color: "#000"
+    });
+  })
+
 
   return (
     <div style={{ backgroundColor: navbarColor }} className={`header-container fixed top-0 w-screen ${Helvetica_Now.className}`}>
@@ -40,7 +48,7 @@ const Header = ({ navColor }) => {
             src="/assets/archiive.svg"
             width={30}
             height={30}
-            alt="Picture of the author"
+            alt="archiive"
           />
         </Link>
         <div className={`menu-link--container ${Helvetica_Now.className} text-sm uppercase ml-auto mr-44 lg:block hidden`}>
@@ -51,21 +59,23 @@ const Header = ({ navColor }) => {
               </Link>
             </li>
             <li className="nav-link mx-10 underline-right py-3">
-              <Link href={'#work'}>
+              <Link href={'/works'}>
                 Works
               </Link>
             </li>
             <li className="nav-link underline-right py-3">
-              <Link href={'#about'}>
+              <Link href={'/#about'}>
                 About
               </Link>
             </li>
           </ul>
         </div>
         <div className="header-cta flex items-center">
-          <button className='contact-cta border border-black outline-none rounded-md py-2 px-5 hover:bg-black lg:block hidden hover:text-white transition-colors'>
-            <p>Book A Call</p>
-          </button>
+          <Link href={'/contact'}>
+            <button className='contact-cta border border-black outline-none rounded-md py-2 px-5 hover:bg-black lg:block hidden hover:text-white transition-colors'>
+              <p>Book A Call</p>
+            </button>
+          </Link>
           <button className={`menu-btn flex ml-10 mr-4 outline-none ${Helvetica_Now.className} lg:hidden block uppercase`} onClick={openMenu}><p>Menu</p></button>
         </div>
       </div>
@@ -79,22 +89,23 @@ const Header = ({ navColor }) => {
                 src={"/assets/Close_round.svg"}
                 width={25}
                 height={25}
+                alt='close-btn'
               />
             </button>
           </div>
           <div className="mobile-menu--links text-white m-10 flex flex-col justify-between">
-            <ul className={`uppercase ${neueHass.className} font-medium text-5xl h-2/6 flex flex-col justify-between ` } onClick={closeMenu}>
+            <ul className={`uppercase ${neueHass.className} font-medium text-5xl h-2/6 flex flex-col justify-between `} onClick={closeMenu}>
               <li>
                 <Link href={'/'}>Home</Link>
               </li>
               <li>
-                <Link href={'#about'}>About</Link>
+                <Link href={'/#about'}>About</Link>
               </li>
               <li>
-                <Link href={'#work'}>Works</Link>
+                <Link href={'/works'}>Works</Link>
               </li>
               <li>
-                <Link href={'#contact'}>Contact</Link>
+                <Link href={'/contact'}>Contact</Link>
               </li>
             </ul>
           </div>

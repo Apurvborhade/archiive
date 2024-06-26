@@ -1,6 +1,4 @@
 import About from "@/components/About";
-
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Landing from "@/components/Landing";
 import Loader from "@/components/Loader";
@@ -8,7 +6,7 @@ import Process from "@/components/Process";
 import Works from "@/components/Works";
 import { createClient } from "contentful";
 import { ReactLenis } from 'lenis/react'
-import { useState } from "react";
+
 
 
 
@@ -26,7 +24,7 @@ export async function getStaticProps() {
   }
 }
 export default function Home({ works }) {
-  const [isHome, setIsHome] = useState(true);
+
 
   return (
     <>

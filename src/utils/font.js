@@ -18,6 +18,21 @@ export const neueHass = localFont({
 
     ]
 });
+export const neutralFace = localFont({
+    src: [
+        {
+            path: '../fonts/neutralFace.otf',
+            weight: '200',
+            style: 'roman'
+        },
+        {
+            path: '../fonts/NeutralFace-Bold.otf',
+            weight: '400',
+            style: 'bold'
+        },
+
+    ]
+});
 export const Helvetica_Bold = localFont({ src: "../fonts/helvetica/Helvetica-Bold.ttf" });
 export const HelveticaReg = localFont({ src: "../fonts/helvetica/Helvetica.ttf" });
 export const Helvetica_Now = localFont({ src: "../fonts/HelveticaNowDisplay-Regular.ttf" });

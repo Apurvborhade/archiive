@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import gsap, { Power1 } from 'gsap'
+import React, { useState } from 'react'
+import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image';
 gsap.registerPlugin(useGSAP);

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { monda, neueHass } from '@/utils/font';
@@ -8,15 +8,21 @@ gsap.registerPlugin(useGSAP);
 const Process = () => {
     const processCard = useRef(null);
     const processContainer = useRef(null);
-    const [horizontalScroll, setHorizontalScroll] = useState(0)
+    const [horizontalScroll, setHorizontalScroll] = useState(1700)
 
-    useEffect(() => {
+    useGSAP(() => {
         const processContainer = document.querySelector(".process-container");
+        if (window.innerWidth >= 1400) {
+            setHorizontalScroll(1700)
+        } else if (window.innerWidth >= 1024 && window.innerWidth < 1400) {
+            setHorizontalScroll(2500)
+        } else {
 
-        if (window.outerWidth > 1400) {
-
+            setHorizontalScroll(0)
+        }
+        if(window.innerWidth > 1000) {
             gsap.to(".process-card--container", {
-                x: -1700,
+                x: -(horizontalScroll),
                 scrollTrigger: {
                     trigger: processContainer,
                     start: "-=200 top",
@@ -27,24 +33,8 @@ const Process = () => {
                 },
                 ease: "power1.inOut",
             });
-        } else if (1400 > window.outerWidth >= 1024) {
-            console.log("small")
-            gsap.to(".process-card--container", {
-                x: -2600,
-                scrollTrigger: {
-                    trigger: processContainer,
-                    start: "-=200 top",
-                    end: "+=2500",
-                    pin: true,
-                    markers: true,
-                    scrub: true,
-                },
-                ease: "power1.inOut",
-            });
         }
-
-
-    }, []);
+    });
 
 
     return (

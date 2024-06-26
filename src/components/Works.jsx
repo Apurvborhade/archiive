@@ -66,7 +66,7 @@ const Works = ({ works }) => {
       </div>
       <div className="works-btn flex">
         <div className='ml-auto mr-auto'>
-          <Link href={"/"}>
+          <Link href={"/works"}>
             <button className={`${HelveticaReg.className} underline-right outline-none  text-3xl flex items-center view-works-btn`}>
               <p className=' transition-transform duration-500'> View All Works</p>
               <Image className='ml-3 transition-all duration-700 opacity-0 -translate-x-5' src={"/assets/right arrow.svg"} width={25} height={15} alt='right-arrow'></Image>

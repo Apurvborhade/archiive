@@ -16,6 +16,7 @@ const Footer = () => {
           <h2 className='lg:text-4xl text-3xl lg:w-6/12 w-full leading-tight my-5'>Bring your vision to life with us. Lets turn your creations into timeless visual narratives.
           </h2>
         </div>
+        {/* large Screen Links */}
         <div className="link-container--big lg:block hidden">
           <div className="social-nav--links">
             <p className={`${neueHass.className} opacity-60`}>Socials</p>
@@ -106,6 +107,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      {/* Mail */}
       <div className={`footer-mail lg:mt-60 text-2xl lg:mb-0 mb-10 ${FreeSans.className}`}>
         <p className='opacity-45'>Send Mail</p>
         <Link href="mailto:test@gmail.com">
@@ -114,6 +116,7 @@ const Footer = () => {
 
       </div>
       <div className="footer-branding flex flex-col justify-end">
+        {/* Mobile Link */}
         <div className="link-container--big lg:hidden block">
           <div className="social-nav--links">
             <p className={`${neueHass.className} opacity-60`}>Socials</p>
@@ -121,7 +124,7 @@ const Footer = () => {
             <div className="links">
               <ul className='flex items-center'>
                 <li className='cursor-pointer'>
-                  <Link href={'/https://wa.me/+917666848035'}>
+                  <Link href={'https://wa.me/+917666848035'}>
                     <span>
                       <Image
                         src="/assets/WhatsApp.svg"
@@ -204,7 +207,7 @@ const Footer = () => {
             <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
           </div>
         </div>
-        <h1 className={` ${neueHass.className} font-medium ml-auto mt-10 `}>archiive</h1>
+        <h1 className={`lg:text-9xl xs:text-5xl ${neueHass.className} font-medium ml-auto mt-10 `}>archiive</h1>
       </div>
     </footer>
   )
