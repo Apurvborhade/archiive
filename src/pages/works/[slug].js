@@ -144,7 +144,6 @@ const WorkDetails = ({ work }) => {
         return <div>Loading...</div>;
     }
 
-    const { title, media, thumbnail } = work.fields;
 
 
     const formatDate = (date) => {
@@ -167,7 +166,7 @@ const WorkDetails = ({ work }) => {
                             <div className="carousel-item thumbnail flex xs:flex-col gap-5 items-start">
                                 <div className='relative w-9/12 xs:w-full h-full'>
                                     <Image
-                                        src={`https://${work.fields.thumbnail.fields.file.url}`}
+                                        src={`https:${work.fields.thumbnail.fields.file.url}`}
                                         alt={work.fields.title}
                                         fill
                                         placeholder="blur"
@@ -190,10 +189,10 @@ const WorkDetails = ({ work }) => {
                                     </div>
                                 </div>
                             </div>
-                            {work.fields.media.map((item) => (
+                            {work.fields.media && work.fields.media.map((item) => (
                                 <div className="carousel-item" key={item.sys.id}>
                                     <Image
-                                        src={`https://${item.fields.file.url}`}
+                                        src={`https:${item.fields.file.url}`}
                                         alt={item.fields.title}
                                         fill
                                         placeholder="blur"
