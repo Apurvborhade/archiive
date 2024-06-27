@@ -366,7 +366,7 @@ body {
 }
 
 .founder-card {
-  min-height: 500px;
+  min-height: 460px;
   /* border-radius: 49px; */
 }
 
@@ -384,7 +384,7 @@ body {
 }
 
 .process-card {
-  min-height: 25rem;
+  min-height: 20rem;
   min-width: 45rem;
   margin: 50px 20px;
   transition: all 200ms ease;
@@ -553,19 +553,13 @@ footer li {
 
 
 /* Work Page */
-.work-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-flow: dense;
-  grid-auto-rows: 120px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 95px;
-}
 
 .work-grid-item:hover  p {
   text-decoration: underline;
 }
-
+.work-grid-item {
+  min-height: 290px;
+}
 
 
 /* Spinner */

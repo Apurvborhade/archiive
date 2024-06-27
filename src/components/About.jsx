@@ -14,7 +14,7 @@ const About = () => {
         <h2 className={` uppercase  ${FreeSans.className} mx-30 `}>You create – we archiive
         </h2>
       </div>
-      <div className={`about-info ml-auto lg:w-5/12 text-lg lg:mt-22 ${neueHass.className}`}>
+      <div className={`about-info ml-auto lg:w-5/12 mid:text-lg lg:text-sm lg:mt-22 ${neueHass.className}`}>
         <p>Archiive is a creative photography studio founded by three architects. Together we believe in crafting unique and engaging visual content and to tell your stories through our lenses.
           <br /><br />We believe stories convey experiences, emotions, and ideas, connecting people deeply. They make information memorable and impactful. Generating content as stories engages audiences emotionally, fostering a stronger connection. Visual storytelling enhances impact, making content more engaging and easier to recall.
 

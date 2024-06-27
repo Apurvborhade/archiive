@@ -9,11 +9,11 @@ import { FreeSans, Helvetica_Bold, inter, neueHass } from '@/utils/font'
 
 const Footer = () => {
   return (
-    <footer className='p-10 flex flex-col justify-between' id='contact'>
+    <footer className='p-10 flex flex-col justify-between mid:h-full h-screen' id='footer'>
       <div className="footer-head flex justify-between">
         <div className={`footer-headline ${FreeSans.className}`}>
           <p>(Get in Touch)</p>
-          <h2 className='lg:text-4xl text-3xl lg:w-6/12 w-full leading-tight my-5'>Bring your vision to life with us. Lets turn your creations into timeless visual narratives.
+          <h2 className='lg:text-2xl mid:text-4xl text-3xl lg:w-6/12 w-full leading-tight my-5'>Bring your vision to life with us. Lets turn your creations into timeless visual narratives.
           </h2>
         </div>
         {/* large Screen Links */}
@@ -108,10 +108,10 @@ const Footer = () => {
         </div>
       </div>
       {/* Mail */}
-      <div className={`footer-mail lg:mt-60 text-2xl lg:mb-0 mb-10 ${FreeSans.className}`}>
+      <div className={`footer-mail lg:mt-36 text-1xl mid:text-2xl lg:mb-0 mb-10 ${FreeSans.className}`}>
         <p className='opacity-45'>Send Mail</p>
         <Link href="mailto:test@gmail.com">
-          <h2 className='lg:text-5xl text-3xl underline'>info@archiive.com</h2>
+          <h2 className='lg:text-3xl mid:text-5xl text-3xl underline'>info@archiive.com</h2>
         </Link>
 
       </div>

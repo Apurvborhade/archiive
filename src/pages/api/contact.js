@@ -29,10 +29,13 @@ const generateEmailContent = (data) => {
 const handler = async (req, res) => {
     if (req.method === "POST") {
         const data = req.body;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!data.name || !data.email || !data.project || !data.description) {
-            return res.status(400).json({ message: 'Bad Request' })
+            return res.status(400).json({ message: 'Please enter all Details' })
         }
-
+        if (!emailRegex.test(data.email)) {
+            return res.status(400).json({ message: 'Please enter a valid email address' });
+        }
         try {
             await transporter.sendMail({
                 ...mailOptions,
@@ -42,7 +45,7 @@ const handler = async (req, res) => {
 
             return res.status(200).json({ success: true })
         } catch (error) {
-            return res.status(400).json({ message: error.message })
+            return res.status(400).json({ message: "Somethin Went Wrong" })
         }
     }
     return res.status(400).json({ message: 'eBad Request' })

@@ -18,37 +18,31 @@ export async function getStaticProps() {
     },
   }
 }
-const verticalGridItem = {
-  gridColumn: "span 2",
-  gridRow: "span 3"
-}
-const squareGridItem = {
-  gridColumn: "span 2",
-  gridRow: "span 2"
-}
+
 const Index = ({ works }) => {
 
   return (
     <>
       <Header />
-      <div className='work-grid mt-44 m-10'>
+      <div className='work-grid grid mid:grid-cols-3 lg:grid-cols-3 mt-44  m-10 mid:gap-x-64 lg:gap-x-36 lg:gap-y-32 sm:grid-cols-2 lg:mx-20 gap-20 xs:gap-24'>
         {works.map((work) => (
-          <Link key={work.sys.id} style={work.fields.thumbnailOrientation === false ? squareGridItem : verticalGridItem} href={`/works/${work.fields.slug}`} className='work-grid-item'>
+          <Link key={work.sys.id} href={`/works/${work.fields.slug}`} className='work-grid-item'>
             <div className='relative w-full h-full'>
               <Image
                 src={`https:${work.fields.thumbnail.fields.file.url}`}
                 alt={work.fields.title}
                 fill
                 style={{
-                  objectFit: 'cover'
+                  objectFit:'cover'
                 }}
               />
             </div>
-            <p className={`${neueHass.className} mt-2 text-left`}>{work.fields.title}</p>
+            <p className={`${neueHass.className} mt-2 text-left mid:text-sm text-xs`}>{work.fields.title}</p>
 
           </Link>
         ))}
       </div>
+      <div className='pin-spacer'></div>
     </>
   )
 }

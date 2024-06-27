@@ -37,6 +37,18 @@ const Header = ({ navColor }) => {
       backgroundColor: "#FFFDEB",
       color: "#000"
     });
+    gsap.to(".header-container", {
+      duration: 0.3 ,
+      scrollTrigger: {
+        trigger: ".pin-spacer",
+        start: "bottom +=80",
+        end: 'bottom',
+        markers: false,
+        toggleActions: "play none none reverse"
+      },
+      opacity:0,
+      display:"hidden"
+    });
   })
 
 
@@ -73,7 +85,7 @@ const Header = ({ navColor }) => {
         <div className="header-cta flex items-center">
           <Link href={'/contact'}>
             <button className='contact-cta border border-black outline-none rounded-md py-2 px-5 hover:bg-black lg:block hidden hover:text-white transition-colors'>
-              <p>Book A Call</p>
+              <p>Send A Message</p>
             </button>
           </Link>
           <button className={`menu-btn flex ml-10 mr-4 outline-none ${Helvetica_Now.className} lg:hidden block uppercase`} onClick={openMenu}><p>Menu</p></button>

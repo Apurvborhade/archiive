@@ -53,10 +53,10 @@ export async function getStaticProps({ params }) {
 }
 
 const WorkDetails = ({ work }) => {
+   
     useEffect(() => {
         var wrapper = document.querySelector(".carousel-container");
         var boxes = document.querySelectorAll(".carousel-item");
-
 
 
         var boxWidth = window.innerWidth;
@@ -64,7 +64,7 @@ const WorkDetails = ({ work }) => {
         var wrapWidth = boxes.length * boxWidth;
         for (var i = 0; i < boxes.length; i++) {
             let box = boxes[i];
-            gsap.set(box, { x: i * boxWidth, left: -boxWidth });
+            gsap.set(box, { x: i * boxWidth, left: -(boxWidth) });
         }
 
 
@@ -73,7 +73,7 @@ const WorkDetails = ({ work }) => {
         var clickAnimation = gsap.set({}, {});
         var proxy = document.createElement("div");
         var props = gsap.getProperty(proxy);
-
+        gsap.set(proxy,{x:window.innerWidth})
         var animation = gsap.to(".carousel-item", {
             duration: 1,
             x: "+=" + wrapWidth,
@@ -99,6 +99,7 @@ const WorkDetails = ({ work }) => {
             onThrowUpdate: updateProgress,
             snap: { x: snapBox },
             inertia: true,
+            cursor:'ew-resize',
             onDragEnd: snapToBox
         });
 
@@ -116,6 +117,7 @@ const WorkDetails = ({ work }) => {
             }
         })
         function updateProgress() {
+            console.log(props("x")/wrapWidth)
             animation.progress(wrapProgress(props("x") / wrapWidth));
         }
 
@@ -137,7 +139,6 @@ const WorkDetails = ({ work }) => {
                 onUpdate: updateProgress
             });
         }
-
     }, []);
 
     if (!work) {
@@ -157,10 +158,9 @@ const WorkDetails = ({ work }) => {
     }
     return (
         <div className='work-detail'>
-            <CustomCursor />
             <Header navColor={"#FFFDEB"} />
             <div className='work-details'>
-                <div className="wrapper-container mt-24 lg:mx-10 mx-3">
+                <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
                     <div className="carousel-container " id="wrapper">
                         <div className="carousel-items">
                             <div className="carousel-item thumbnail flex xs:flex-col gap-5 items-start">
@@ -173,7 +173,7 @@ const WorkDetails = ({ work }) => {
                                         blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
                                         quality={100}
                                         style={{
-                                            objectFit: work.fields.thumbnailOrientation ? 'none' : 'contain',
+                                            objectFit: work.fields.thumbnailOrientation ? 'none' : 'cover',
                                         }}
                                     />
                                 </div>
@@ -208,7 +208,7 @@ const WorkDetails = ({ work }) => {
                     </div>
                 </div>
             </div>
-
+             |<div className='pin-spacer'></div>                           
         </div>
     );
 };
