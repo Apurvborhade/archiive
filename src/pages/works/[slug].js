@@ -3,8 +3,15 @@ import Header from '@/components/Header';
 import ImageViewModel from '@/components/ImageViewModel';
 import { neueHass } from '@/utils/font';
 import { createClient } from 'contentful';
+import gsap from 'gsap';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+
+import { Draggable } from "gsap/Draggable";
+import { Linear } from 'gsap';
+
+
+gsap.registerPlugin(Draggable);
 
 const client = createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -46,9 +53,92 @@ export async function getStaticProps({ params }) {
 }
 
 const WorkDetails = ({ work }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [selectedImageTitle, setSelectedImageTitle] = useState('');
+    useEffect(() => {
+        var wrapper = document.querySelector(".carousel-container");
+        var boxes = document.querySelectorAll(".carousel-item");
+
+
+
+        var boxWidth = window.innerWidth;
+
+        var wrapWidth = boxes.length * boxWidth;
+        for (var i = 0; i < boxes.length; i++) {
+            let box = boxes[i];
+            gsap.set(box, { x: i * boxWidth, left: -boxWidth });
+        }
+
+
+        var wrapProgress = gsap.utils.wrap(0, 1);
+        var snapBox = gsap.utils.snap(boxWidth);
+        var clickAnimation = gsap.set({}, {});
+        var proxy = document.createElement("div");
+        var props = gsap.getProperty(proxy);
+
+        var animation = gsap.to(".carousel-item", {
+            duration: 1,
+            x: "+=" + wrapWidth,
+            ease: Linear.easeNone,
+            paused: true,
+            repeat: -1,
+            modifiers: {
+                x: function (x, target) {
+                    x = parseFloat(x) % wrapWidth;
+                    return x + "px";
+                }
+            }
+        }).progress(1 / boxes.length);
+
+        Draggable.create(proxy, {
+            type: "x",
+            trigger: wrapper,
+            throwProps: true,
+            onPress: function () {
+                this.startX = this.x;
+            },
+            onDrag: updateProgress,
+            onThrowUpdate: updateProgress,
+            snap: { x: snapBox },
+            inertia: true,
+            onDragEnd: snapToBox
+        });
+
+        window.addEventListener('keydown', (e) => {
+            switch (e.code) {
+                case "ArrowLeft":
+                    animateCarousel(1)
+                    break;
+                case "ArrowRight":
+                    animateCarousel(-1)
+                    break;
+
+                default:
+                    break;
+            }
+        })
+        function updateProgress() {
+            animation.progress(wrapProgress(props("x") / wrapWidth));
+        }
+
+        function animateCarousel(direction) {
+
+            clickAnimation.kill();
+
+            clickAnimation = gsap.to(proxy, {
+                duration: 0.8,
+                x: snapBox(props("x") + direction * boxWidth),
+                onUpdate: updateProgress
+            });
+        }
+        function snapToBox() {
+            const direction = this.getDirection("velocity") === "left" ? -1 : 1
+            gsap.to(proxy, {
+                duration: 0.8,
+                x: snapBox(props("x") + direction * boxWidth),
+                onUpdate: updateProgress
+            });
+        }
+
+    }, []);
 
     if (!work) {
         return <div>Loading...</div>;
@@ -56,83 +146,70 @@ const WorkDetails = ({ work }) => {
 
     const { title, media, thumbnail } = work.fields;
 
-    const openModal = (imageSrc, imageTitle) => {
-        setSelectedImage(imageSrc);
-        setSelectedImageTitle(imageTitle);
-        setIsOpen(true);
-    };
 
-    const closeModal = () => {
-        setIsOpen(false);
-        setSelectedImage(null);
-        setSelectedImageTitle('');
-    };
+    const formatDate = (date) => {
+        const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        const year = date.split("-")[0]
+        const month = date.split("-")[1]
+        const day = date.split("-")[2]
+        const monthInWords = monthList[parseInt(day) - 1]
 
+        return `${day} ${monthInWords}, ${year}`
+    }
     return (
         <div className='work-detail'>
             <CustomCursor />
             <Header navColor={"#FFFDEB"} />
-            <div className='work-det--container my-24 mx-6 mt-32'>
-                <div className='work-header'>
-                    <h1 className={`text-black ${neueHass.className} font-medium lg:text-8xl text-5xl`}>{title}</h1>
-                </div>
-                <div className='work-det--thumbnail relative mt-20'>
-                    {thumbnail && (
-                        <>
-                            <div
-                                className='work-det--thumbnail-overlay absolute hover-target w-full h-full bg-black z-10 opacity-0 hover:opacity-45 transition-opacity duration-700 cursor-pointer'
-                                onClick={() => openModal(`https:${thumbnail.fields.file.url}`, title)}
-                            ></div>
-                            <Image
-                                src={`https:${thumbnail.fields.file.url}`}
-                                alt={title}
-                                fill
-                                style={{ objectFit: 'cover', objectPosition: 'center' }}
-                            />
-                        </>
-                    )}
-                    <ImageViewModel
-                        isOpen={isOpen}
-                        imageSrc={selectedImage}
-                        onClose={closeModal}
-                        imageTitle={selectedImageTitle}
-                    />
-                </div>
-
-                <div className={`work-description flex ${neueHass.className}`}>
-                    <div className='mx-auto lg:ml-auto lg:w-4/12 w-12/12 lg:m-24 my-10'>
-                        <div>
-                            <p>
-                                Nestled in the heart of a bustling metropolis, &quot;La Belle Étoile&quot; stands as a beacon of refined elegance and culinary excellence. From the moment you enter its door, you are transported into a world where timeless sophistication and modern gastronomy converge.
-                                <br /><br />
-                                A team of chefs crafts each dish with precision and artistry, infusing classic French techniques with innovative flavors. The menu is a symphony of seasonal ingredients, where every plate is a work of culinary art. Whether it&apos;s an intimate dinner for two or a grand celebration, &quot;La Belle Étoile&quot; promises a dining experience that transcends the ordinary and leaves an indelible mark on the soul.
-                            </p>
-                        </div>
-                        <div className='flex justify-between mt-10'>
-                            <p className='opacity-70 uppercase'>Date</p>
-                            <p>September, 2024</p>
-                        </div>
-                    </div>
-                </div>
-                {media && (
-                    <div className='work-media grid lg:grid-cols-3 grid-cols-1 grid-flow-row gap-10'>
-                        {media.map(image => (
-                            <div className='media-container relative w-full' key={image.sys.id}>
-                                <div
-                                    className='work-det--thumbnail-overlay absolute w-full h-full hover-target bg-black z-10 opacity-0 hover:opacity-45 transition-opacity duration-700 cursor-pointer'
-                                    onClick={() => openModal(`https:${image.fields.file.url}`, image.fields.title)}
-                                ></div>
-                                <Image
-                                    src={`https:${image.fields.file.url}`}
-                                    alt={image.fields.title}
-                                    fill
-                                    style={{ objectFit: 'cover', objectPosition: 'center' }}
-                                />
+            <div className='work-details'>
+                <div className="wrapper-container mt-24 lg:mx-10 mx-3">
+                    <div className="carousel-container " id="wrapper">
+                        <div className="carousel-items">
+                            <div className="carousel-item thumbnail flex xs:flex-col gap-5 items-start">
+                                <div className='relative w-9/12 xs:w-full h-full'>
+                                    <Image
+                                        src={`https://${work.fields.thumbnail.fields.file.url}`}
+                                        alt={work.fields.title}
+                                        fill
+                                        placeholder="blur"
+                                        blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
+                                        quality={100}
+                                        style={{
+                                            objectFit: work.fields.thumbnailOrientation ? 'none' : 'contain',
+                                        }}
+                                    />
+                                </div>
+                                <div className={`work-description w-3/12 xs:w-full ${neueHass.className}`}>
+                                    <div className='work-title 2xl:text-4xl text-2xl'>
+                                        <h1>{work.fields.title}</h1>
+                                    </div>
+                                    <div className='work-date text-md opacity-75 my-5'>
+                                        <h1>{formatDate(work.fields.date)}</h1>
+                                    </div>
+                                    <div className='work-info lg:text-sm xl:text-lg'>
+                                        <h1>{work.fields.description}</h1>
+                                    </div>
+                                </div>
                             </div>
-                        ))}
+                            {work.fields.media.map((item) => (
+                                <div className="carousel-item" key={item.sys.id}>
+                                    <Image
+                                        src={`https://${item.fields.file.url}`}
+                                        alt={item.fields.title}
+                                        fill
+                                        placeholder="blur"
+                                        blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
+                                        quality={100}
+                                        style={{
+                                            objectFit: 'contain',
+                                        }}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                )}
+                </div>
             </div>
+
         </div>
     );
 };
