@@ -45,7 +45,7 @@ const handler = async (req, res) => {
 
             return res.status(200).json({ success: true })
         } catch (error) {
-            return res.status(400).json({ message: "Somethin Went Wrong" })
+            return res.status(400).json({ message: error })
         }
     }
     return res.status(400).json({ message: 'eBad Request' })
