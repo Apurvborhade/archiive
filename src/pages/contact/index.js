@@ -35,24 +35,15 @@ const Index = () => {
             setContactDetails({
                 values: initValues, isLoading: false, isSuccess: true
             });
+            console.log(contactDetails)
         } catch (error) {
-            console.log(error)
+            setContactDetails({
+                values: initValues, isLoading: true, isSuccess: false
+            });
+            console.log(contactDetails)
         }
     }
-    useEffect(() => {
-        if (isSuccess) {
-            toast('Email Sent Successfully', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
-    })
+
     return (<>
         <ToastContainer
             position="top-right"
@@ -74,7 +65,7 @@ const Index = () => {
                     <p className={`${inter.className} font-light mt-16`}>Do you have a project in mind? Or are you just curious to hear more about us? Сomplete the form below or drop us a line at</p>
                 </div>
                 <div className='contact-form--wrapper w-6/12 xs:w-full'>
-                    <form  className="contact-form xs:mt-10">
+                    <form className="contact-form xs:mt-10">
                         <div className={`grid lg:grid-cols-8 grid-cols-1 gap-16 ${inter.className} font-light`}>
                             <input type="text" placeholder="your name" name='name' className={`placeholder-black bg-transparent border-b border-black py-4 lg:col-span-8 outline-none`} value={values.name} onChange={handleChange} />
                             <input type="email" placeholder="your email" name='email' className={`placeholder-black bg-transparent border-b border-black py-4 lg:col-span-4 outline-none`} value={values.email} onChange={handleChange} />
