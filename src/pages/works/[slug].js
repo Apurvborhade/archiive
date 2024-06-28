@@ -9,6 +9,8 @@ import React, { useEffect } from 'react';
 
 import { Draggable } from "gsap/Draggable";
 import { Linear } from 'gsap';
+import Spinner from '@/components/Spinner';
+import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
 
 
 gsap.registerPlugin(Draggable);
@@ -148,13 +150,8 @@ const WorkDetails = ({ work }) => {
 
 
     const formatDate = (date) => {
-        const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         const year = date.split("-")[0]
-        const month = date.split("-")[1]
-        const day = date.split("-")[2]
-        const monthInWords = monthList[parseInt(day) - 1]
-
-        return `${day} ${monthInWords}, ${year}`
+        return `${year}`
     }
     return (
         <div className='work-detail'>
@@ -163,9 +160,14 @@ const WorkDetails = ({ work }) => {
                 <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
                     <div className="carousel-container " id="wrapper">
                         <div className="carousel-items">
-                            <div className="carousel-item thumbnail flex xs:flex-col gap-5 items-start">
+                            <div className="carousel-item overflow-y-scroll thumbnail flex xs:flex-col gap-5 items-start">
                                 <div className='relative w-9/12 xs:w-full h-full'>
-                                    <Image
+                                    <ImageWithPlaceholder 
+                                        src={`https:${work.fields.thumbnail.fields.file.url}`}
+                                        alt={work.fields.title}
+                                        objectfit={work.fields.thumbnailOrientation ? 'none' : 'cover'}
+                                    />
+                                    {/* <Image
                                         src={`https:${work.fields.thumbnail.fields.file.url}`}
                                         alt={work.fields.title}
                                         fill
@@ -175,32 +177,26 @@ const WorkDetails = ({ work }) => {
                                         style={{
                                             objectFit: work.fields.thumbnailOrientation ? 'none' : 'cover',
                                         }}
-                                    />
+                                    /> */}
                                 </div>
-                                <div className={`work-description w-3/12 xs:w-full ${neueHass.className}`}>
+                                <div className={`work-description w-3/12 xs:w-full  ${neueHass.className}`}>
                                     <div className='work-title 2xl:text-4xl text-2xl'>
                                         <h1>{work.fields.title}</h1>
                                     </div>
                                     <div className='work-date text-md opacity-75 my-5'>
                                         <h1>{formatDate(work.fields.date)}</h1>
                                     </div>
-                                    <div className='work-info lg:text-sm xl:text-lg'>
+                                    <div className='work-info lg:text-sm xl:text-sm '>
                                         <h1>{work.fields.description}</h1>
                                     </div>
                                 </div>
                             </div>
                             {work.fields.media && work.fields.media.map((item) => (
                                 <div className="carousel-item" key={item.sys.id}>
-                                    <Image
+                                    <ImageWithPlaceholder 
                                         src={`https:${item.fields.file.url}`}
                                         alt={item.fields.title}
-                                        fill
-                                        placeholder="blur"
-                                        blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
-                                        quality={100}
-                                        style={{
-                                            objectFit: 'contain',
-                                        }}
+                                        objectfit={'contain'}
                                     />
                                 </div>
                             ))}
