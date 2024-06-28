@@ -4,7 +4,7 @@ import { createClient } from 'contentful';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-
+import { ReactLenis } from 'lenis/react'
 export async function getStaticProps() {
   const client = createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -22,7 +22,7 @@ export async function getStaticProps() {
 const Index = ({ works }) => {
 
   return (
-    <>
+    <ReactLenis root options={{ duration: 2 }}>
       <Header />
       <div className='work-grid grid mid:grid-cols-3 lg:grid-cols-3 mt-44  m-10 mid:gap-x-64 lg:gap-x-36 lg:gap-y-32 sm:grid-cols-2 lg:mx-20 gap-20 xs:gap-24'>
         {works.map((work) => (
@@ -33,7 +33,7 @@ const Index = ({ works }) => {
                 alt={work.fields.title}
                 fill
                 style={{
-                  objectFit:'cover'
+                  objectFit: 'contain'
                 }}
               />
             </div>
@@ -43,7 +43,7 @@ const Index = ({ works }) => {
         ))}
       </div>
       <div className='pin-spacer'></div>
-    </>
+    </ReactLenis>
   )
 }
 
