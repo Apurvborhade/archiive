@@ -5,7 +5,7 @@ import React from 'react';
 
 const Spinner = () => {
     return (
-        <div class="nb-spinner"></div>
+        <div className="nb-spinner"></div>
     );
 };
 

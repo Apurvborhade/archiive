@@ -16,7 +16,7 @@ export async function getStaticProps() {
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_KEY,
   })
 
-  const res = await client.getEntries({ content_type: 'work', limit: 6 })
+  const res = await client.getEntries({ content_type: 'work', limit: 6, 'fields.feature': true })
   return {
     props: {
       works: res.items,
@@ -25,7 +25,7 @@ export async function getStaticProps() {
 }
 export default function Home({ works }) {
 
-
+  console.log(works)
   return (
     <>
       <ReactLenis root options={{ duration: 2 }}>
