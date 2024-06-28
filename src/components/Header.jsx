@@ -44,7 +44,7 @@ const Header = ({ navColor }) => {
         trigger: window.innerWidth <= 768 ? "#footer" : ".pin-spacer",
         start: window.innerWidth <= 768 ? "top +=80" : "bottom +=80",
         end: 'bottom',
-        markers: true,
+        markers: false,
         toggleActions: "play none none reverse"
       },
       opacity:0,

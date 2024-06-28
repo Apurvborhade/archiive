@@ -59,6 +59,8 @@ const WorkDetails = ({ work }) => {
     useEffect(() => {
         var wrapper = document.querySelector(".carousel-container");
         var boxes = document.querySelectorAll(".carousel-item");
+        var rightBtn = document.querySelector(".carousel-slider--right");
+        var leftBtn = document.querySelector(".carousel-slider--left");
 
 
         var boxWidth = window.innerWidth;
@@ -118,6 +120,8 @@ const WorkDetails = ({ work }) => {
                     break;
             }
         })
+        rightBtn.addEventListener('click',() => animateCarousel(-1))
+       leftBtn.addEventListener('click',() => animateCarousel(1))
         function updateProgress() {
             console.log(props("x")/wrapWidth)
             animation.progress(wrapProgress(props("x") / wrapWidth));
@@ -160,6 +164,10 @@ const WorkDetails = ({ work }) => {
                 <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
                     <div className="carousel-container " id="wrapper">
                         <div className="carousel-items">
+                            <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute'>
+                                <div className='carousel-slider--left w-6/12'></div>
+                                <div className='carousel-slider--right w-6/12'></div>
+                            </div>
                             <div className="carousel-item overflow-y-scroll thumbnail flex xs:flex-col gap-5 items-start">
                                 <div className='relative w-9/12 xs:w-full h-full'>
                                     <ImageWithPlaceholder 
@@ -167,17 +175,6 @@ const WorkDetails = ({ work }) => {
                                         alt={work.fields.title}
                                         objectfit={work.fields.thumbnailOrientation ? 'none' : 'cover'}
                                     />
-                                    {/* <Image
-                                        src={`https:${work.fields.thumbnail.fields.file.url}`}
-                                        alt={work.fields.title}
-                                        fill
-                                        placeholder="blur"
-                                        blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
-                                        quality={100}
-                                        style={{
-                                            objectFit: work.fields.thumbnailOrientation ? 'none' : 'cover',
-                                        }}
-                                    /> */}
                                 </div>
                                 <div className={`work-description w-3/12 xs:w-full  ${neueHass.className}`}>
                                     <div className='work-title 2xl:text-4xl text-2xl'>
