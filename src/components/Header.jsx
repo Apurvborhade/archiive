@@ -32,6 +32,7 @@ const Header = ({ navColor }) => {
         start: "-=100 top",
         end: '-=100 +=100',
         markers: false,
+      
         toggleActions: "play none none reverse"
       },
       backgroundColor: "#FFFDEB",
@@ -40,10 +41,10 @@ const Header = ({ navColor }) => {
     gsap.to(".header-container", {
       duration: 0.3 ,
       scrollTrigger: {
-        trigger: ".pin-spacer",
-        start: "bottom +=80",
+        trigger: window.innerWidth <= 768 ? "#footer" : ".pin-spacer",
+        start: window.innerWidth <= 768 ? "top +=80" : "bottom +=80",
         end: 'bottom',
-        markers: false,
+        markers: true,
         toggleActions: "play none none reverse"
       },
       opacity:0,
