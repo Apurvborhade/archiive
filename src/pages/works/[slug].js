@@ -1,6 +1,6 @@
 import CustomCursor from '@/components/CustomCursor';
 import Header from '@/components/Header';
-import ImageViewModel from '@/components/ImageViewModel';
+
 import { neueHass } from '@/utils/font';
 import { createClient } from 'contentful';
 import gsap from 'gsap';
@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 
 import { Draggable } from "gsap/Draggable";
 import { Linear } from 'gsap';
-import Spinner from '@/components/Spinner';
+
 import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
 
 

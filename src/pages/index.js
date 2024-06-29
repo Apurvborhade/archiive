@@ -25,7 +25,6 @@ export async function getStaticProps() {
 }
 export default function Home({ works }) {
 
-  console.log(works)
   return (
     <>
       <ReactLenis root options={{ duration: 2 }}>

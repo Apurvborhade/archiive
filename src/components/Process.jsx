@@ -28,8 +28,7 @@ const Process = () => {
 
     useGSAP(() => {
         const processContainer = document.querySelector(".process-container");
-        
-        console.log(horizontalScroll)
+
         if(window.innerWidth > 1000) {
             gsap.to(".process-card--container", {
                 x: -(horizontalScroll),

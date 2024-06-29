@@ -21,10 +21,10 @@ const CustomCursor = () => {
         const onMouseMove = (e) => {
             setMouse({ x: e.clientX, y: e.clientY })
             setPosition({ x: position.x += (mouse.x - position.x) / 9, y: position.y += (mouse.y - position.y) / 9 });
-            console.log(e.target)
+
             if (e.target.matches('.hover-target')) {
                 setHovered(true);
-                console.log("hover")
+
             }
         };
         const onMouseOver = (e) => {

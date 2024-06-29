@@ -8,19 +8,35 @@
   --foreground-text-hex: #000;
 }
 
-
-html::-webkit-scrollbar {
-  display: none;
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: inherit;
+  border-radius: 40px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#373A40; 
+  border-radius: 40px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000; 
+}
+
+
 
 .carousel-item::-webkit-scrollbar {
   display: none;
 }
 
-html {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+
 
 .carousel-item {
   -ms-overflow-style: none;

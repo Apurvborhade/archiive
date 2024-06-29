@@ -2,23 +2,9 @@ import React, { useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image';
+import { neueHass } from '@/utils/font';
 gsap.registerPlugin(useGSAP);
-import localFont from '@next/font/local'
-const neueHass = localFont({
-    src: [
-        {
-            path: '../fonts/neue hass/NeueHaasDisplayRoman.ttf',
-            weight: '400',
-            style: 'roman'
-        },
-        {
-            path: '../fonts/neue hass/NeueHaasDisplayMediu.ttf',
-            weight: '500',
-            style: 'medium'
-        },
 
-    ]
-});
 const Loader = () => {
     
 
