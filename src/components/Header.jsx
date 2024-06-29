@@ -107,17 +107,17 @@ const Header = ({ navColor }) => {
             </button>
           </div>
           <div className="mobile-menu--links text-white m-10 flex flex-col justify-between">
-            <ul className={`uppercase ${neueHass.className} font-medium text-5xl h-2/6 flex flex-col justify-between `} onClick={closeMenu}>
-              <li>
+            <ul className={`uppercase ${neueHass.className} font-medium text-4xl h-2/6 flex flex-col justify-between `} onClick={closeMenu}>
+              <li className='my-3'>
                 <Link href={'/'}>Home</Link>
               </li>
-              <li>
+              <li className='my-3'>
                 <Link href={'/#about'}>About</Link>
               </li>
-              <li>
+              <li className='my-3'>
                 <Link href={'/works'}>Works</Link>
               </li>
-              <li>
+              <li className='my-3'>
                 <Link href={'/contact'}>Contact</Link>
               </li>
             </ul>

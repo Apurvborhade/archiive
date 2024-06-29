@@ -9,7 +9,7 @@ import { FreeSans, Helvetica_Bold, inter, neueHass } from '@/utils/font'
 
 const Footer = () => {
   return (
-    <footer className='p-10 flex flex-col justify-between mid:h-full h-screen' id='footer'>
+    <footer className='p-10 flex flex-col justify-between mid:h-full ' id='footer'>
       <div className="footer-head flex justify-between">
         <div className={`footer-headline ${FreeSans.className}`}>
           <p>(Get in Touch)</p>
@@ -207,7 +207,7 @@ const Footer = () => {
             <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
           </div>
         </div>
-        <h1 className={`lg:text-9xl xs:text-5xl ${neueHass.className} font-medium ml-auto mt-10 `}>archiive</h1>
+        <h1 className={`lg:text-9xl xs:text-5xl ${neueHass.className} font-medium ml-auto text-4xl mt-10 `}>archiive</h1>
       </div>
     </footer>
   )

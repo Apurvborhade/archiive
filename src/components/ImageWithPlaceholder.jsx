@@ -14,7 +14,7 @@ const ImageWithPlaceholder = ({ src ,alt,objectfit,...props }) => {
                 src={src}
                 alt={alt}
                 fill
-                onLoadingComplete={() => {
+                onLoad={() => {
                     setLoading(false)
                 }}
                 quality={100}

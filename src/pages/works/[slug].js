@@ -55,96 +55,102 @@ export async function getStaticProps({ params }) {
 }
 
 const WorkDetails = ({ work }) => {
-   
+
     useEffect(() => {
         var wrapper = document.querySelector(".carousel-container");
         var boxes = document.querySelectorAll(".carousel-item");
         var rightBtn = document.querySelector(".carousel-slider--right");
         var leftBtn = document.querySelector(".carousel-slider--left");
 
+        function setupCarousel() {
+            var boxWidth = window.innerWidth;
+            var wrapWidth = boxes.length * boxWidth;
 
-        var boxWidth = window.innerWidth;
+            for (var i = 0; i < boxes.length; i++) {
+                let box = boxes[i];
+                gsap.set(box, { x: i * boxWidth, left: -(boxWidth) });
+            }
 
-        var wrapWidth = boxes.length * boxWidth;
-        for (var i = 0; i < boxes.length; i++) {
-            let box = boxes[i];
-            gsap.set(box, { x: i * boxWidth, left: -(boxWidth) });
-        }
-
-
-        var wrapProgress = gsap.utils.wrap(0, 1);
-        var snapBox = gsap.utils.snap(boxWidth);
-        var clickAnimation = gsap.set({}, {});
-        var proxy = document.createElement("div");
-        var props = gsap.getProperty(proxy);
-        gsap.set(proxy,{x:window.innerWidth})
-        var animation = gsap.to(".carousel-item", {
-            duration: 1,
-            x: "+=" + wrapWidth,
-            ease: Linear.easeNone,
-            paused: true,
-            repeat: -1,
-            modifiers: {
-                x: function (x, target) {
-                    x = parseFloat(x) % wrapWidth;
-                    return x + "px";
+            var wrapProgress = gsap.utils.wrap(0, 1);
+            var snapBox = gsap.utils.snap(boxWidth);
+            var clickAnimation = gsap.set({}, {});
+            var proxy = document.createElement("div");
+            var props = gsap.getProperty(proxy);
+            gsap.set(proxy, { x: window.innerWidth });
+            var animation = gsap.to(".carousel-item", {
+                duration: 1,
+                x: "+=" + wrapWidth,
+                ease: Linear.easeNone,
+                paused: true,
+                repeat: -1,
+                modifiers: {
+                    x: function (x, target) {
+                        x = parseFloat(x) % wrapWidth;
+                        return x + "px";
+                    }
                 }
-            }
-        }).progress(1 / boxes.length);
+            }).progress(1 / boxes.length);
 
-        Draggable.create(proxy, {
-            type: "x",
-            trigger: wrapper,
-            throwProps: true,
-            onPress: function () {
-                this.startX = this.x;
-            },
-            onDrag: updateProgress,
-            onThrowUpdate: updateProgress,
-            snap: { x: snapBox },
-            inertia: true,
-            cursor:'ew-resize',
-            onDragEnd: snapToBox
-        });
-
-        window.addEventListener('keydown', (e) => {
-            switch (e.code) {
-                case "ArrowLeft":
-                    animateCarousel(1)
-                    break;
-                case "ArrowRight":
-                    animateCarousel(-1)
-                    break;
-
-                default:
-                    break;
-            }
-        })
-        rightBtn.addEventListener('click',() => animateCarousel(-1))
-       leftBtn.addEventListener('click',() => animateCarousel(1))
-        function updateProgress() {
-            console.log(props("x")/wrapWidth)
-            animation.progress(wrapProgress(props("x") / wrapWidth));
-        }
-
-        function animateCarousel(direction) {
-
-            clickAnimation.kill();
-
-            clickAnimation = gsap.to(proxy, {
-                duration: 0.8,
-                x: snapBox(props("x") + direction * boxWidth),
-                onUpdate: updateProgress
+            Draggable.create(proxy, {
+                type: "x",
+                trigger: wrapper,
+                throwProps: true,
+                onPress: function () {
+                    this.startX = this.x;
+                },
+                onDrag: updateProgress,
+                onThrowUpdate: updateProgress,
+                snap: { x: snapBox },
+                inertia: true,
+                cursor: 'ew-resize',
+                onDragEnd: snapToBox
             });
-        }
-        function snapToBox() {
-            const direction = this.getDirection("velocity") === "left" ? -1 : 1
-            gsap.to(proxy, {
-                duration: 0.8,
-                x: snapBox(props("x") + direction * boxWidth),
-                onUpdate: updateProgress
+
+            window.addEventListener('keydown', (e) => {
+                switch (e.code) {
+                    case "ArrowLeft":
+                        animateCarousel(1);
+                        break;
+                    case "ArrowRight":
+                        animateCarousel(-1);
+                        break;
+                    default:
+                        break;
+                }
             });
+            rightBtn.addEventListener('click', () => animateCarousel(-1));
+            leftBtn.addEventListener('click', () => animateCarousel(1));
+
+            function updateProgress() {
+                animation.progress(wrapProgress(props("x") / wrapWidth));
+            }
+
+            function animateCarousel(direction) {
+                clickAnimation.kill();
+                clickAnimation = gsap.to(proxy, {
+                    duration: 0.8,
+                    x: snapBox(props("x") + direction * boxWidth),
+                    onUpdate: updateProgress
+                });
+            }
+
+            function snapToBox() {
+                const direction = this.getDirection("velocity") === "left" ? -1 : 1;
+                gsap.to(proxy, {
+                    duration: 0.8,
+                    x: snapBox(props("x") + direction * boxWidth),
+                    onUpdate: updateProgress
+                });
+            }
         }
+
+        setupCarousel();
+
+        window.addEventListener('resize', setupCarousel);
+
+        return () => {
+            window.removeEventListener('resize', setupCarousel);
+        };
     }, []);
 
     if (!work) {
@@ -160,17 +166,18 @@ const WorkDetails = ({ work }) => {
     return (
         <div className='work-detail'>
             <Header navColor={"#FFFDEB"} />
-            <div className='work-details'>
+            <CustomCursor />
+            <div className='work-details '>
                 <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
                     <div className="carousel-container " id="wrapper">
                         <div className="carousel-items">
                             <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute'>
-                                <div className='carousel-slider--left w-6/12'></div>
-                                <div className='carousel-slider--right w-6/12'></div>
+                                <div className='carousel-slider--left hover-target  w-6/12'></div>
+                                <div className='carousel-slider--right hover-target  w-6/12'></div>
                             </div>
                             <div className="carousel-item overflow-y-scroll thumbnail flex xs:flex-col gap-5 items-start">
-                                <div className='relative w-9/12 xs:w-full h-full'>
-                                    <ImageWithPlaceholder 
+                                <div className='relative image-container w-9/12 xs:w-full h-full'>
+                                    <ImageWithPlaceholder
                                         src={`https:${work.fields.thumbnail.fields.file.url}`}
                                         alt={work.fields.title}
                                         objectfit={work.fields.thumbnailOrientation ? 'none' : 'cover'}
@@ -190,7 +197,7 @@ const WorkDetails = ({ work }) => {
                             </div>
                             {work.fields.media && work.fields.media.map((item) => (
                                 <div className="carousel-item" key={item.sys.id}>
-                                    <ImageWithPlaceholder 
+                                    <ImageWithPlaceholder
                                         src={`https:${item.fields.file.url}`}
                                         alt={item.fields.title}
                                         objectfit={'contain'}
@@ -199,9 +206,12 @@ const WorkDetails = ({ work }) => {
                             ))}
                         </div>
                     </div>
+                    <div className='drag-indicator hidden xs:flex absolute right-5 bottom-0 border border-black rounded-full w-10 h-10 flex justify-center items-center'>
+                        <Image className='' src={"/assets/right arrow.svg"} width={15} height={15} alt='right-arrow'></Image>
+                    </div>
                 </div>
             </div>
-             |<div className='pin-spacer'></div>                           
+            |<div className='pin-spacer'></div>
         </div>
     );
 };
