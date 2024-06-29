@@ -74,13 +74,12 @@ const Works = ({ works }) => {
               <Image
                 src={`https:${work.fields.thumbnail.fields.file.url}`}
                 alt={work.fields.title}
-                fill
-                style={{
-                  objectFit: 'contain'
-                }}
+                width={450}
+                height={300}
+                style={{width:'100%'}}
               />
+            <p className={`${neueHass.className} mt-2 text-left mid:text-sm text-xs `}>{work.fields.title}</p>
             </div>
-            <p className={`${neueHass.className} mt-2 text-left mid:text-sm text-xs mid:translate-y-0 lg:-translate-y-4 xs:-translate-y-4`}>{work.fields.title}</p>
 
           </Link>
         ))}
