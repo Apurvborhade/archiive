@@ -7,7 +7,9 @@
   --background-hex: #FFFDEB;
   --foreground-text-hex: #000;
 }
-::-moz-selection { /* Code for Firefox */
+
+::-moz-selection {
+  /* Code for Firefox */
   color: red;
   background: yellow;
 }
@@ -27,16 +29,16 @@
   background: inherit;
   border-radius: 40px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:#373A40; 
+  background: #373A40;
   border-radius: 40px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #000; 
+  background: #000;
 }
 
 
@@ -117,7 +119,7 @@ body {
   .carousel-item::-webkit-scrollbar {
     display: block;
   }
-  
+
   .carousel-item {
     -ms-overflow-style: auto;
     scrollbar-width: thin;
@@ -518,6 +520,7 @@ footer li {
 .drag-indicator {
   background: var(--background-hex);
 }
+
 .cursor {
   position: fixed;
   background-color: var(--background-hex);
@@ -533,7 +536,7 @@ footer li {
   top: -75px;
   left: -75px;
   visibility: hidden;
- 
+
   opacity: 0;
 
 }
@@ -698,16 +701,61 @@ footer li {
   .image-container {
     height: 375px;
   }
+
   .non-thumb {
-    height: 350px;
+    height: 300px;
   }
- .wrapper-container {
-  height: 500px;
- }
- .carousel-container {
-  height: 100%;
- }
- .social-nav--links {
-  margin-left: 0px;
- }
+
+  .wrapper-container {
+    height: 500px;
+  }
+
+  .carousel-container {
+    height: 100%;
+  }
+
+  .social-nav--links {
+    margin-left: 0px;
+  }
+
+  .mobile-menu-open-btn {
+    font-size: 10px;
+  }
+
+  .brand-logo {
+    width: 20px;
+  }
+
+  .header {
+    padding: 10px 24px;
+  }
+
+  .mobile-menu--open {
+    width: 30%;
+  }
+
+  .mobile-menu--links {
+    margin: 0 2.5rem;
+  }
+
+  .mobile-menu--links ul {
+    font-size: smaller;
+  }
+
+  .close-btn {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    padding: 1px;
+  }
+
+  .mobile-menu .social-nav--links {
+    width: 300px;
+    margin-left: 1rem;
+    margin-top: auto;
+  }
+
+  .mobile-menu .social-nav--links li {
+    width: 20px;
+  }
 }

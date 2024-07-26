@@ -89,7 +89,7 @@ const Header = ({ navColor }) => {
               <p>Send A Message</p>
             </button>
           </Link>
-          <button className={`menu-btn flex ml-10 mr-4 outline-none ${archivo.className} lg:hidden block uppercase`} onClick={openMenu}><p>Menu</p></button>
+          <button className={`menu-btn mobile-menu-open-btn flex ml-10 mr-4 outline-none ${archivo.className} lg:hidden block uppercase`} onClick={openMenu}><p>Menu</p></button>
         </div>
       </div>
 
@@ -122,7 +122,7 @@ const Header = ({ navColor }) => {
               </li>
             </ul>
           </div>
-        </div>
+        </div>  
         <div className="social-nav--links flex mx-10 mt-auto mb-16 items-center">
 
           <div className="links w-full ">
