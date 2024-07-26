@@ -58,6 +58,26 @@ export async function getStaticProps({ params }) {
 const WorkDetails = ({ work }) => {
     const fullscreenBtn = useRef(null);
     const [isFullScreen, setIsFullScreen] = useState(false)
+    const handleFullscreenChange = () => {
+        screenfull.isFullscreen ? setIsFullScreen(true) : setIsFullScreen(false)
+    };
+
+    const toggleFullscreen = () => {
+        if (screenfull.isEnabled) {
+            screenfull.toggle()
+        }
+    };
+    const handleKeydown = (event) => {
+        if (event.key === 'F11') {
+            event.preventDefault(); // Prevent the default F11 action (browser fullscreen)
+
+            toggleFullscreen();
+        }
+    };
+    if (screenfull.isEnabled) {
+        screenfull.on('change', handleFullscreenChange);
+    }
+
     useEffect(() => {
         var wrapper = document.querySelector(".carousel-container");
         var boxes = document.querySelectorAll(".carousel-item");
@@ -103,10 +123,13 @@ const WorkDetails = ({ work }) => {
                     isHorizontalGesture = false;
                 },
                 onDrag: function () {
+
                     const deltaX = Math.abs(this.startX - this.pointerX);
+
                     if (deltaX > 20) {
                         updateProgress();
                     }
+
                 },
                 onThrowUpdate: updateProgress,
                 snap: { x: snapBox },
@@ -162,11 +185,11 @@ const WorkDetails = ({ work }) => {
         setupCarousel();
 
         window.addEventListener('resize', setupCarousel);
-
+        window.addEventListener('keydown', handleKeydown);
         return () => {
             window.removeEventListener('resize', setupCarousel);
+            window.removeEventListener('keydown', handleKeydown);
         };
-
 
     }, []);
 
@@ -174,38 +197,14 @@ const WorkDetails = ({ work }) => {
         return <div>Loading...</div>;
     }
 
-    const handleFullscreenChange = () => {
-        screenfull.isFullscreen ? setIsFullScreen(true) : setIsFullScreen(false)
-    };
-    useEffect(() => {
-        if (screenfull.isEnabled) {
-            screenfull.on('change', handleFullscreenChange);
-        }
+    
+    
 
-        const handleKeydown = (event) => {
-            if (event.key === 'F11') {
-                event.preventDefault(); // Prevent the default F11 action (browser fullscreen)
-                toggleFullscreen();
-            }
-        };
 
-        window.addEventListener('keydown', handleKeydown);
 
-        return () => {
-            if (screenfull.isEnabled) {
-                screenfull.off('change', handleFullscreenChange);
-            }
-            window.removeEventListener('keydown', handleKeydown);
-        };
-    }, []);
+   
 
-    const toggleFullscreen = () => {
-        if (screenfull.isEnabled) {
-            screenfull.toggle().catch((err) => {
-                console.error(err);
-            });
-        }
-    };
+
 
     const formatDate = (date) => {
         const year = date.split("-")[0]
