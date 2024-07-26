@@ -62,6 +62,10 @@ const WorkDetails = ({ work }) => {
         screenfull.isFullscreen ? setIsFullScreen(true) : setIsFullScreen(false)
     };
 
+    const wrapperRef = useRef(null);
+    const proxyRef = useRef(null);
+    const animationRef = useRef(null);
+
     const toggleFullscreen = () => {
         if (screenfull.isEnabled) {
             screenfull.toggle()
@@ -78,14 +82,15 @@ const WorkDetails = ({ work }) => {
         screenfull.on('change', handleFullscreenChange);
     }
 
+    const [boxWidth, setBoxWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440)
     useEffect(() => {
-        var wrapper = document.querySelector(".carousel-container");
-        var boxes = document.querySelectorAll(".carousel-item");
-        var rightBtn = document.querySelector(".carousel-slider--right");
-        var leftBtn = document.querySelector(".carousel-slider--left");
 
+        var boxes = document.querySelectorAll(".carousel-item");
+        const rightBtn = document.querySelector(".carousel-slider--right");
+        const leftBtn = document.querySelector(".carousel-slider--left");
+
+       
         function setupCarousel() {
-            var boxWidth = window.innerWidth;
             var wrapWidth = boxes.length * boxWidth;
 
             for (var i = 0; i < boxes.length; i++) {
@@ -93,13 +98,17 @@ const WorkDetails = ({ work }) => {
                 gsap.set(box, { x: i * boxWidth, left: -(boxWidth) });
             }
 
-            var wrapProgress = gsap.utils.wrap(0, 1);
-            var snapBox = gsap.utils.snap(boxWidth);
+            const wrapper = wrapperRef.current;
+            const wrapProgress = gsap.utils.wrap(0, 1);
+            const snapBox = gsap.utils.snap(boxWidth);
+            const proxy = document.createElement("div");
+            proxyRef.current = proxy;
+            const props = gsap.getProperty(proxy);
             var clickAnimation = gsap.set({}, {});
-            var proxy = document.createElement("div");
-            var props = gsap.getProperty(proxy);
-            gsap.set(proxy, { x: window.innerWidth });
-            var animation = gsap.to(".carousel-item", {
+
+            gsap.set(proxyRef.current, { x: boxWidth });
+
+            animationRef.current = gsap.to(".carousel-item", {
                 duration: 1,
                 x: "+=" + wrapWidth,
                 ease: Linear.easeNone,
@@ -112,6 +121,7 @@ const WorkDetails = ({ work }) => {
                     }
                 }
             }).progress(1 / boxes.length);
+
             let isHorizontalGesture = false;
             Draggable.create(proxy, {
                 type: "x",
@@ -127,6 +137,7 @@ const WorkDetails = ({ work }) => {
                     const deltaX = Math.abs(this.startX - this.pointerX);
 
                     if (deltaX > 20) {
+                        isHorizontalGesture = true;
                         updateProgress();
                     }
 
@@ -136,10 +147,13 @@ const WorkDetails = ({ work }) => {
                 inertia: true,
                 cursor: 'ew-resize',
                 onDragEnd: function () {
-                    const deltaX = Math.abs(this.startX - this.pointerX)
 
-                    if (deltaX > 20) {
-                        snapToBox(this.getDirection("velocity"))
+                    if (isHorizontalGesture) {
+                        const deltaX = Math.abs(this.startX - this.pointerX)
+
+                        if (deltaX > 20) {
+                            snapToBox(this.getDirection("velocity"))
+                        }
                     }
                 }
             });
@@ -159,10 +173,6 @@ const WorkDetails = ({ work }) => {
             rightBtn.addEventListener('click', () => animateCarousel(-1));
             leftBtn.addEventListener('click', () => animateCarousel(1));
 
-            function updateProgress() {
-                animation.progress(wrapProgress(props("x") / wrapWidth));
-            }
-
             function animateCarousel(direction) {
                 clickAnimation.kill();
                 clickAnimation = gsap.to(proxy, {
@@ -170,6 +180,9 @@ const WorkDetails = ({ work }) => {
                     x: snapBox(props("x") + direction * boxWidth),
                     onUpdate: updateProgress
                 });
+            }
+            function updateProgress() {
+                animationRef.current.progress(wrapProgress(props("x") / wrapWidth));
             }
 
             function snapToBox(directionX) {
@@ -184,27 +197,18 @@ const WorkDetails = ({ work }) => {
 
         setupCarousel();
 
-        window.addEventListener('resize', setupCarousel);
-        window.addEventListener('keydown', handleKeydown);
+        window.addEventListener('resize', () =>  setBoxWidth(window.innerWidth));
+        window.addEventListener('keydown', (handleKeydown));
         return () => {
-            window.removeEventListener('resize', setupCarousel);
+            window.removeEventListener('resize', () =>  setBoxWidth(window.innerWidth));
             window.removeEventListener('keydown', handleKeydown);
         };
 
-    }, []);
+    }, [boxWidth]);
 
     if (!work) {
         return <div>Loading...</div>;
     }
-
-    
-    
-
-
-
-   
-
-
 
     const formatDate = (date) => {
         const year = date.split("-")[0]
@@ -216,7 +220,7 @@ const WorkDetails = ({ work }) => {
             <CustomCursor />
             <div className='work-details '>
                 <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
-                    <div className="carousel-container " id="wrapper">
+                    <div className="carousel-container " id="wrapper" ref={wrapperRef}>
                         <div className="carousel-items">
                             <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute xs:hidden hidden'>
                                 <div className='carousel-slider--left hover-target  w-6/12'></div>
