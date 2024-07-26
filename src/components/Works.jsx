@@ -6,8 +6,8 @@ import gsap from 'gsap';
 
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import WorkCard from './WorkCard';
-import { HelveticaReg, Helvetica_Bold, neueHass } from '@/utils/font';
+
+import { inter, neueHass } from '@/utils/font';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 
@@ -55,18 +55,10 @@ const Works = ({ works }) => {
     <div id='work'>
       <div className="work-head flex">
         <div className='ml-auto m-5'>
-          <p className={`inline-block font-bold ${Helvetica_Bold.className}`}>(works)</p>
+          <p className={`inline-block font-bold ${inter.className}`}>(works)</p>
         </div>
       </div>
-      {/* <div className={`works-container p-10 ${Helvetica_Bold.className}`} ref={triggerRef}>
-
-
-        {works.map(work => (
-          <WorkCard key={work.sys.id} work={work} />
-        ))}
-
-
-      </div> */}
+     
       <div className='work-grid grid mid:grid-cols-3 lg:grid-cols-3  m-10 mid:gap-x-64 lg:gap-x-36 lg:gap-y-16 sm:grid-cols-2 mid:gap-y-32 lg:mx-10 gap-20 xs:gap-24 'ref={triggerRef}>
         {works.map((work) => (
           <Link key={work.sys.id} href={`/works/${work.fields.slug}`} className='work-grid-item'>
@@ -87,7 +79,7 @@ const Works = ({ works }) => {
       <div className="works-btn flex ">
         <div className='ml-auto mr-auto'>
           <Link href={"/works"}>
-            <button className={`${HelveticaReg.className} mt-16 underline-right outline-none  text-3xl flex items-center view-works-btn`}>
+            <button className={`${inter.className} mt-16 underline-right outline-none  text-3xl flex items-center view-works-btn`}>
               <p className=' transition-transform duration-500'> View All Works</p>
               <Image className='ml-3 transition-all duration-700 opacity-0 -translate-x-5' src={"/assets/right arrow.svg"} width={25} height={15} alt='right-arrow'></Image>
             </button>

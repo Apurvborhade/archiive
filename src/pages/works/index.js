@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import { HelveticaReg, neueHass } from '@/utils/font';
+import { neueHass } from '@/utils/font';
 import { createClient } from 'contentful';
 import Image from 'next/image';
 import Link from 'next/link';

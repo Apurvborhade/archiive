@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image';
-import { neueHass } from '@/utils/font';
+import { FreeSans, neueHass } from '@/utils/font';
 gsap.registerPlugin(useGSAP);
 
 const Loader = () => {
@@ -55,7 +55,7 @@ const Loader = () => {
                         height={logoSize}
                         className="loader-logo lg:mt-5"
                     />
-                    <h1 className={`text-white ml-5 lg:ml-10 lg:text-9xl text-6xl loader-brand--text ${neueHass.className} font-medium`}>archiive</h1>
+                    <h1 className={`text-white ml-5 lg:ml-10 lg:text-9xl text-6xl loader-brand--text ${FreeSans.className} font-medium`}>archiive</h1>
                 </div>
             </div>
             <div className="overlay pointer-events-none"></div>

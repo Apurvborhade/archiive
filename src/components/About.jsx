@@ -1,14 +1,14 @@
 import React from 'react'
 
 import Image from 'next/image';
-import { FreeSans, HelveticaReg, Helvetica_Bold, NeueMontreal, neueHass } from '@/utils/font';
+import { FreeSans, poppins, neueHass, inter } from '@/utils/font';
 import Link from 'next/link';
 
 const About = () => {
   return (
     <div className='about-container flex flex-col mx-5 my-32 lg:mt-44' id='about'>
       <div className="section-tag ml-auto ">
-        <p className={Helvetica_Bold.className}>(about)</p>
+        <p className={`font-medium ${inter.className}`}>(about)</p>
       </div>
       <div className="section-headline text-2xl lg:text-6xl lg:mx-10 md:text-4xl my-20">
         <h2 className={` uppercase  ${FreeSans.className} mx-30 `}>You create – we archiive
@@ -49,10 +49,10 @@ const About = () => {
                 <p className='absolute bottom-0 mx-5 py-10 text-start'>Adesh graduated from Pune University and began his career as an intern at A for Architecture. Later, he moved to Bangalore where he worked as an architect with Mathew and Ghosh Architects.Passionate about photography, he enjoys traveling and capturing life&apos;s moments and stories through his lens.</p>
               </div>
             </div>
-            <div className={`py-2 founder-info w-full text-start flex flex-col items-start ${NeueMontreal.className}`}>
-              <h2 className='text-2xl font-medium'>Adesh Dholi
+            <div className={`py-2 founder-info w-full text-start flex flex-col items-start ${poppins.className}`}>
+              <h2 className='text-xl font-medium'>Adesh Dholi
               </h2>
-              <p className={`opacity-50 ${HelveticaReg.className}`}>Co-Founder</p>
+              <p className={`opacity-50 font-light ${inter.className}`}>Co-Founder</p>
             </div>
           </div>
           <div className='founder'>
@@ -80,10 +80,10 @@ const About = () => {
                 <p className='absolute bottom-0 mx-5 py-10 text-start'>Adesh graduated from Pune University and began his career as an intern at A for Architecture. Later, he moved to Bangalore where he worked as an architect with Mathew and Ghosh Architects.Passionate about photography, he enjoys traveling and capturing life&apos;s moments and stories through his lens.</p>
               </div>
             </div>
-            <div className={`py-2 founder-info w-full text-start flex flex-col items-start ${NeueMontreal.className}`}>
-              <h2 className='text-2xl font-medium'>Viral Nayee 
+            <div className={`py-2 founder-info w-full text-start flex flex-col items-start font-medium   ${poppins.className}`}>
+              <h2 className='text-xl font-medium'>Viral Nayee 
               </h2>
-              <p className={`opacity-50 ${HelveticaReg.className}`}>Co-Founder</p>
+              <p className={`opacity-50 font-light ${inter.className}`}>Co-Founder</p>
             </div>
           </div>
           <div className='founder'>
@@ -113,11 +113,11 @@ const About = () => {
 </p>
               </div>
             </div>
-            <div className={`py-2 founder-info w-full text-start flex flex-col items-start ${NeueMontreal.className}`}>
-              <h2 className='text-2xl font-medium'>Prachi Sule 
+            <div className={`py-2 founder-info w-full text-start flex flex-col items-start ${poppins.className}`}>
+              <h2 className='text-xl font-medium'>Prachi Sule 
 
               </h2>
-              <p className={`opacity-50 ${HelveticaReg.className}`}>Partner</p>
+              <p className={`opacity-50 font-light ${inter.className}`}>Partner</p>
             </div>
           </div>
 

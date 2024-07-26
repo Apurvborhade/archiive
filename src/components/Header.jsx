@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react';
 
 import Link from 'next/link';
-import { Helvetica_Now, neueHass } from '@/utils/font';
+import { archivo, neueHass } from '@/utils/font';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -54,7 +54,7 @@ const Header = ({ navColor }) => {
 
 
   return (
-    <div style={{ backgroundColor: navbarColor }} className={`header-container fixed top-0 w-screen ${Helvetica_Now.className}`}>
+    <div style={{ backgroundColor: navbarColor }} className={`header-container fixed top-0 w-screen ${archivo.className}`}>
       <div className='header w-full flex justify-between items-center p-4 lg:px-10 lg:py-4'>
         <Link className="brand-logo" href={"/"}>
           <Image
@@ -64,7 +64,7 @@ const Header = ({ navColor }) => {
             alt="archiive"
           />
         </Link>
-        <div className={`menu-link--container ${Helvetica_Now.className} text-sm uppercase ml-auto mr-44 lg:block hidden`}>
+        <div className={`menu-link--container ${archivo.className} text-sm uppercase ml-auto mr-44 lg:block hidden`}>
           <ul className=' flex justify-center items-center'>
             <li className="nav-link underline-right py-3">
               <Link href={'/'}>
@@ -89,7 +89,7 @@ const Header = ({ navColor }) => {
               <p>Send A Message</p>
             </button>
           </Link>
-          <button className={`menu-btn flex ml-10 mr-4 outline-none ${Helvetica_Now.className} lg:hidden block uppercase`} onClick={openMenu}><p>Menu</p></button>
+          <button className={`menu-btn flex ml-10 mr-4 outline-none ${archivo.className} lg:hidden block uppercase`} onClick={openMenu}><p>Menu</p></button>
         </div>
       </div>
 

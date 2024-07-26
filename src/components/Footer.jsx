@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 
 import Link from 'next/link'
-import { FreeSans, Helvetica_Bold, inter, neueHass } from '@/utils/font'
+import { FreeSans, inter, neueHass } from '@/utils/font'
 
 
 
@@ -76,7 +76,7 @@ const Footer = () => {
           <div className="page-nav--links my-4">
             <p className={` ${neueHass.className} opacity-60`}>Menu</p>
             <div className="links">
-              <ul className={`flex items-center ${Helvetica_Bold.className}`}>
+              <ul className={`flex items-center font-medium ${inter.className}`}>
                 <li>
                   <Link href={'/'}>
                     Home
@@ -178,7 +178,7 @@ const Footer = () => {
           <div className="page-nav--links my-4">
             <p className={` ${neueHass.className} opacity-60`}>Menu</p>
             <div className="links">
-              <ul className={`flex items-center ${Helvetica_Bold.className}`}>
+              <ul className={`flex items-center font-medium ${inter.className}`}>
                 <li>
                   <Link href={'/'}>
                     Home
@@ -207,7 +207,7 @@ const Footer = () => {
             <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
           </div>
         </div>
-        <h1 className={`lg:text-9xl xs:text-5xl ${neueHass.className} font-medium ml-auto text-4xl mt-10 `}>archiive</h1>
+        <h1 className={`lg:text-9xl xs:text-5xl ${FreeSans.className} font-medium ml-auto text-4xl mt-10 `}>archiive</h1>
       </div>
     </footer>
   )

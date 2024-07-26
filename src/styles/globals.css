@@ -3,9 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --foreground-hex: #FFD951;
+  --foreground-hex: #F7EC4D;
   --background-hex: #FFFDEB;
   --foreground-text-hex: #000;
+}
+::-moz-selection { /* Code for Firefox */
+  color: red;
+  background: yellow;
+}
+
+::selection {
+  color: var(--background-hex);
+  background: var(--foreground-text-hex);
 }
 
 /* width */
