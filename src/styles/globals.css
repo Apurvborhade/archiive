@@ -737,6 +737,9 @@ footer li {
   .mobile-menu--links {
     margin: 0 2.5rem;
   }
+  .mobile-menu--links ul li {
+    margin: 10px 0px;
+  }
 
   .mobile-menu--links ul {
     font-size: smaller;
