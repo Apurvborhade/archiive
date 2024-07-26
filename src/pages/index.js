@@ -29,7 +29,7 @@ export default function Home({ works }) {
     <>
       <ReactLenis root options={{ duration: 2 }}>
         <Loader />
-        <Header navColor={"#FFD951"} />
+        <Header navColor={"#F7EC4D"} />
         <Landing />
         <Works works={works} />
         <About />

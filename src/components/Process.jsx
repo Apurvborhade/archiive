@@ -12,24 +12,23 @@ const Process = () => {
         if (typeof window !== 'undefined') {
             if (window.innerWidth > 1440) {
                 return 1300;
-            } else if (window.innerWidth <= 1440) {
-                return 1800;
-            } else if (window.innerWidth > 1024 && window.innerWidth < 1400) {
-                return 1800;
-            } else if (window.innerWidth === 1024) {
+            } else if (window.innerWidth <= 1024) {
                 return 2100;
+            } else if (window.innerWidth > 1024) {
+                return 1900;
             } else {
                 return 0;
             }
         }
-        return 1700; // Default value if window is not defined
+        return 1900; // Default value if window is not defined
     };
     const [horizontalScroll, setHorizontalScroll] = useState(getInitialHorizontalScroll)
 
     useGSAP(() => {
         const processContainer = document.querySelector(".process-container");
 
-        if(window.innerWidth > 1000) {
+        if (window.innerWidth > 1000) {
+            console.log(horizontalScroll)
             gsap.to(".process-card--container", {
                 x: -(horizontalScroll),
                 scrollTrigger: {

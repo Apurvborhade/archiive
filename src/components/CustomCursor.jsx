@@ -44,7 +44,7 @@ const CustomCursor = () => {
     return (
         <div>
             <div className={`cursor flex justify-center items-center ${hovered ? 'mouse-hover' : ''}`} style={{ transform: `translate(${mouse.x}px, ${mouse.y}px)` }} ref={cursor}>
-                <p className='text-3xl'><Image className='' src={"/assets/right arrow.svg"} width={45} height={15} alt='right-arrow'></Image></p>
+                <p className='text-3xl'><Image className='' src={"/assets/right arrow.svg"} width={15} height={15} alt='right-arrow'></Image></p>
             </div>
         </div>
     )

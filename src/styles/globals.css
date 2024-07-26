@@ -521,8 +521,8 @@ footer li {
 .cursor {
   position: fixed;
   background-color: var(--background-hex);
-  width: 150px;
-  height: 150px;
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
   z-index: 11111111;
   transition: 0.17s linear transform,
@@ -595,7 +595,7 @@ footer li {
 }
 
 .carousel-items {
-  height: 85vh;
+  min-height: 85vh;
 }
 
 .wrapper-container {

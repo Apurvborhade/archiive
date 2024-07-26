@@ -107,7 +107,7 @@ const Header = ({ navColor }) => {
             </button>
           </div>
           <div className="mobile-menu--links text-white m-10 flex flex-col justify-between">
-            <ul className={`uppercase ${neueHass.className} font-medium text-4xl h-2/6 flex flex-col justify-between `} onClick={closeMenu}>
+            <ul className={`uppercase ${neueHass.className} font-medium text-2xl h-2/6 flex flex-col justify-between `} onClick={closeMenu}>
               <li className='my-3'>
                 <Link href={'/'}>Home</Link>
               </li>
@@ -127,18 +127,17 @@ const Header = ({ navColor }) => {
 
           <div className="links w-full ">
             <ul className='flex items-center w-3/5 bz justify-around' >
-              <li className='cursor-pointer'>
-                <Link href={'https:/wa.me/+917666848035'}>
+              <li>
+                <Link href={'/'}>
                   <span>
                     <Image
-                      src="/assets/WhatsApp.svg"
+                      src="/assets/FaceBook.svg"
                       width={30}
                       height={30}
-                      alt="Whatsapp"
+                      alt="Facebook"
                       className='invert'
                     />
                   </span>
-
                 </Link>
               </li>
               <li>
@@ -167,19 +166,7 @@ const Header = ({ navColor }) => {
                   </span>
                 </Link>
               </li>
-              <li>
-                <Link href={'/'}>
-                  <span>
-                    <Image
-                      src="/assets/Dribbble.svg"
-                      width={30}
-                      height={30}
-                      alt="Dribble"
-                      className='invert'
-                    />
-                  </span>
-                </Link>
-              </li>
+
             </ul>
           </div>
         </div>

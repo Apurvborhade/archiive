@@ -23,13 +23,13 @@ const Footer = () => {
             <div className="links">
               <ul className='flex items-center cursor-pointer'>
                 <li>
-                  <Link href={'https://wa.me/+917666848035'}>
+                  <Link href={'/'}>
                     <span>
                       <Image
-                        src="/assets/WhatsApp.svg"
+                        src="/assets/FaceBook.svg"
                         width={30}
                         height={30}
-                        alt="Instagram"
+                        alt="Facebook"
                       />
                     </span>
                   </Link>
@@ -58,18 +58,7 @@ const Footer = () => {
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <Link href={'/'}>
-                    <span>
-                      <Image
-                        src="/assets/Dribbble.svg"
-                        width={30}
-                        height={30}
-                        alt="Instagram"
-                      />
-                    </span>
-                  </Link>
-                </li>
+
               </ul>
             </div>
           </div>
@@ -83,7 +72,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'https://wa.me/+917666848035'}>
+                  <Link href={'/contact'}>
                     Contact
                   </Link>
                 </li>
@@ -93,7 +82,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'#works'}>
+                  <Link href={'/works'}>
                     Works
                   </Link>
                 </li>
@@ -123,17 +112,16 @@ const Footer = () => {
 
             <div className="links">
               <ul className='flex items-center'>
-                <li className='cursor-pointer'>
-                  <Link href={'https://wa.me/+917666848035'}>
+                <li>
+                  <Link href={'/'}>
                     <span>
                       <Image
-                        src="/assets/WhatsApp.svg"
+                        src="/assets/FaceBook.svg"
                         width={30}
                         height={30}
-                        alt="Whatsapp"
+                        alt="Facebook"
                       />
                     </span>
-
                   </Link>
                 </li>
                 <li>
@@ -160,18 +148,7 @@ const Footer = () => {
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <Link href={'/'}>
-                    <span>
-                      <Image
-                        src="/assets/Dribbble.svg"
-                        width={30}
-                        height={30}
-                        alt="Dribble"
-                      />
-                    </span>
-                  </Link>
-                </li>
+
               </ul>
             </div>
           </div>
@@ -185,7 +162,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'https://wa.me/+917666848035'}>
+                  <Link href={'/contact'}>
                     Contact
                   </Link>
                 </li>
@@ -195,7 +172,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'#work'}>
+                  <Link href={'/works'}>
                     Works
                   </Link>
                 </li>

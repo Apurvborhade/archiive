@@ -5,11 +5,12 @@ import { neueHass } from '@/utils/font';
 import { createClient } from 'contentful';
 import gsap from 'gsap';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
+import screenfull from 'screenfull';
 import { Draggable } from "gsap/Draggable";
 import { Linear } from 'gsap';
-
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
 
 
@@ -55,7 +56,8 @@ export async function getStaticProps({ params }) {
 }
 
 const WorkDetails = ({ work }) => {
-
+    const fullscreenBtn = useRef(null);
+    const [isFullScreen, setIsFullScreen] = useState(false)
     useEffect(() => {
         var wrapper = document.querySelector(".carousel-container");
         var boxes = document.querySelectorAll(".carousel-item");
@@ -90,15 +92,34 @@ const WorkDetails = ({ work }) => {
                     }
                 }
             }).progress(1 / boxes.length);
+            let isHorizontalGesture = false;
+            let gestureChecked = false;
 
             Draggable.create(proxy, {
                 type: "x",
                 trigger: wrapper,
                 throwProps: true,
                 onPress: function () {
-                    this.startX = this.x;
+                    this.startX = this.pointerX; // Track initial X position
+                    this.startY = this.pointerY; // Track initial Y position
+                    isHorizontalGesture = false; // Reset gesture direction flag
+                    gestureChecked = false; // Reset gesture check flag
                 },
-                onDrag: updateProgress,
+                onDrag: function () {
+                    if (!gestureChecked) {
+                        const deltaX = Math.abs(this.pointerX - this.startX);
+                        const deltaY = Math.abs(this.pointerY - this.startY);
+
+                        if (deltaX > deltaY) {
+                            isHorizontalGesture = true; // Confirm horizontal gesture
+                        }
+                        gestureChecked = true; // Mark gesture as checked
+                    }
+
+                    if (isHorizontalGesture) {
+                        updateProgress.call(this);
+                    } 
+                },
                 onThrowUpdate: updateProgress,
                 snap: { x: snapBox },
                 inertia: true,
@@ -157,7 +178,38 @@ const WorkDetails = ({ work }) => {
         return <div>Loading...</div>;
     }
 
+    const handleFullscreenChange = () => {
+        screenfull.isFullscreen ? setIsFullScreen(true) : setIsFullScreen(false)
+    };
+    useEffect(() => {
+        if (screenfull.isEnabled) {
+            screenfull.on('change', handleFullscreenChange);
+        }
 
+        const handleKeydown = (event) => {
+            if (event.key === 'F11') {
+                event.preventDefault(); // Prevent the default F11 action (browser fullscreen)
+                toggleFullscreen();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeydown);
+
+        return () => {
+            if (screenfull.isEnabled) {
+                screenfull.off('change', handleFullscreenChange);
+            }
+            window.removeEventListener('keydown', handleKeydown);
+        };
+    }, []);
+
+    const toggleFullscreen = () => {
+        if (screenfull.isEnabled) {
+            screenfull.toggle().catch((err) => {
+                console.error(err);
+            });
+        }
+    };
 
     const formatDate = (date) => {
         const year = date.split("-")[0]
@@ -171,11 +223,11 @@ const WorkDetails = ({ work }) => {
                 <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
                     <div className="carousel-container " id="wrapper">
                         <div className="carousel-items">
-                            <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute'>
+                            <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute xs:hidden'>
                                 <div className='carousel-slider--left hover-target  w-6/12'></div>
                                 <div className='carousel-slider--right hover-target  w-6/12'></div>
                             </div>
-                            <div className="carousel-item overflow-y-scroll thumbnail flex xs:flex-col gap-5 items-start">
+                            <div className="carousel-item thumbnail flex xs:flex-col gap-5 items-start">
                                 <div className='relative image-container w-9/12 xs:w-full h-full'>
                                     <ImageWithPlaceholder
                                         src={`https:${work.fields.thumbnail.fields.file.url}`}
@@ -183,14 +235,14 @@ const WorkDetails = ({ work }) => {
                                         objectfit={work.fields.thumbnailOrientation ? 'none' : 'cover'}
                                     />
                                 </div>
-                                <div className={`work-description w-3/12 xs:w-full  ${neueHass.className}`}>
+                                <div className={`work-description overflow-scroll w-3/12 xs:w-full  ${neueHass.className}`}>
                                     <div className='work-title 2xl:text-4xl text-2xl'>
                                         <h1>{work.fields.title}</h1>
                                     </div>
                                     <div className='work-date text-md opacity-75 my-5'>
                                         <h1>{formatDate(work.fields.date)}</h1>
                                     </div>
-                                    <div className='work-info lg:text-sm xl:text-sm '>
+                                    <div className='work-info lg:text-sm xl:text-sm  '>
                                         <h1>{work.fields.description}</h1>
                                     </div>
                                 </div>
@@ -209,6 +261,13 @@ const WorkDetails = ({ work }) => {
                     <div className='drag-indicator hidden xs:flex absolute right-5 bottom-0 border border-black rounded-full w-10 h-10 flex justify-center items-center'>
                         <Image className='' src={"/assets/right arrow.svg"} width={15} height={15} alt='right-arrow'></Image>
                     </div>
+                    <button className='fullscreen-btn absolute bottom-0 right-0 outline-none lg:block hidden' ref={fullscreenBtn} onClick={toggleFullscreen}>
+                        {isFullScreen ? (
+                            <FullscreenExitIcon />
+                        ) : (
+                            <FullscreenIcon />
+                        )}
+                    </button>
                 </div>
             </div>
             |<div className='pin-spacer'></div>
