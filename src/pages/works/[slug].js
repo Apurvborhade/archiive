@@ -93,38 +93,32 @@ const WorkDetails = ({ work }) => {
                 }
             }).progress(1 / boxes.length);
             let isHorizontalGesture = false;
-            let gestureChecked = false;
-
             Draggable.create(proxy, {
                 type: "x",
                 trigger: wrapper,
                 throwProps: true,
                 onPress: function () {
-                    this.startX = this.pointerX; // Track initial X position
-                    this.startY = this.pointerY; // Track initial Y position
-                    isHorizontalGesture = false; // Reset gesture direction flag
-                    gestureChecked = false; // Reset gesture check flag
+                    this.startX = this.pointerX;
+                    this.startY = this.pointerY;
+                    isHorizontalGesture = false;
                 },
                 onDrag: function () {
-                    if (!gestureChecked) {
-                        const deltaX = Math.abs(this.pointerX - this.startX);
-                        const deltaY = Math.abs(this.pointerY - this.startY);
-
-                        if (deltaX > deltaY) {
-                            isHorizontalGesture = true; // Confirm horizontal gesture
-                        }
-                        gestureChecked = true; // Mark gesture as checked
+                    const deltaX = Math.abs(this.startX - this.pointerX);
+                    if (deltaX > 20) {
+                        updateProgress();
                     }
-
-                    if (isHorizontalGesture) {
-                        updateProgress.call(this);
-                    } 
                 },
                 onThrowUpdate: updateProgress,
                 snap: { x: snapBox },
                 inertia: true,
                 cursor: 'ew-resize',
-                onDragEnd: snapToBox
+                onDragEnd: function () {
+                    const deltaX = Math.abs(this.startX - this.pointerX)
+
+                    if (deltaX > 20) {
+                        snapToBox(this.getDirection("velocity"))
+                    }
+                }
             });
 
             window.addEventListener('keydown', (e) => {
@@ -155,8 +149,8 @@ const WorkDetails = ({ work }) => {
                 });
             }
 
-            function snapToBox() {
-                const direction = this.getDirection("velocity") === "left" ? -1 : 1;
+            function snapToBox(directionX) {
+                const direction = directionX === "left" ? -1 : 1;
                 gsap.to(proxy, {
                     duration: 0.8,
                     x: snapBox(props("x") + direction * boxWidth),
@@ -172,6 +166,8 @@ const WorkDetails = ({ work }) => {
         return () => {
             window.removeEventListener('resize', setupCarousel);
         };
+
+
     }, []);
 
     if (!work) {
@@ -223,7 +219,7 @@ const WorkDetails = ({ work }) => {
                 <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
                     <div className="carousel-container " id="wrapper">
                         <div className="carousel-items">
-                            <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute xs:hidden'>
+                            <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute xs:hidden hidden'>
                                 <div className='carousel-slider--left hover-target  w-6/12'></div>
                                 <div className='carousel-slider--right hover-target  w-6/12'></div>
                             </div>
