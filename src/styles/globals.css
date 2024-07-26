@@ -693,3 +693,21 @@ footer li {
     transform: rotate(360deg);
   }
 }
+
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .image-container {
+    height: 375px;
+  }
+  .non-thumb {
+    height: 350px;
+  }
+ .wrapper-container {
+  height: 500px;
+ }
+ .carousel-container {
+  height: 100%;
+ }
+ .social-nav--links {
+  margin-left: 0px;
+ }
+}

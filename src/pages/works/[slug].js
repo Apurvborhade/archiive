@@ -12,7 +12,7 @@ import { Linear } from 'gsap';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
-
+import SwipeOutlinedIcon from '@mui/icons-material/SwipeOutlined';
 
 gsap.registerPlugin(Draggable);
 
@@ -89,7 +89,7 @@ const WorkDetails = ({ work }) => {
         const rightBtn = document.querySelector(".carousel-slider--right");
         const leftBtn = document.querySelector(".carousel-slider--left");
 
-       
+
         function setupCarousel() {
             var wrapWidth = boxes.length * boxWidth;
 
@@ -197,10 +197,10 @@ const WorkDetails = ({ work }) => {
 
         setupCarousel();
 
-        window.addEventListener('resize', () =>  setBoxWidth(window.innerWidth));
+        window.addEventListener('resize', () => setBoxWidth(window.innerWidth));
         window.addEventListener('keydown', (handleKeydown));
         return () => {
-            window.removeEventListener('resize', () =>  setBoxWidth(window.innerWidth));
+            window.removeEventListener('resize', () => setBoxWidth(window.innerWidth));
             window.removeEventListener('keydown', handleKeydown);
         };
 
@@ -222,11 +222,11 @@ const WorkDetails = ({ work }) => {
                 <div className="wrapper-container mid:mt-24 mt-20 lg:mx-10 mx-3">
                     <div className="carousel-container " id="wrapper" ref={wrapperRef}>
                         <div className="carousel-items">
-                            <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute xs:hidden hidden'>
+                            <div className='carousel-slider---overlay flex bg-black w-full h-full opacity-0 z-50 absolute xs:hidden'>
                                 <div className='carousel-slider--left hover-target  w-6/12'></div>
                                 <div className='carousel-slider--right hover-target  w-6/12'></div>
                             </div>
-                            <div className="carousel-item thumbnail flex xs:flex-col gap-5 items-start">
+                            <div className="carousel-item h-full thumbnail flex xs:flex-col gap-5 items-start">
                                 <div className='relative image-container w-9/12 xs:w-full h-full'>
                                     <ImageWithPlaceholder
                                         src={`https:${work.fields.thumbnail.fields.file.url}`}
@@ -234,20 +234,20 @@ const WorkDetails = ({ work }) => {
                                         objectfit={work.fields.thumbnailOrientation ? 'none' : 'cover'}
                                     />
                                 </div>
-                                <div className={`work-description overflow-scroll w-3/12 xs:w-full  ${neueHass.className}`}>
+                                <div className={`work-description overflow-scroll w-3/12 xs:w-full   ${neueHass.className}`}>
                                     <div className='work-title 2xl:text-4xl text-2xl'>
                                         <h1>{work.fields.title}</h1>
                                     </div>
                                     <div className='work-date text-md opacity-75 my-5'>
                                         <h1>{formatDate(work.fields.date)}</h1>
                                     </div>
-                                    <div className='work-info lg:text-sm xl:text-sm  '>
+                                    <div className='work-info lg:text-sm xl:text-sm  xs:text-xs '>
                                         <h1>{work.fields.description}</h1>
                                     </div>
                                 </div>
                             </div>
                             {work.fields.media && work.fields.media.map((item) => (
-                                <div className="carousel-item" key={item.sys.id}>
+                                <div className="carousel-item non-thumb" key={item.sys.id}>
                                     <ImageWithPlaceholder
                                         src={`https:${item.fields.file.url}`}
                                         alt={item.fields.title}
@@ -257,8 +257,8 @@ const WorkDetails = ({ work }) => {
                             ))}
                         </div>
                     </div>
-                    <div className='drag-indicator hidden xs:flex absolute right-5 bottom-0 border border-black rounded-full w-10 h-10 flex justify-center items-center'>
-                        <Image className='' src={"/assets/right arrow.svg"} width={15} height={15} alt='right-arrow'></Image>
+                    <div className='drag-indicator absolute right-2 -bottom-16  border border-black rounded-full w-20 h-12 flex justify-center items-center'>
+                        <p className='text-sm'>Drag</p> <SwipeOutlinedIcon fontSize='small' className='ml-1' />
                     </div>
                     <button className='fullscreen-btn absolute bottom-0 right-0 outline-none lg:block hidden' ref={fullscreenBtn} onClick={toggleFullscreen}>
                         {isFullScreen ? (
