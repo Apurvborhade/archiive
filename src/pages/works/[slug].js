@@ -1,19 +1,17 @@
 import CustomCursor from '@/components/CustomCursor';
 import Header from '@/components/Header';
 
+import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
 import { neueHass } from '@/utils/font';
-import { createClient } from 'contentful';
-import gsap from 'gsap';
-import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
-import screenfull from 'screenfull';
-import { Draggable } from "gsap/Draggable";
-import { Linear } from 'gsap';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
-import SwipeOutlinedIcon from '@mui/icons-material/SwipeOutlined';
+import { createClient } from 'contentful';
+import gsap, { Linear } from 'gsap';
+import { Draggable } from "gsap/Draggable";
+import { useEffect, useRef, useState } from 'react';
+import screenfull from 'screenfull';
 
+import SwipeOutlinedIcon from '@mui/icons-material/SwipeOutlined';
 gsap.registerPlugin(Draggable);
 
 const client = createClient({
@@ -58,33 +56,31 @@ export async function getStaticProps({ params }) {
 const WorkDetails = ({ work }) => {
     const fullscreenBtn = useRef(null);
     const [isFullScreen, setIsFullScreen] = useState(false)
-    const handleFullscreenChange = () => {
-        screenfull.isFullscreen ? setIsFullScreen(true) : setIsFullScreen(false)
-    };
+
 
     const wrapperRef = useRef(null);
     const proxyRef = useRef(null);
     const animationRef = useRef(null);
 
+    const handleFullscreenChange = () => {
+        setIsFullScreen(screenfull.isFullscreen);
+    };
+
+
+
     const toggleFullscreen = () => {
         if (screenfull.isEnabled) {
-            screenfull.toggle()
+            screenfull.toggle().catch((err) => {
+                console.log("Error toggling fullscreen:", err);
+            });
         }
     };
-    const handleKeydown = (event) => {
-        if (event.key === 'F11') {
-            event.preventDefault(); // Prevent the default F11 action (browser fullscreen)
 
-            toggleFullscreen();
-        }
-    };
-    if (screenfull.isEnabled) {
-        screenfull.on('change', handleFullscreenChange);
-    }
+
 
     const [boxWidth, setBoxWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440)
-    useEffect(() => {
 
+    useEffect(() => {
         var boxes = document.querySelectorAll(".carousel-item");
         const rightBtn = document.querySelector(".carousel-slider--right");
         const leftBtn = document.querySelector(".carousel-slider--left");
@@ -197,11 +193,31 @@ const WorkDetails = ({ work }) => {
 
         setupCarousel();
 
+
+        if (screenfull.isEnabled) {
+            // Use screenfull library events
+            screenfull.on('change', handleFullscreenChange);
+
+        } else {
+            console.log("Screenfull is not enabled");
+        }
+        const handleKeydown = (event) => {
+            if (event.key === 'F11' || event.code === 'F11' || event.which === 122) {
+                event.preventDefault(); // Prevent the default F11 action (browser fullscreen)
+                toggleFullscreen();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeydown);
+
         window.addEventListener('resize', () => setBoxWidth(window.innerWidth));
-        window.addEventListener('keydown', (handleKeydown));
+
         return () => {
-            window.removeEventListener('resize', () => setBoxWidth(window.innerWidth));
+            if (screenfull.isEnabled) {
+                screenfull.off('change', handleFullscreenChange);
+            }
             window.removeEventListener('keydown', handleKeydown);
+            window.removeEventListener('resize', () => setBoxWidth(window.innerWidth));
         };
 
     }, [boxWidth]);
@@ -257,7 +273,7 @@ const WorkDetails = ({ work }) => {
                             ))}
                         </div>
                     </div>
-                    <div className='drag-indicator absolute right-2 -bottom-16  border border-black rounded-full w-20 h-12 flex justify-center items-center'>
+                    <div className='drag-indicator absolute right-0 -bottom-16  border border-black rounded-full w-20 h-12 justify-center items-center xs:flex hidden'>
                         <p className='text-sm'>Drag</p> <SwipeOutlinedIcon fontSize='small' className='ml-1' />
                     </div>
                     <button className='fullscreen-btn absolute bottom-0 right-0 outline-none lg:block hidden' ref={fullscreenBtn} onClick={toggleFullscreen}>
