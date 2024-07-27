@@ -33,7 +33,7 @@ const Process = () => {
                 x: -(horizontalScroll),
                 scrollTrigger: {
                     trigger: processContainer,
-                    start: "-=160 top",
+                    start: "-=90 top",
                     end: "+=2600",
                     pin: true,
                     markers: false,
@@ -47,7 +47,6 @@ const Process = () => {
 
     return (
         <div>
-
             <div className='process-container lg:mx-10 mx-5 mt-52' ref={processContainer}>
                 <div className="process-head">
                     <h2 className={`lg:text-6xl text-5xl mx-3 lg:mx-0 ${neueHass.className} font-medium`}>Our Approach</h2>
