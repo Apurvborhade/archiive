@@ -30,7 +30,6 @@ const generateEmailContent = (data) => {
 const handler = async (req, res) => {
     if (req.method === "POST") {
         const data = req.body;
-        console.log(data)
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!data.name || !data.email || !data.project || !data.description) {
             return res.status(400).json({ message: 'Please enter all Details' })

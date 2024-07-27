@@ -28,7 +28,6 @@ const Process = () => {
         const processContainer = document.querySelector(".process-container");
 
         if (window.innerWidth > 1000) {
-            console.log(horizontalScroll)
             gsap.to(".process-card--container", {
                 x: -(horizontalScroll),
                 scrollTrigger: {
@@ -36,7 +35,7 @@ const Process = () => {
                     start: "-=120 top",
                     end: "+=2600",
                     pin: true,
-                    markers: true,
+                    markers: false,
                     scrub: true,
                 },
                 ease: "power1.inOut",

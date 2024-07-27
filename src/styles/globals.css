@@ -465,7 +465,7 @@ body {
 
   .founder-card {
     min-width: 100%;
-    min-height: 450px;
+    /* min-height: 450px; */
     /* border-radius: 49px; */
   }
 }

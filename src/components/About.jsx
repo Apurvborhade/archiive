@@ -28,7 +28,7 @@ const About = () => {
                 src="/assets/founders/adesh.jpg"
                 alt='founder'
                 width={430}
-                height={300}
+                height={400}
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
                 quality={100}
@@ -61,7 +61,7 @@ const About = () => {
                 src="/assets/founders/viral.jpg"
                 alt='founder'
                 width={430}
-                height={300}
+                height={400}
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
                 quality={100}
@@ -94,7 +94,7 @@ const About = () => {
                 src="/assets/founders/prachi.jpg"
                 alt='founder'
                 width={430}
-                height={300}
+                height={400}
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQY..."
                 quality={100}
