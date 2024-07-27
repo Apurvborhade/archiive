@@ -29,7 +29,7 @@ const RATE_LIMIT_PERIOD = 1 * 24 * 60 * 60 * 1000; // 1 day
 const Index = () => {
     const [savedTime, setSavedTime] = useState(typeof window !== 'undefined' ? localStorage.getItem('lastSubmissionTime') : null)
     useEffect(() => {
-        setSavedTime(localStorage.getItem('lastSubmissionTime'));
+        
         if (savedTime && Date.now() - parseInt(savedTime, 10) > RATE_LIMIT_PERIOD) {
             // Reset count and time if period has passed
             localStorage.removeItem('lastSubmissionTime');
@@ -56,7 +56,8 @@ const Index = () => {
             ...prev,
             isLoading: true,
         }));
-        if (submissionCount >= MAX_SUBMISSIONS && savedTime && Date.now() - parseInt(savedTime, 10) <= RATE_LIMIT_PERIOD) {
+        
+        if (submissionCount >= MAX_SUBMISSIONS && Date.now() - parseInt(savedTime, 10) <= RATE_LIMIT_PERIOD) {
             toast.info("Submission limit reached. Please try again later.", {
                 position: "top-right",
                 autoClose: 5000,
@@ -74,12 +75,17 @@ const Index = () => {
         }
         try {
             await sendContactForm(values)
+            
+            //Limiting Request 
             const newCount = submissionCount + 1;
             setSubmissionCount(newCount); // Update state
             setlocalSubmissionCount(newCount);//Update Local Storage
             localStorage.setItem('lastSubmissionTime', Date.now().toString());
+            setSavedTime(localStorage.getItem('lastSubmissionTime'));
+
+            // Reset Contact Form
             setContactDetails({
-                values: values, isLoading: false, isSuccess: true
+                values: initValues, isLoading: false, isSuccess: true
             });
             toast.success("Mail Sent Successfully", {
                 position: "top-right",
@@ -103,7 +109,7 @@ const Index = () => {
                 theme: "dark",
             });
             setContactDetails({
-                values: initValues, isLoading: false, isSuccess: false
+                values: values, isLoading: false, isSuccess: false
             });
         }
     }
