@@ -353,6 +353,11 @@ body {
 
 @media only screen and (max-width: 768px) {
 
+  /* width */
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+
   .works-container {
     display: flex;
     flex-direction: column;
@@ -699,15 +704,16 @@ footer li {
 
 @media only screen and (max-width: 768px) and (orientation: landscape) {
   .image-container {
-    height: 375px;
+    height: 275px;
   }
 
   .non-thumb {
-    height: 300px;
+    height: 280px;
   }
 
   .wrapper-container {
     height: 500px;
+    margin-top: 2.5rem;
   }
 
   .carousel-container {
@@ -737,6 +743,7 @@ footer li {
   .mobile-menu--links {
     margin: 0 2.5rem;
   }
+
   .mobile-menu--links ul li {
     margin: 10px 0px;
   }
@@ -761,4 +768,5 @@ footer li {
   .mobile-menu .social-nav--links li {
     width: 20px;
   }
+
 }

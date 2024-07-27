@@ -19,7 +19,7 @@ const CustomCursor = () => {
             document.removeEventListener('mouseout', onMouseOut);
         };
         const onMouseMove = (e) => {
-            setMouse({ x: e.clientX, y: e.clientY })
+            setMouse({ x: e.clientX + 35, y: e.clientY + 30 })
             setPosition({ x: position.x += (mouse.x - position.x) / 9, y: position.y += (mouse.y - position.y) / 9 });
 
             if (e.target.matches('.hover-target')) {
@@ -44,7 +44,7 @@ const CustomCursor = () => {
     return (
         <div>
             <div className={`cursor flex justify-center items-center ${hovered ? 'mouse-hover' : ''}`} style={{ transform: `translate(${mouse.x}px, ${mouse.y}px)` }} ref={cursor}>
-                <p className='text-3xl'><Image className='' src={"/assets/right arrow.svg"} width={15} height={15} alt='right-arrow'></Image></p>
+                <p className='text-sm'>Drag</p>
             </div>
         </div>
     )

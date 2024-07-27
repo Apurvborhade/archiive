@@ -2,6 +2,7 @@
 
 
 import { mailOptions, transporter } from "../../../config/nodemailer";
+import rateLimitMiddleware from "../../../lib/rateLimiter";
 
 mailOptions
 const CONTACT_MESSAGE_FIELDS = {
@@ -29,6 +30,7 @@ const generateEmailContent = (data) => {
 const handler = async (req, res) => {
     if (req.method === "POST") {
         const data = req.body;
+        console.log(data)
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!data.name || !data.email || !data.project || !data.description) {
             return res.status(400).json({ message: 'Please enter all Details' })
@@ -45,11 +47,11 @@ const handler = async (req, res) => {
 
             return res.status(200).json({ success: true })
         } catch (error) {
-            return res.status(400).json({ message: error })
+            return res.status(400).json({ message: "SomeThing went wrong " })
         }
     }
     return res.status(400).json({ message: 'eBad Request' })
 }
 
 
-export default handler
+export default rateLimitMiddleware(handler)

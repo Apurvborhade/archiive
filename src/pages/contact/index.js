@@ -1,20 +1,46 @@
-import Header from '@/components/Header'
+import Header from '@/components/Header';
 
-import React, { useEffect, useState } from 'react'
-import { sendContactForm } from '../../../lib/api'
+import { useEffect, useState } from 'react';
+import { sendContactForm } from '../../../lib/api';
 
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { inter, neutralFace } from '@/utils/font';
 const initValues = { name: "", email: "", project: "", description: "" }
 
 const initState = { values: initValues, isLoading: false, isSuccess: false }
+const getSubmissionCount = () => {
+    if (typeof window !== 'undefined') {
+        const count = localStorage.getItem('submissionCount');
+        return count ? parseInt(count, 10) : 0;
+    }
+    return 0;
+};
+
+const setlocalSubmissionCount = (count) => {
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('submissionCount', count);
+    }
+};
+
+const MAX_SUBMISSIONS = 3; // Define your limit here    
+const RATE_LIMIT_PERIOD = 1 * 24 * 60 * 60 * 1000; // 1 day
 
 const Index = () => {
-
+    const [savedTime, setSavedTime] = useState(typeof window !== 'undefined' ? localStorage.getItem('lastSubmissionTime') : null)
+    useEffect(() => {
+        setSavedTime(localStorage.getItem('lastSubmissionTime'));
+        if (savedTime && Date.now() - parseInt(savedTime, 10) > RATE_LIMIT_PERIOD) {
+            // Reset count and time if period has passed
+            localStorage.removeItem('lastSubmissionTime');
+            localStorage.removeItem('submissionCount');
+        }
+        setSubmissionCount(getSubmissionCount()); // Update state when component mounts
+    }, []);
     const [contactDetails, setContactDetails] = useState(initState);
-
+    const [submissionCount, setSubmissionCount] = useState(getSubmissionCount());
     const { values, isLoading, isSuccess } = contactDetails;
+
     const handleChange = ({ target }) => {
         setContactDetails((prev) => ({
             ...prev,
@@ -30,11 +56,31 @@ const Index = () => {
             ...prev,
             isLoading: true,
         }));
+        if (submissionCount >= MAX_SUBMISSIONS && savedTime && Date.now() - parseInt(savedTime, 10) <= RATE_LIMIT_PERIOD) {
+            toast.info("Submission limit reached. Please try again later.", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "dark",
+            });
+            setContactDetails({
+                values: values, isLoading: false, isSuccess: false
+            });
+            return;
+        }
         try {
             await sendContactForm(values)
+            const newCount = submissionCount + 1;
+            setSubmissionCount(newCount); // Update state
+            setlocalSubmissionCount(newCount);//Update Local Storage
+            localStorage.setItem('lastSubmissionTime', Date.now().toString());
             setContactDetails({
-                values: initValues, isLoading: false, isSuccess: true
-            }); 
+                values: values, isLoading: false, isSuccess: true
+            });
             toast.success("Mail Sent Successfully", {
                 position: "top-right",
                 autoClose: 5000,

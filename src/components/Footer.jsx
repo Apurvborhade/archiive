@@ -100,7 +100,7 @@ const Footer = () => {
       <div className={`footer-mail lg:mt-36 text-1xl mid:text-2xl lg:mb-0 mb-10 ${FreeSans.className}`}>
         <p className='opacity-45'>Send Mail</p>
         <Link href="mailto:test@gmail.com">
-          <h2 className='lg:text-3xl mid:text-5xl text-3xl underline'>info@archiive.com</h2>
+          <h2 className='lg:text-3xl mid:text-5xl text-3xl underline'>info@archiive.co</h2>
         </Link>
 
       </div>
