@@ -33,10 +33,10 @@ const Process = () => {
                 x: -(horizontalScroll),
                 scrollTrigger: {
                     trigger: processContainer,
-                    start: "-=90 top",
+                    start: "-=120 top",
                     end: "+=2600",
                     pin: true,
-                    markers: false,
+                    markers: true,
                     scrub: true,
                 },
                 ease: "power1.inOut",

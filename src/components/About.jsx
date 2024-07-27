@@ -21,8 +21,8 @@ const About = () => {
         </p>
       </div>
       <div className="team-section mt-10 lg:mt-22 lg:mx-10">
-        <div className="section-container xxl:w-11/12 xl:w-12/12 w-full founder-section flex xs:flex-wrap 2xl:justify-start justify-center mt-10">
-          <div className='founder'>
+        <div className="section-container xxl:w-11/12 xl:w-12/12 w-full founder-section flex xs:flex-wrap 2xl:justify-start justify-center mt-10 xs:gap-24">
+          <div className='founder relative'>
             <div className={`founder-card relative text-white overflow-hidden ${neueHass.className}`}>
               <Image
                 src="/assets/founders/adesh.jpg"

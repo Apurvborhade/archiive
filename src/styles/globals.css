@@ -419,9 +419,14 @@ body {
   background: var(--background-hex);
 }
 
-
-
-
+.founder {
+  min-height: 600px;
+}
+@media only screen and (max-width: 1025px) {
+  .founder {
+    min-height: 400px;
+  }
+}
 .founder-card--overlay {
   width: 100%;
   height: 100%;
