@@ -4,6 +4,7 @@ import { sendContactForm } from '../../../lib/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { inter, neutralFace } from '@/utils/font';
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 
 const initValues = { name: "", email: "", project: "", description: "" }
@@ -27,6 +28,7 @@ const MAX_SUBMISSIONS = 3; // Define your limit here
 const RATE_LIMIT_PERIOD = 1 * 24 * 60 * 60 * 1000; // 1 day
 
 const Index = () => {
+    useScrollToTop();
     const [savedTime, setSavedTime] = useState(typeof window !== 'undefined' ? localStorage.getItem('lastSubmissionTime') : null)
     useEffect(() => {
 

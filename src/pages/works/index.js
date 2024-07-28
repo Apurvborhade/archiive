@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import { ReactLenis } from 'lenis/react'
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 export async function getStaticProps() {
   const client = createClient({
@@ -21,7 +22,7 @@ export async function getStaticProps() {
 }
 
 const Index = ({ works }) => {
-
+  useScrollToTop(); 
   return (
     <ReactLenis root options={{ duration: 2 }}>
       <Header />
