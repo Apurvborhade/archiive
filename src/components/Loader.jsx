@@ -6,24 +6,17 @@ import { FreeSans } from '@/utils/font';
 gsap.registerPlugin(useGSAP);
 
 const Loader = () => {
-    
+
 
     const [logoSize, setLogoSize] = useState(80);
 
-   
+
     useGSAP(() => {
-
         const tl = gsap.timeline({});
-
-
         tl.from('.loader-logo', {
             x: 200,
             duration: 1,
-
         })
-
-
-
         tl.fromTo('.loader-brand--text', {
             clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)"
         }, {
@@ -32,17 +25,17 @@ const Loader = () => {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
         }, "-=0.4")
 
-        tl.to(".logo-anim", { y: -220, opacity: 0, ease: "power1.inOut", delay: 0.8,duration:1 })
+        tl.to(".logo-anim", { y: -220, opacity: 0, ease: "power1.inOut", delay: 0.8, duration: 1 })
         tl.to(
             '.overlay',
             {
                 height: "0%",
                 ease: "power1.inOut",
                 duration: 1,
+
             },
             "-=0.7"
         )
-
     })
     return (
         <>

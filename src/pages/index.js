@@ -6,6 +6,9 @@ import Process from "@/components/Process";
 import Works from "@/components/Works";
 import { createClient } from "contentful";
 import { ReactLenis } from 'lenis/react'
+import { useRouter } from 'next/router';
+import { useEffect, useState } from "react";
+
 
 
 
@@ -24,11 +27,38 @@ export async function getStaticProps() {
   }
 }
 export default function Home({ works }) {
+  const [showLoader, setShowLoader] = useState(true);
+  const router = useRouter();
+  useEffect(() => {
+    const handleLoad = () => {
+      const hasVisited = sessionStorage.getItem('hasVisited');
+      if (hasVisited) {
+        setShowLoader(false);
+        window.addEventListener('beforeunload', () => {
+          sessionStorage.removeItem('hasVisited');
+        });
+      } else {
+        sessionStorage.setItem('hasVisited', 'true');
+        setShowLoader(true);
+      }
+    };
 
+    // Run handleLoad on component mount
+    handleLoad();
+
+
+    // Clean up function to reset the loader state if needed
+    return () => {
+      setShowLoader(false);
+      window.removeEventListener('beforeunload', () => {
+        sessionStorage.removeItem('hasVisited');
+      });
+    };
+  }, [showLoader]);
   return (
     <>
       <ReactLenis root options={{ duration: 2 }}>
-        <Loader />
+        {showLoader && <Loader />}
         <Header navColor={"#F7EC4D"} />
         <Landing />
         <Works works={works} />
