@@ -1,14 +1,14 @@
 import Header from '@/components/Header';
-
 import { useEffect, useState } from 'react';
 import { sendContactForm } from '../../../lib/api';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { inter, neutralFace } from '@/utils/font';
-const initValues = { name: "", email: "", project: "", description: "" }
 
+
+const initValues = { name: "", email: "", project: "", description: "" }
 const initState = { values: initValues, isLoading: false, isSuccess: false }
+
 const getSubmissionCount = () => {
     if (typeof window !== 'undefined') {
         const count = localStorage.getItem('submissionCount');
@@ -29,7 +29,7 @@ const RATE_LIMIT_PERIOD = 1 * 24 * 60 * 60 * 1000; // 1 day
 const Index = () => {
     const [savedTime, setSavedTime] = useState(typeof window !== 'undefined' ? localStorage.getItem('lastSubmissionTime') : null)
     useEffect(() => {
-        
+
         if (savedTime && Date.now() - parseInt(savedTime, 10) > RATE_LIMIT_PERIOD) {
             // Reset count and time if period has passed
             localStorage.removeItem('lastSubmissionTime');
@@ -56,7 +56,7 @@ const Index = () => {
             ...prev,
             isLoading: true,
         }));
-        
+
         if (submissionCount >= MAX_SUBMISSIONS && Date.now() - parseInt(savedTime, 10) <= RATE_LIMIT_PERIOD) {
             toast.info("Submission limit reached. Please try again later.", {
                 position: "top-right",
@@ -75,7 +75,7 @@ const Index = () => {
         }
         try {
             await sendContactForm(values)
-            
+
             //Limiting Request 
             const newCount = submissionCount + 1;
             setSubmissionCount(newCount); // Update state

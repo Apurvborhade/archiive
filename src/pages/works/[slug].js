@@ -2,7 +2,7 @@ import CustomCursor from '@/components/CustomCursor';
 import Header from '@/components/Header';
 
 import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
-import { neueHass } from '@/utils/font';
+import { inter } from '@/utils/font';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import { createClient } from 'contentful';
@@ -250,7 +250,7 @@ const WorkDetails = ({ work }) => {
                                         objectfit={work.fields.thumbnailOrientation ? 'none' : 'cover'}
                                     />
                                 </div>
-                                <div className={`work-description overflow-scroll w-3/12 xs:w-full   ${neueHass.className}`}>
+                                <div className={`work-description overflow-scroll w-3/12 xs:w-full   ${inter.className}`}>
                                     <div className='work-title 2xl:text-4xl text-2xl'>
                                         <h1>{work.fields.title}</h1>
                                     </div>

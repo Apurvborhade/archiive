@@ -1,8 +1,7 @@
 import Image from 'next/image'
-import React from 'react'
 
 import Link from 'next/link'
-import { FreeSans, inter, neueHass } from '@/utils/font'
+import { FreeSans, inter } from '@/utils/font'
 
 
 
@@ -19,7 +18,7 @@ const Footer = () => {
         {/* large Screen Links */}
         <div className="link-container--big lg:block hidden">
           <div className="social-nav--links">
-            <p className={`${neueHass.className} opacity-60`}>Socials</p>
+            <p className={`${inter.className} opacity-60`}>Socials</p>
             <div className="links">
               <ul className='flex items-center cursor-pointer'>
                 <li>
@@ -63,25 +62,25 @@ const Footer = () => {
             </div>
           </div>
           <div className="page-nav--links my-4">
-            <p className={` ${neueHass.className} opacity-60`}>Menu</p>
+            <p className={` ${inter.className} opacity-60`}>Menu</p>
             <div className="links">
               <ul className={`flex items-center font-medium ${inter.className}`}>
-                <li>
+                <li className='underline-right'>
                   <Link href={'/'}>
                     Home
                   </Link>
                 </li>
-                <li>
+                <li className='underline-right'>
                   <Link href={'/contact'}>
                     Contact
                   </Link>
                 </li>
-                <li>
+                <li className='underline-right'>
                   <Link href={'/#about'}>
                     About
                   </Link>
                 </li>
-                <li>
+                <li className='underline-right'>
                   <Link href={'/works'}>
                     Works
                   </Link>
@@ -91,7 +90,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="contact-phn">
-            <p className={`${neueHass.className} opacity-60`}>Phone</p>
+            <p className={`${inter.className} opacity-60`}>Phone</p>
             <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
           </div>
         </div>
@@ -108,7 +107,7 @@ const Footer = () => {
         {/* Mobile Link */}
         <div className="link-container--big lg:hidden block">
           <div className="social-nav--links">
-            <p className={`${neueHass.className} opacity-60`}>Socials</p>
+            <p className={`${inter.className} opacity-60`}>Socials</p>
 
             <div className="links">
               <ul className='flex items-center'>
@@ -153,7 +152,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="page-nav--links my-4">
-            <p className={` ${neueHass.className} opacity-60`}>Menu</p>
+            <p className={` ${inter.className} opacity-60`}>Menu</p>
             <div className="links">
               <ul className={`flex items-center font-medium ${inter.className}`}>
                 <li>
@@ -180,7 +179,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="contact-phn">
-            <p className={`${neueHass.className} opacity-60`}>Phone</p>
+            <p className={`${inter.className} opacity-60`}>Phone</p>
             <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
           </div>
         </div>

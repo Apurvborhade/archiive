@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Image from 'next/image';
-import { FreeSans, poppins, neueHass, inter } from '@/utils/font';
+import { FreeSans, poppins, inter } from '@/utils/font';
 import Link from 'next/link';
 
 const About = () => {
@@ -14,7 +14,7 @@ const About = () => {
         <h2 className={` uppercase  ${FreeSans.className} mx-30 `}>You create – we archiive
         </h2>
       </div>
-      <div className={`about-info ml-auto lg:w-5/12 mid:text-lg lg:text-sm lg:mt-22 ${neueHass.className}`}>
+      <div className={`about-info ml-auto lg:w-5/12 mid:text-lg lg:text-sm lg:mt-22 ${inter.className}`}>
         <p>Archiive is a creative photography studio founded by three architects. Together we believe in crafting unique and engaging visual content and to tell your stories through our lenses.
           <br /><br />We believe stories convey experiences, emotions, and ideas, connecting people deeply. They make information memorable and impactful. Generating content as stories engages audiences emotionally, fostering a stronger connection. Visual storytelling enhances impact, making content more engaging and easier to recall.
 
@@ -22,8 +22,8 @@ const About = () => {
       </div>
       <div className="team-section mt-10 lg:mt-22 lg:mx-10">
         <div className="section-container xxl:w-11/12 xl:w-12/12 w-full founder-section flex xs:flex-wrap 2xl:justify-start justify-center mt-10 xs:gap-24">
-          <div className='founder relative'>
-            <div className={`founder-card relative text-white overflow-hidden ${neueHass.className}`}>
+          <div className='founder'>
+            <div className={`founder-card relative text-white overflow-hidden ${inter.className}`}>
               <Image
                 src="/assets/founders/adesh.jpg"
                 alt='founder'
@@ -46,7 +46,7 @@ const About = () => {
                 </button>
               </div>
 
-              <div className={`founder-card--overlay absolute top-0 opacity-0 hover:block hover:opacity-100 ${neueHass.className} text-sm transition-opacity duration-500 cursor-pointer`}>
+              <div className={`founder-card--overlay absolute top-0 opacity-0 hover:block hover:opacity-100 ${inter.className} text-sm transition-opacity duration-500 cursor-pointer`}>
                 <p className='absolute bottom-0 mx-5 py-10 text-start'>Adesh graduated from Pune University and began his career as an intern at A for Architecture. Later, he moved to Bangalore where he worked as an architect with Mathew and Ghosh Architects.Passionate about photography, he enjoys traveling and capturing life&apos;s moments and stories through his lens.</p>
               </div>
             </div>
@@ -56,7 +56,7 @@ const About = () => {
             </div>
           </div>
           <div className='founder'>
-            <div className={`founder-card relative text-white overflow-hidden ${neueHass.className}`}>
+            <div className={`founder-card relative text-white overflow-hidden ${inter.className}`}>
               <Image
                 src="/assets/founders/viral.jpg"
                 alt='founder'
@@ -77,7 +77,7 @@ const About = () => {
                   </Link>
                 </button>
               </div>
-              <div className={`founder-card--overlay absolute top-0 opacity-0 hover:block hover:opacity-100 ${neueHass.className} text-sm transition-opacity duration-500 cursor-pointer`}>
+              <div className={`founder-card--overlay absolute top-0 opacity-0 hover:block hover:opacity-100 ${inter.className} text-sm transition-opacity duration-500 cursor-pointer`}>
                 <p className='absolute bottom-0 mx-5 py-10 text-start'>Viral, a passionate spirit graduated from Pune University with a fresh perspective, started his professional journey at Pritesh Deo Design Spaces as an intern. He is a practicising architect and an interior designer, who explored his passion in photography with an eye of revealing stories through his lens. Archiive is his venture to dive deep into the passion
                 </p>
               </div>
@@ -89,7 +89,7 @@ const About = () => {
             </div>
           </div>
           <div className='founder'>
-            <div className={`founder-card relative text-white overflow-hidden ${neueHass.className}`}>
+            <div className={`founder-card relative text-white overflow-hidden ${inter.className}`}>
               <Image
                 src="/assets/founders/prachi.jpg"
                 alt='founder'
@@ -110,7 +110,7 @@ const About = () => {
                   </Link>
                 </button>
               </div>
-              <div className={`founder-card--overlay absolute top-0 opacity-0 hover:block hover:opacity-100 ${neueHass.className} text-sm transition-opacity duration-500 cursor-pointer`}>
+              <div className={`founder-card--overlay absolute top-0 opacity-0 hover:block hover:opacity-100 ${inter.className} text-sm transition-opacity duration-500 cursor-pointer`}>
                 <p className='absolute bottom-0 mx-5 py-10 text-start'>Prachi Graduated from Pune University. She has worked with s.p.a design studio for 2 years. Later, she worked with Studio PPBA in Pune.
 
                   With a creative eye for engaging visual content, she handles the correspondence and strategic growth at archiive</p>

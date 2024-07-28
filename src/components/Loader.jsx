@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
+import React, { useState } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
-import { FreeSans, neueHass } from '@/utils/font';
+import { FreeSans } from '@/utils/font';
 gsap.registerPlugin(useGSAP);
 
 const Loader = () => {

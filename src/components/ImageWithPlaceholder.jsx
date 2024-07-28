@@ -8,7 +8,7 @@ const ImageWithPlaceholder = ({ src ,alt,objectfit,...props }) => {
     const [loading, setLoading] = useState(true);
 
     return (
-        <div className='flex justify-center items-center h-full'>
+        <div className='flex justify-center items-center h-full relative'>
             {loading && <Spinner />}
             <Image
                 src={src}
@@ -20,6 +20,7 @@ const ImageWithPlaceholder = ({ src ,alt,objectfit,...props }) => {
                 quality={100}
                 style={{
                     objectFit: objectfit,
+                    position:"absolute"
                 }}
             />
         </div>

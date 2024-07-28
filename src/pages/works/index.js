@@ -1,10 +1,11 @@
 import Header from '@/components/Header';
-import { neueHass } from '@/utils/font';
+import { inter } from '@/utils/font';
 import { createClient } from 'contentful';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import { ReactLenis } from 'lenis/react'
+
 export async function getStaticProps() {
   const client = createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -35,7 +36,7 @@ const Index = ({ works }) => {
                 height={300}
                 style={{ width: '100%' }}
               />
-              <p className={`${neueHass.className} mt-2 text-left mid:text-sm text-xs `}>{work.fields.title}</p>
+              <p className={`${inter.className} mt-2 text-left mid:text-sm text-xs `}>{work.fields.title}</p>
             </div>
           </Link>
         ))}

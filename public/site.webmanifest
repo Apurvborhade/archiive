@@ -1,6 +1,7 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Archiive",
+    "short_name": "archiive",
+    "lang": "en-US",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

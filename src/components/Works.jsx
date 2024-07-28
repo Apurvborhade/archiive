@@ -1,13 +1,14 @@
-import Image from 'next/image'
-import React, { useRef } from 'react'
+import React from 'react';
+import Image from 'next/image';
+import { useRef } from 'react';
 
-import Link from 'next/link'
+import Link from 'next/link';
 import gsap from 'gsap';
 
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-import { inter, neueHass } from '@/utils/font';
+import { inter } from '@/utils/font';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 
@@ -70,18 +71,18 @@ const Works = ({ works }) => {
                 height={300}
                 style={{width:'100%'}}
               />
-            <p className={`${neueHass.className} mt-2 text-left mid:text-sm text-xs `}>{work.fields.title}</p>
+            <p className={`${inter.className} mt-2 text-left mid:text-sm text-xs `}>{work.fields.title}</p>
             </div>
 
           </Link>
         ))}
       </div>
       <div className="works-btn flex ">
-        <div className='ml-auto mr-auto'>
+        <div className='flex justify-center w-full xs:justify-start xs:mx-10'>
           <Link href={"/works"}>
-            <button className={`${inter.className} mt-16 underline-right outline-none  text-3xl flex items-center view-works-btn`}>
+            <button className={`${inter.className} mt-16 underline-right outline-none  text-2xl xs:text-xl flex items-center view-works-btn`}>
               <p className=' transition-transform duration-500'> View All Works</p>
-              <Image className='ml-3 transition-all duration-700 opacity-0 -translate-x-5' src={"/assets/right arrow.svg"} width={25} height={15} alt='right-arrow'></Image>
+              <Image className='ml-3 transition-all duration-700 opacity-0 -translate-x-5' src={"/assets/right arrow.svg"} width={20} height={15} alt='right-arrow'></Image>
             </button>
           </Link>
         </div>
