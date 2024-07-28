@@ -11,7 +11,7 @@ const Process = () => {
     const getInitialHorizontalScroll = () => {
         if (typeof window !== 'undefined') {
             if (window.innerWidth > 1440) {
-                return 1300;
+                return 1700;
             } else if (window.innerWidth <= 1024) {
                 return 2100;
             } else if (window.innerWidth > 1024) {
