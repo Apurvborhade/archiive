@@ -6,7 +6,7 @@ import Process from "@/components/Process";
 import Works from "@/components/Works";
 import { createClient } from "contentful";
 import { ReactLenis } from 'lenis/react'
-import { useRouter } from 'next/router';
+
 import { useEffect, useState } from "react";
 
 
@@ -28,7 +28,7 @@ export async function getStaticProps() {
 }
 export default function Home({ works }) {
   const [showLoader, setShowLoader] = useState(true);
-  const router = useRouter();
+
   useEffect(() => {
     const handleLoad = () => {
       const hasVisited = sessionStorage.getItem('hasVisited');

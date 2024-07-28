@@ -780,3 +780,15 @@ footer li {
   }
 
 }
+
+@media only screen and (max-width: 375px) {
+  .process-card h2 {
+    font-size: 1.5rem;
+  }
+  .process-desc {
+    font-size: 0.9rem;
+  }
+  .process-card  {
+    max-width: 335px;
+  }
+}
