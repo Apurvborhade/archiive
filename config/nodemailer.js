@@ -4,7 +4,9 @@ const email = process.env.EMAIL;
 const pass = process.env.EMAIL_PASS;
 
 export const transporter = nodemailer.createTransport({
-    service:'gmail',
+    host:'smtp.office365.com',
+    port: 587,
+    secure: false, // use TLS
     auth:{
         user:email,
         pass

@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from 'react';
 import screenfull from 'screenfull';
 
 import SwipeOutlinedIcon from '@mui/icons-material/SwipeOutlined';
+import useScrollToTop from '@/hooks/useScrollToTop';
 gsap.registerPlugin(Draggable);
 
 const client = createClient({
