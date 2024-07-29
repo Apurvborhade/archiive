@@ -48,7 +48,7 @@ const Header = ({ navColor }) => {
       },
       opacity: 0,
       display: "hidden",
-      pointerEvents:"none"
+      pointerEvents: "none"
     });
   })
 
@@ -129,7 +129,7 @@ const Header = ({ navColor }) => {
           <div className="links w-full ">
             <ul className='flex items-center w-3/5 bz justify-around' >
               <li>
-                <Link href={'/'}>
+                <Link href={'https://www.facebook.com/profile.php?id=61563454502057&sk=about'} target='_blank'>
                   <span>
                     <Image
                       src="/assets/FaceBook.svg"
@@ -142,7 +142,7 @@ const Header = ({ navColor }) => {
                 </Link>
               </li>
               <li>
-                <Link href={'/'}>
+                <Link href={'https://instagram.com/archiive_visuals'} target='_blank'>
                   <span>
                     <Image
                       src="/assets/Instagram.svg"
@@ -155,7 +155,7 @@ const Header = ({ navColor }) => {
                 </Link>
               </li>
               <li>
-                <Link href={'/'}>
+                <Link href={'https://www.behance.net/archiive_visuals'} target='_blank'>
                   <span>
                     <Image
                       src="/assets/Behance.svg"
@@ -167,7 +167,19 @@ const Header = ({ navColor }) => {
                   </span>
                 </Link>
               </li>
-
+              <li>
+                <Link href={'https://www.linkedin.com/company/archiive-visuals/'} target='_blank'>
+                  <span>
+                    <Image
+                      src="/assets/linkedin.svg"
+                      width={22}
+                      height={22}
+                      alt="LinkedIn"
+                      className='invert'
+                    />
+                  </span>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

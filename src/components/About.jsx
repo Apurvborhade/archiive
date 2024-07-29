@@ -105,7 +105,7 @@ const About = () => {
               />
               <div className="social-btns absolute top-0 z-50 m-5 flex flex-col">
                 <button className="founder-social bg-white text-black rounded-3xl px-2 z-50 mb-2 hover:translate-x-2 transition-transform outline-none">
-                  <Link href={'https://instagram.com/laksha_vedh'} target='_blank'>
+                  <Link href={'https://instagram.com/prach.i.sule'} target='_blank'>
                     Instagram
                   </Link>
                 </button>

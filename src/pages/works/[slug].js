@@ -54,6 +54,7 @@ export async function getStaticProps({ params }) {
 }
 
 const WorkDetails = ({ work }) => {
+    useScrollToTop();
     const fullscreenBtn = useRef(null);
     const [isFullScreen, setIsFullScreen] = useState(false)
 

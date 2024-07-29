@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FreeSans, inter } from '@/utils/font'
 
-
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 
 
 const Footer = () => {
@@ -22,7 +22,7 @@ const Footer = () => {
             <div className="links">
               <ul className='flex items-center cursor-pointer'>
                 <li>
-                  <Link href={'/'}>
+                  <Link href={'https://www.facebook.com/profile.php?id=61563454502057'} target='_blank'>
                     <span>
                       <Image
                         src="/assets/FaceBook.svg"
@@ -34,7 +34,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'/'}>
+                  <Link href={'https://instagram.com/archiive_visuals'} target='_blank'>
                     <span>
                       <Image
                         src="/assets/Instagram.svg"
@@ -46,13 +46,25 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'/'}>
+                  <Link href={'https://www.behance.net/archiive_visuals'} target='_blank'>
                     <span>
                       <Image
                         src="/assets/Behance.svg"
                         width={30}
                         height={30}
-                        alt="Instagram"
+                        alt="Behance"
+                      />
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'https://www.linkedin.com/company/archiive-visuals/'} target='_blank'>
+                    <span>
+                      <Image
+                        src="/assets/linkedin.svg"
+                        width={22}
+                        height={22}
+                        alt="LinkedIn"
                       />
                     </span>
                   </Link>
@@ -91,7 +103,8 @@ const Footer = () => {
           </div>
           <div className="contact-phn">
             <p className={`${inter.className} opacity-60`}>Phone</p>
-            <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
+            <span className={`${inter.className} font-semibold`}>+91 8432360136</span>
+            <span className={`${inter.className} font-semibold`}>+91 9922285031</span>
           </div>
         </div>
       </div>
@@ -112,7 +125,7 @@ const Footer = () => {
             <div className="links">
               <ul className='flex items-center'>
                 <li>
-                  <Link href={'/'}>
+                  <Link href={'https://www.facebook.com/profile.php?id=61563454502057&sk=about'} target='_blank'>
                     <span>
                       <Image
                         src="/assets/FaceBook.svg"
@@ -124,7 +137,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'/'}>
+                  <Link href={'https://instagram.com/archiive_visuals'} target='_blank'>
                     <span>
                       <Image
                         src="/assets/Instagram.svg"
@@ -136,13 +149,25 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={'/'}>
+                  <Link href={'https://www.behance.net/archiive_visuals'} target='_blank'>
                     <span>
                       <Image
                         src="/assets/Behance.svg"
                         width={30}
                         height={30}
                         alt="Behance"
+                      />
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'https://www.linkedin.com/company/archiive-visuals/'} target='_blank'>
+                    <span>
+                      <Image
+                        src="/assets/linkedin.svg"
+                        width={22}
+                        height={22}
+                        alt="LinkedIn"
                       />
                     </span>
                   </Link>
