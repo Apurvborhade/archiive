@@ -134,7 +134,7 @@ const Index = () => {
             <div className='contact-page--wrapper flex justify-center xl:gap-16 lg:gap-20 xs:flex-col xs:mx-10'>
                 <div className='contact-header w-4/12 xs:w-full flex flex-col justify-start'>
                     <h2 className={`${neutralFace.className} bold xl:text-5xl lg:text-3xl xs:text-3xl`}>lets work <br /> <p className='xxl:indent-52 xl:indent-32 xs:indent-0'> Together</p></h2>
-                    <p className={`${inter.className} font-light mt-16`}>Let us create some engaging visual stories for your project. Send an enquiry to us and let's have a conversation about your project.</p>
+                    <p className={`${inter.className} font-light mt-16`}>Let us create some engaging visual stories for your project. Send an enquiry to us and let&apos;s have a conversation about your project.</p>
                 </div>
                 <div className='contact-form--wrapper w-6/12 xs:w-full'>
                     <form className="contact-form xs:mt-10" onSubmit={onSubmit}>
