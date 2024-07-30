@@ -103,7 +103,7 @@ const Footer = () => {
           </div>
           <div className="contact-phn">
             <p className={`${inter.className} opacity-60`}>Phone</p>
-            <span className={`${inter.className} font-semibold`}>+91 8432360136</span>
+            <span className={`${inter.className} font-semibold`}>+91 8432360136</span> <br />
             <span className={`${inter.className} font-semibold`}>+91 9922285031</span>
           </div>
         </div>
