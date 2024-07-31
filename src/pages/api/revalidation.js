@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     }
 
     // Check for the secret Token
-    if (req.query.secret !== process.env.NEXT_PUBLIC_CONTENTFUL_WEBHOOK_TOKEN) {
+    if (req.query.secret !== process.env.CONTENTFUL_WEBHOOK_TOKEN) {
         return res.status(401).json({ message: 'Invalid token' })
     }
 
