@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FreeSans, inter } from '@/utils/font'
 
-import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 
 
 const Footer = () => {
@@ -111,7 +110,7 @@ const Footer = () => {
       {/* Mail */}
       <div className={`footer-mail lg:mt-36 text-1xl mid:text-2xl lg:mb-0 mb-10 ${FreeSans.className}`}>
         <p className='opacity-45'>Send Mail</p>
-        <Link href="mailto:test@gmail.com">
+        <Link href="mailto:info@archiive.co">
           <h2 className='lg:text-3xl mid:text-5xl text-3xl underline'>info@archiive.co</h2>
         </Link>
 
