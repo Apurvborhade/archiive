@@ -28,6 +28,7 @@ const generateEmailContent = (data) => {
     }
 }
 const handler = async (req, res) => {
+
     if (req.method === "POST") {
         const data = req.body;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,6 +39,7 @@ const handler = async (req, res) => {
             return res.status(400).json({ message: 'Please enter a valid email address' });
         }
         try {
+       
             await transporter.sendMail({
                 ...mailOptions,
                 ...generateEmailContent(data),
