@@ -1,6 +1,5 @@
 import CustomCursor from '@/components/CustomCursor';
 import Header from '@/components/Header';
-
 import ImageWithPlaceholder from '@/components/ImageWithPlaceholder';
 import { inter } from '@/utils/font';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
@@ -8,11 +7,11 @@ import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import { createClient } from 'contentful';
 import gsap, { Linear } from 'gsap';
 import { Draggable } from "gsap/Draggable";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import screenfull from 'screenfull';
-
 import SwipeOutlinedIcon from '@mui/icons-material/SwipeOutlined';
 import useScrollToTop from '@/hooks/useScrollToTop';
+
 gsap.registerPlugin(Draggable);
 
 const client = createClient({
@@ -57,44 +56,39 @@ export async function getStaticProps({ params }) {
 const WorkDetails = ({ work }) => {
     useScrollToTop();
     const fullscreenBtn = useRef(null);
-    const [isFullScreen, setIsFullScreen] = useState(false)
-
+    const [isFullScreen, setIsFullScreen] = useState(false);
 
     const wrapperRef = useRef(null);
     const proxyRef = useRef(null);
     const animationRef = useRef(null);
 
-    const handleFullscreenChange = () => {
+    const handleFullscreenChange = useCallback(() => {
         setIsFullScreen(screenfull.isFullscreen);
-    };
+    }, []);
 
-
-
-    const toggleFullscreen = () => {
+    const toggleFullscreen = useCallback(() => {
         if (screenfull.isEnabled) {
             screenfull.toggle().catch((err) => {
                 console.log("Error toggling fullscreen:", err);
             });
         }
-    };
+    }, []);
 
-
-
-    const [boxWidth, setBoxWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440)
+    const [boxWidth, setBoxWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440);
 
     useEffect(() => {
-        var boxes = document.querySelectorAll(".carousel-item");
+        const boxes = document.querySelectorAll(".carousel-item");
         const rightBtn = document.querySelector(".carousel-slider--right");
         const leftBtn = document.querySelector(".carousel-slider--left");
 
+        let wrapWidth;
 
-        function setupCarousel() {
-            var wrapWidth = boxes.length * boxWidth;
+        const setupCarousel = () => {
+            wrapWidth = boxes.length * boxWidth;
 
-            for (var i = 0; i < boxes.length; i++) {
-                let box = boxes[i];
-                gsap.set(box, { x: i * boxWidth, left: -(boxWidth) });
-            }
+            boxes.forEach((box, i) => {
+                gsap.set(box, { x: i * boxWidth, left: -boxWidth });
+            });
 
             const wrapper = wrapperRef.current;
             const wrapProgress = gsap.utils.wrap(0, 1);
@@ -102,22 +96,21 @@ const WorkDetails = ({ work }) => {
             const proxy = document.createElement("div");
             proxyRef.current = proxy;
             const props = gsap.getProperty(proxy);
-            var clickAnimation = gsap.set({}, {});
 
             gsap.set(proxyRef.current, { x: boxWidth });
 
             animationRef.current = gsap.to(".carousel-item", {
                 duration: 1,
-                x: "+=" + wrapWidth,
+                x: `+=${wrapWidth}`,
                 ease: Linear.easeNone,
                 paused: true,
                 repeat: -1,
                 modifiers: {
-                    x: function (x, target) {
+                    x: (x) => {
                         x = parseFloat(x) % wrapWidth;
-                        return x + "px";
-                    }
-                }
+                        return `${x}px`;
+                    },
+                },
             }).progress(1 / boxes.length);
 
             let isHorizontalGesture = false;
@@ -125,35 +118,30 @@ const WorkDetails = ({ work }) => {
                 type: "x",
                 trigger: wrapper,
                 throwProps: true,
-                onPress: function () {
+                onPress() {
                     this.startX = this.pointerX;
                     this.startY = this.pointerY;
                     isHorizontalGesture = false;
                 },
-                onDrag: function () {
-
+                onDrag() {
                     const deltaX = Math.abs(this.startX - this.pointerX);
-
                     if (deltaX > 20) {
                         isHorizontalGesture = true;
                         updateProgress();
                     }
-
                 },
                 onThrowUpdate: updateProgress,
                 snap: { x: snapBox },
                 inertia: true,
                 cursor: 'ew-resize',
-                onDragEnd: function () {
-
+                onDragEnd() {
                     if (isHorizontalGesture) {
-                        const deltaX = Math.abs(this.startX - this.pointerX)
-
+                        const deltaX = Math.abs(this.startX - this.pointerX);
                         if (deltaX > 20) {
-                            snapToBox(this.getDirection("velocity"))
+                            snapToBox(this.getDirection("velocity"));
                         }
                     }
-                }
+                },
             });
 
             window.addEventListener('keydown', (e) => {
@@ -170,39 +158,40 @@ const WorkDetails = ({ work }) => {
             });
             rightBtn.addEventListener('click', () => animateCarousel(-1));
             leftBtn.addEventListener('click', () => animateCarousel(1));
+        };
 
-            function animateCarousel(direction) {
-                clickAnimation.kill();
-                clickAnimation = gsap.to(proxy, {
-                    duration: 0.8,
-                    x: snapBox(props("x") + direction * boxWidth),
-                    onUpdate: updateProgress
-                });
-            }
-            function updateProgress() {
-                animationRef.current.progress(wrapProgress(props("x") / wrapWidth));
-            }
+        const animateCarousel = (direction) => {
+            gsap.to(proxyRef.current, {
+                duration: 0.8,
+                x: gsap.utils.snap(boxWidth)(gsap.getProperty(proxyRef.current, "x") + direction * boxWidth),
+                onUpdate: updateProgress,
+            });
+        };
 
-            function snapToBox(directionX) {
-                const direction = directionX === "left" ? -1 : 1;
-                gsap.to(proxy, {
-                    duration: 0.8,
-                    x: snapBox(props("x") + direction * boxWidth),
-                    onUpdate: updateProgress
-                });
-            }
-        }
+        const updateProgress = () => {
+            animationRef.current.progress(gsap.utils.wrap(0, 1)(gsap.getProperty(proxyRef.current, "x") / wrapWidth));
+        };
+
+        const snapToBox = (directionX) => {
+            const direction = directionX === "left" ? -1 : 1;
+            gsap.to(proxyRef.current, {
+                duration: 0.8,
+                x: gsap.utils.snap(boxWidth)(gsap.getProperty(proxyRef.current, "x") + direction * boxWidth),
+                onUpdate: updateProgress,
+            });
+        };
+
+        const handleResize = () => {
+            setBoxWidth(window.innerWidth);
+        };
 
         setupCarousel();
 
-
         if (screenfull.isEnabled) {
-            // Use screenfull library events
             screenfull.on('change', handleFullscreenChange);
-
-        } else {
-            console.log("Screenfull is not enabled");
         }
+
+        window.addEventListener('resize', handleResize);
         const handleKeydown = (event) => {
             if (event.key === 'F11' || event.code === 'F11' || event.which === 122) {
                 event.preventDefault(); // Prevent the default F11 action (browser fullscreen)
@@ -211,27 +200,26 @@ const WorkDetails = ({ work }) => {
         };
 
         window.addEventListener('keydown', handleKeydown);
-
-        window.addEventListener('resize', () => setBoxWidth(window.innerWidth));
-
         return () => {
             if (screenfull.isEnabled) {
                 screenfull.off('change', handleFullscreenChange);
             }
-            window.removeEventListener('keydown', handleKeydown);
-            window.removeEventListener('resize', () => setBoxWidth(window.innerWidth));
+            window.removeEventListener('resize', handleResize);
         };
+    }, [boxWidth, handleFullscreenChange, toggleFullscreen]);
 
-    }, [boxWidth]);
+
+
 
     if (!work) {
         return <div>Loading...</div>;
     }
 
     const formatDate = (date) => {
-        const year = date.split("-")[0]
-        return `${year}`
-    }
+        const year = date.split("-")[0];
+        return `${year}`;
+    };
+
     return (
         <div className='work-detail'>
             <Header navColor={"#FFFDEB"} />
@@ -287,7 +275,7 @@ const WorkDetails = ({ work }) => {
                     </button>
                 </div>
             </div>
-            |<div className='pin-spacer'></div>
+            <div className='pin-spacer'></div>
         </div>
     );
 };
