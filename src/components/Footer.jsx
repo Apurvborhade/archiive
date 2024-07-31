@@ -205,7 +205,8 @@ const Footer = () => {
           </div>
           <div className="contact-phn">
             <p className={`${inter.className} opacity-60`}>Phone</p>
-            <span className={`${inter.className} font-semibold`}>(123) 456-7890</span>
+            <span className={`${inter.className} font-semibold`}>+91 8432360136</span> <br />
+            <span className={`${inter.className} font-semibold`}>+91 9922285031</span>
           </div>
         </div>
         <h1 className={`lg:text-9xl xs:text-5xl ${FreeSans.className} font-medium ml-auto text-4xl mt-10 `}>archiive</h1>
