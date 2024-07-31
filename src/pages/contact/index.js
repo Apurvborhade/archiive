@@ -31,14 +31,13 @@ const Index = () => {
     useScrollToTop();
     const [savedTime, setSavedTime] = useState(typeof window !== 'undefined' ? localStorage.getItem('lastSubmissionTime') : null)
     useEffect(() => {
-
         if (savedTime && Date.now() - parseInt(savedTime, 10) > RATE_LIMIT_PERIOD) {
             // Reset count and time if period has passed
             localStorage.removeItem('lastSubmissionTime');
             localStorage.removeItem('submissionCount');
         }
         setSubmissionCount(getSubmissionCount()); // Update state when component mounts
-    }, []);
+    }, [savedTime]);
     const [contactDetails, setContactDetails] = useState(initState);
     const [submissionCount, setSubmissionCount] = useState(getSubmissionCount());
     const { values, isLoading, isSuccess } = contactDetails;
