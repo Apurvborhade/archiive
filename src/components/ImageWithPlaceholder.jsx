@@ -10,18 +10,20 @@ const ImageWithPlaceholder = ({ src ,alt,objectfit,...props }) => {
     return (
         <div className='flex justify-center items-center h-full relative'>
             {loading && <Spinner />}
-            <Image
+            <img
                 src={src}
                 alt={alt}
-                fill
-                onLoad={() => {
-                    setLoading(false)
-                }}
-                quality={100}
+                onLoad={() => setLoading(false)}
                 style={{
                     objectFit: objectfit,
-                    position:"absolute"
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    display: "block"
                 }}
+                loading="lazy"
+                decoding="async"
+                {...props}
             />
         </div>
     );

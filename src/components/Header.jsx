@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { archivo, inter } from '@/utils/font';
@@ -8,6 +7,11 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(useGSAP)
 
+const optimizedImgStyle = {
+  display: 'block',
+  maxWidth: '100%',
+  height: 'auto'
+};
 
 const Header = ({ navColor }) => {
   const [navbarColor, setNavbarColor] = useState(navColor);
@@ -19,9 +23,6 @@ const Header = ({ navColor }) => {
   const closeMenu = () => {
     setMenuOpen(false)
   }
-
-
-
 
   useGSAP(() => {
     gsap.to(".header-container", {
@@ -52,17 +53,19 @@ const Header = ({ navColor }) => {
     });
   })
 
-
   return (
     <>
       <div style={{ backgroundColor: navbarColor }} className={`header-container fixed top-0 w-screen ${archivo.className}`}>
         <div className='header w-full flex justify-between items-center p-4 lg:px-10 lg:py-4'>
           <Link className="brand-logo" href={"/"}>
-            <Image
+            <img
               src="/assets/archiive.svg"
               width={30}
               height={30}
               alt="archiive"
+              loading="lazy"
+              decoding="async"
+              style={optimizedImgStyle}
             />
           </Link>
           <div className={`menu-link--container ${archivo.className} text-sm uppercase ml-auto mr-44 lg:block hidden`}>
@@ -99,11 +102,14 @@ const Header = ({ navColor }) => {
         <div>
           <div className="mobile-menu--header flex justify-end ">
             <button className="close-btn m-5 p-1 border rounded-full cursor-pointer" onClick={closeMenu}>
-              <Image
+              <img
                 src={"/assets/Close_round.svg"}
                 width={25}
                 height={25}
                 alt='close-btn'
+                loading="lazy"
+                decoding="async"
+                style={optimizedImgStyle}
               />
             </button>
           </div>
@@ -131,12 +137,15 @@ const Header = ({ navColor }) => {
               <li>
                 <Link href={'https://www.facebook.com/profile.php?id=61563454502057&sk=about'} target='_blank'>
                   <span>
-                    <Image
+                    <img
                       src="/assets/FaceBook.svg"
                       width={30}
                       height={30}
                       alt="Facebook"
                       className='invert'
+                      loading="lazy"
+                      decoding="async"
+                      style={optimizedImgStyle}
                     />
                   </span>
                 </Link>
@@ -144,12 +153,15 @@ const Header = ({ navColor }) => {
               <li>
                 <Link href={'https://instagram.com/archiive_visuals'} target='_blank'>
                   <span>
-                    <Image
+                    <img
                       src="/assets/Instagram.svg"
                       width={30}
                       height={30}
                       alt="Instagram"
                       className='invert'
+                      loading="lazy"
+                      decoding="async"
+                      style={optimizedImgStyle}
                     />
                   </span>
                 </Link>
@@ -157,12 +169,15 @@ const Header = ({ navColor }) => {
               <li>
                 <Link href={'https://www.behance.net/archiive_visuals'} target='_blank'>
                   <span>
-                    <Image
+                    <img
                       src="/assets/Behance.svg"
                       width={30}
                       height={30}
                       alt="Behance"
                       className='invert'
+                      loading="lazy"
+                      decoding="async"
+                      style={optimizedImgStyle}
                     />
                   </span>
                 </Link>
@@ -170,12 +185,15 @@ const Header = ({ navColor }) => {
               <li>
                 <Link href={'https://www.linkedin.com/company/archiive-visuals/'} target='_blank'>
                   <span>
-                    <Image
+                    <img
                       src="/assets/linkedin.svg"
                       width={22}
                       height={22}
                       alt="LinkedIn"
                       className='invert'
+                      loading="lazy"
+                      decoding="async"
+                      style={optimizedImgStyle}
                     />
                   </span>
                 </Link>
@@ -185,8 +203,6 @@ const Header = ({ navColor }) => {
         </div>
 
       </div>
-
-
     </>
   )
 }

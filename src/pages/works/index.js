@@ -1,11 +1,16 @@
 import Header from '@/components/Header';
 import { inter } from '@/utils/font';
 import { createClient } from 'contentful';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import { ReactLenis } from 'lenis/react'
 import useScrollToTop from '@/hooks/useScrollToTop';
+
+const optimizedImgStyle = {
+  display: 'block',
+  maxWidth: '100%',
+  height: 'auto'
+};
 
 export async function getStaticProps() {
   const client = createClient({
@@ -30,12 +35,14 @@ const Index = ({ works }) => {
         {works.map((work) => (
           <Link key={work.sys.id} href={`/works/${work.fields.slug}`} className='work-grid-item'>
             <div className='relative w-full h-full'>
-              <Image
+              <img
                 src={`https:${work.fields.thumbnail.fields.file.url}`}
                 alt={work.fields.title}
                 width={450}
                 height={300}
-                style={{ width: '100%' }}
+                loading="lazy"
+                decoding="async"
+                style={optimizedImgStyle}
               />
               <p className={`${inter.className} mt-2 text-left mid:text-sm text-xs `}>{work.fields.title}</p>
             </div>
