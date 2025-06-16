@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import Image from 'next/image';
 import { FreeSans } from '@/utils/font';
 gsap.registerPlugin(useGSAP);
 
+const optimizedImgStyle = {
+    display: 'block',
+    maxWidth: '100%',
+    height: 'auto'
+};
+
 const Loader = () => {
 
-
     const [logoSize, setLogoSize] = useState(80);
-
 
     useGSAP(() => {
         const tl = gsap.timeline({});
@@ -41,12 +44,15 @@ const Loader = () => {
         <>
             <div className="logo-anim fixed  w-screen h-screen flex justify-center items-center pointer-events-none">
                 <div className="lg:translate-x-3 fixed flex w-full h-full items-center justify-center">
-                    <Image
+                    <img
                         src={'/assets/archiiveLoader.svg'}
                         width={logoSize}
-                        alt='logo'
                         height={logoSize}
+                        alt='logo'
                         className="loader-logo lg:mt-5"
+                        loading="eager"
+                        decoding="async"
+                        style={optimizedImgStyle}
                     />
                     <h1 className={`text-white ml-5 lg:ml-10 lg:text-9xl text-6xl loader-brand--text ${FreeSans.className} font-medium`}>archiive</h1>
                 </div>

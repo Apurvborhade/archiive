@@ -1,9 +1,5 @@
-import Image from 'next/image'
-
 import Link from 'next/link'
 import { FreeSans, inter } from '@/utils/font'
-
-
 
 const Footer = () => {
   return (
@@ -23,11 +19,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://www.facebook.com/profile.php?id=61563454502057'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/FaceBook.svg"
                         width={30}
                         height={30}
                         alt="Facebook"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>
@@ -35,11 +34,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://instagram.com/archiive_visuals'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/Instagram.svg"
                         width={30}
                         height={30}
                         alt="Instagram"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>
@@ -47,11 +49,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://www.behance.net/archiive_visuals'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/Behance.svg"
                         width={30}
                         height={30}
                         alt="Behance"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>
@@ -59,11 +64,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://www.linkedin.com/company/archiive-visuals/'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/linkedin.svg"
                         width={22}
                         height={22}
                         alt="LinkedIn"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>
@@ -126,11 +134,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://www.facebook.com/profile.php?id=61563454502057&sk=about'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/FaceBook.svg"
                         width={30}
                         height={30}
                         alt="Facebook"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>
@@ -138,11 +149,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://instagram.com/archiive_visuals'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/Instagram.svg"
                         width={30}
                         height={30}
                         alt="Instagram"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>
@@ -150,11 +164,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://www.behance.net/archiive_visuals'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/Behance.svg"
                         width={30}
                         height={30}
                         alt="Behance"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>
@@ -162,11 +179,14 @@ const Footer = () => {
                 <li>
                   <Link href={'https://www.linkedin.com/company/archiive-visuals/'} target='_blank'>
                     <span>
-                      <Image
+                      <img
                         src="/assets/linkedin.svg"
                         width={22}
                         height={22}
                         alt="LinkedIn"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                       />
                     </span>
                   </Link>

@@ -64,12 +64,14 @@ const Works = ({ works }) => {
         {works.map((work) => (
           <Link key={work.sys.id} href={`/works/${work.fields.slug}`} className='work-grid-item'>
             <div className='relative w-full h-full'>
-              <Image
+              <img
                 src={`https:${work.fields.thumbnail.fields.file.url}`}
                 alt={work.fields.title}
                 width={450}
                 height={300}
-                style={{width:'100%'}}
+                style={{ width: '100%', display: 'block', objectFit: 'cover' }}
+                loading="lazy"
+                decoding="async"
               />
             <p className={`${inter.className} mt-2 text-left mid:text-sm text-xs `}>{work.fields.title}</p>
             </div>
@@ -82,7 +84,16 @@ const Works = ({ works }) => {
           <Link href={"/works"}>
             <button className={`${inter.className} mt-16 underline-right outline-none  text-2xl xs:text-xl flex items-center view-works-btn`}>
               <p className=' transition-transform duration-500'> View All Works</p>
-              <Image className='ml-3 transition-all duration-700 opacity-0 -translate-x-5' src={"/assets/right arrow.svg"} width={20} height={15} alt='right-arrow'></Image>
+              <img
+                className="ml-3 transition-all duration-700 opacity-0 -translate-x-5"
+                src="/assets/right%20arrow.svg"
+                width={20}
+                height={15}
+                alt="right-arrow"
+                loading="lazy"
+                style={{ display: 'inline-block', maxWidth: '100%', height: 'auto' }}
+                decoding="async"
+              />
             </button>
           </Link>
         </div>
