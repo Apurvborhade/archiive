@@ -88,18 +88,8 @@ export async function getStaticProps({ params }) {
     let videoLink = null;
     try {
         const link = work.fields.videoLink;
-        if (link) {
-            // Embedded entry or reference
-            if (link.fields) {
-                videoLink = link;
-            } else if (link.sys) {
-                const { items: fetchedLinks } = await client.getEntries({
-                    content_type: "videoLink",
-                    "sys.id": link.sys.id
-                });
-                if (fetchedLinks.length) videoLink = fetchedLinks[0];
-            }
-        }
+        if(link) videoLink = link;
+
     } catch (err) {
         // fallback: ignore video link if error
         videoLink = null;
@@ -111,6 +101,7 @@ export async function getStaticProps({ params }) {
 }
 
 const WorkDetails = ({ work, videoLink }) => {
+    console.log("videoLink", videoLink);
     useScrollToTop();
     const fullscreenBtn = useRef(null);
     const [isFullScreen, setIsFullScreen] = useState(false);
@@ -422,17 +413,17 @@ const WorkDetails = ({ work, videoLink }) => {
     }
 
     if (videoLink) {
-        const ytId = getYoutubeId(videoLink.fields.url);
+        const ytId = getYoutubeId(videoLink);
         if (ytId) {
             carouselSlides.push(
-                <div className="carousel-item video-slide flex items-center justify-center bg-[#FFFDEB] w-full h-full relative" key={`video_${videoLink.sys.id}`}>
+                <div className="carousel-item video-slide flex items-center justify-center bg-[#FFFDEB] w-full h-full relative" key={`video_${videoLink}`}>
                     <iframe
                         className="w-full h-full"
                         width="100%"
                         height="100%"
                         style={{ aspectRatio: '16/9', borderRadius: 0, background: "#111" }}
                         src={`https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1`}
-                        title={videoLink.fields.title || 'YouTube Video'}
+                        title={videoLink || 'YouTube Video'}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         loading="lazy"
