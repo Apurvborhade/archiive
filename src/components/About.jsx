@@ -46,7 +46,7 @@ const About = () => {
 
         </p>
       </div>
-      <div className="team-section mt-10 lg:mt-22 lg:mx-10">
+      {/* <div className="team-section mt-10 lg:mt-22 lg:mx-10">
         <div className="section-container xxl:w-11/12 xl:w-12/12 w-full founder-section flex xs:flex-wrap justify-center mt-10 xs:gap-24">
           {founderImages.map((founder, idx) => (
             <div className='founder' key={founder.name}>
@@ -84,7 +84,7 @@ const About = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
